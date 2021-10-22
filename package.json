@@ -1,0 +1,36 @@
+{
+    "name": "@prezly/content-format",
+    "version": "0.1.0",
+    "description": "Prezly Content Format types and utilities",
+    "license": "MIT",
+    "main": "build/index.js",
+    "types": "build/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/prezly/content-format-js.git"
+    },
+    "bugs": {
+        "url": "https://github.com/prezly/content-format-js/issues"
+    },
+    "homepage": "https://github.com/prezly/content-format-js#readme",
+    "scripts": {
+        "build": "tsc --project .",
+        "check": "npm run prettier",
+        "clean": "rimraf build/ node_modules/",
+        "prettier": "prettier --check './**/*.(js|ts|scss)'",
+        "prettier:fix": "npm run prettier -- --write --no-list-different",
+        "release": "npm run release:prepare && npm run release:publish",
+        "release:prepare": "npm run clean && npm install && npm run build && npm run check",
+        "release:publish": "np --no-2fa"
+    },
+    "engines": {
+        "node": ">=14.0",
+        "npm": ">=7.0"
+    },
+    "devDependencies": {
+        "np": "^7.5.0",
+        "prettier": "^2.4.1",
+        "rimraf": "^3.0.2",
+        "typescript": "^4.4.4"
+    }
+}

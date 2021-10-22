@@ -1,1 +1,3 @@
-# content-format-js
+# Prezly Content Format
+
+// TODO: Write the docs
