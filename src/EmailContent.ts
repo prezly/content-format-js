@@ -11,6 +11,7 @@ import type {
     QuoteNode,
     Text,
 } from './format';
+import { ListItemTextNode, ListNode } from './format';
 
 export enum EmailPlaceholder {
     CONTACT_FIRST_NAME = 'contact.firstname',
@@ -22,12 +23,15 @@ export enum EmailPlaceholder {
 
 type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder>;
 
+type NestableListNode = ListNode<ListItemTextNode<Inline> | NestableListNode>;
+
 export type EmailContent = Document<
     | AttachmentNode
     | CoverageNode
     | DividerNode
     | EmbedNode
     | ImageNode
+    | NestableListNode
     | ParagraphNode<Inline>
     | QuoteNode<Inline>
 >;

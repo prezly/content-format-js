@@ -7,6 +7,8 @@ import type {
     GalleryNode,
     ImageNodeWithCaption,
     LinkNode,
+    ListNode,
+    ListItemTextNode,
     ParagraphNode,
     PlaceholderNode,
     QuoteNode,
@@ -19,6 +21,8 @@ export enum StoryPlaceholder {
 
 type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<Text>;
 
+type NestableListNode = ListNode<ListItemTextNode<Inline> | NestableListNode>;
+
 export type StoryContent = Document<
     | AttachmentNode
     | ContactNode
@@ -26,6 +30,7 @@ export type StoryContent = Document<
     | EmbedNode
     | GalleryNode
     | ImageNodeWithCaption<Inline>
+    | NestableListNode
     | ParagraphNode<Inline>
     | QuoteNode<Inline>
 >;
