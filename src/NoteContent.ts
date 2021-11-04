@@ -1,5 +1,5 @@
-import { Document, ParagraphNode, MentionNode, TextNode } from './format';
+import { Document, ParagraphNode, MentionNode, Text } from './format';
 
-type Inline = MentionNode | TextNode;
+type Inline = MentionNode | Text;
 
 export type NoteContent = Document<ParagraphNode<Inline>>;

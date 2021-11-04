@@ -1,6 +1,6 @@
-import type { ElementNode } from './ElementNode';
+import type { Element } from './Element';
 
-export interface HeadingNode<Child> extends ElementNode {
+export interface HeadingNode<Child> extends Element {
     type: 'heading-one' | 'heading-two';
     children: Child[];
 }

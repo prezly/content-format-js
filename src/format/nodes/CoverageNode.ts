@@ -1,6 +1,6 @@
-import type { ElementNode } from './ElementNode';
+import type { Element } from './Element';
 
-export interface CoverageNode extends ElementNode {
+export interface CoverageNode extends Element {
     type: 'coverage';
     uuid: string;
     coverage: { id: number };

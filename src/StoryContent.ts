@@ -10,14 +10,14 @@ import {
     ParagraphNode,
     PlaceholderNode,
     QuoteNode,
-    TextNode,
+    Text,
 } from './format';
 
 export enum StoryPlaceholder {
     STORY_PUBLICATION_DATE = 'publication.date',
 }
 
-type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<TextNode>;
+type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<Text>;
 
 export type StoryContent = Document<
     | AttachmentNode

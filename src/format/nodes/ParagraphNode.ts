@@ -1,6 +1,6 @@
-import type { ElementNode } from './ElementNode';
+import type { Element } from './Element';
 
-export interface ParagraphNode<Child> extends ElementNode {
+export interface ParagraphNode<Child> extends Element {
     type: 'paragraph';
     children: Child[];
 }

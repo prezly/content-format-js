@@ -1,7 +1,7 @@
 import type { UploadedFile } from '../common';
-import type { ElementNode } from './ElementNode';
+import type { Element } from './Element';
 
-export interface AttachmentNode extends ElementNode {
+export interface AttachmentNode extends Element {
     type: 'attachment';
     file: UploadedFile;
     description: string;

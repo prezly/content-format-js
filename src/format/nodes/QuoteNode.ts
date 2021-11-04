@@ -1,6 +1,6 @@
-import type { ElementNode } from './ElementNode';
+import type { Element } from './Element';
 
-export interface QuoteNode<Child> extends ElementNode {
+export interface QuoteNode<Child> extends Element {
     type: 'block-quote';
     children: Child[];
 }

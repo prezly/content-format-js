@@ -1,7 +1,7 @@
 import type { OEmbedInfo } from '../common';
-import type { ElementNode } from './ElementNode';
+import type { Element } from './Element';
 
-export interface EmbedNode extends ElementNode {
+export interface EmbedNode extends Element {
     type: 'embed';
     uuid: string;
     url: string;

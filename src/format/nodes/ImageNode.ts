@@ -1,5 +1,5 @@
 import type { UploadedImage } from '../common';
-import type { ElementNode } from './ElementNode';
+import type { Element } from './Element';
 
 export enum ImageLayout {
     CONTAINED = 'contained',
@@ -12,7 +12,7 @@ export enum ImageLayout {
  */
 export type ImageWidth = string;
 
-export interface ImageNode extends ElementNode {
+export interface ImageNode extends Element {
     type: 'image-block';
     file: UploadedImage;
     layout: ImageLayout;

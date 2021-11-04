@@ -1,6 +1,6 @@
-import type { ElementNode } from './ElementNode';
+import type { Element } from './Element';
 
-export interface PlaceholderNode<Key extends string> extends ElementNode {
+export interface PlaceholderNode<Key extends string> extends Element {
     type: 'placeholder';
     key: Key;
 }

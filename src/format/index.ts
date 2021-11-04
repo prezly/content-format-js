@@ -1,11 +1,11 @@
-import { ElementNode, TextNode } from './nodes';
+import { Element, Text } from './nodes';
 
 export * from './common';
 export * from './nodes';
 
-export type Node = ElementNode | TextNode;
+export type Node = Element | Text;
 
-export interface Document<Block extends ElementNode> {
+export interface Document<Block extends Element> {
     type: 'document';
     version: string;
     children: Block[];

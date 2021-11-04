@@ -1,5 +1,5 @@
 import type { UploadedImage } from '../common';
-import type { ElementNode } from './ElementNode';
+import type { Element } from './Element';
 
 export enum GalleryLayout {
     CONTAINED = 'contained',
@@ -26,7 +26,7 @@ export interface GalleryImage {
     caption: string;
 }
 
-export interface GalleryNode extends ElementNode {
+export interface GalleryNode extends Element {
     type: 'gallery';
     uuid: string;
     images: GalleryImage[];

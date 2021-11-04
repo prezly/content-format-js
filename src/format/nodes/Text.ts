@@ -6,6 +6,6 @@ interface Styled {
     superscript?: boolean;
 }
 
-export interface TextNode extends Styled {
+export interface Text extends Styled {
     text: string;
 }

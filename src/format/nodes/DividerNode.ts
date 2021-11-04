@@ -1,5 +1,5 @@
-import type { ElementNode } from './ElementNode';
+import type { Element } from './Element';
 
-export interface DividerNode extends ElementNode {
+export interface DividerNode extends Element {
     type: 'divider';
 }

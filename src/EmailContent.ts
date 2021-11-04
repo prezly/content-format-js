@@ -9,7 +9,7 @@ import {
     ParagraphNode,
     PlaceholderNode,
     QuoteNode,
-    TextNode,
+    Text,
 } from './format';
 
 export enum EmailPlaceholder {
@@ -20,7 +20,7 @@ export enum EmailPlaceholder {
     STORY_SHORT_URL = 'release.shorturl',
 }
 
-type Inline = LinkNode<TextNode> | PlaceholderNode<EmailPlaceholder>;
+type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder>;
 
 export type EmailContent = Document<
     | AttachmentNode

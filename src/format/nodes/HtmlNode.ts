@@ -1,6 +1,6 @@
-import type { ElementNode } from './ElementNode';
+import type { Element } from './Element';
 
-export interface HtmlNode extends ElementNode {
+export interface HtmlNode extends Element {
     type: 'html';
     content: string;
 }
