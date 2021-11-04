@@ -5,6 +5,6 @@ export const QuoteNode = {
     TYPE: 'block-quote',
 };
 
-export interface QuoteNode<Child extends Node> extends ComposedElement<typeof QuoteNode.TYPE> {
-    children: Child[];
+export interface QuoteNode<Inline extends Node> extends ComposedElement<typeof QuoteNode.TYPE> {
+    children: Inline[];
 }

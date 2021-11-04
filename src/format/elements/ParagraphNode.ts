@@ -5,7 +5,7 @@ export const ParagraphNode = {
     TYPE: 'paragraph',
 };
 
-export interface ParagraphNode<Child extends Node>
+export interface ParagraphNode<Inline extends Node>
     extends ComposedElement<typeof ParagraphNode.TYPE> {
-    children: Child[];
+    children: Inline[];
 }

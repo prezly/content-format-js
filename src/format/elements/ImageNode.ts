@@ -26,8 +26,8 @@ export interface ImageNode extends Element<typeof ImageNode.TYPE> {
     href: string | null;
 }
 
-export interface ImageNodeWithCaption<Child extends Node>
+export interface ImageNodeWithCaption<Inline extends Node>
     extends ImageNode,
         ComposedElement<typeof ImageNode.TYPE> {
-    children: Child[];
+    children: Inline[];
 }

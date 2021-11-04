@@ -5,7 +5,7 @@ export const LinkNode = {
     TYPE: 'link',
 };
 
-export interface LinkNode<Child extends Node> extends ComposedElement<typeof LinkNode.TYPE> {
+export interface LinkNode<Inline extends Node> extends ComposedElement<typeof LinkNode.TYPE> {
     href: string;
-    children: Child[];
+    children: Inline[];
 }

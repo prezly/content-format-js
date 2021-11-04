@@ -6,9 +6,9 @@ export const HeadingNode = {
     HEADING_TWO_TYPE: 'heading-two',
 };
 
-export interface HeadingNode<Child extends Node>
+export interface HeadingNode<Inline extends Node>
     extends ComposedElement<
         typeof HeadingNode.HEADING_ONE_TYPE | typeof HeadingNode.HEADING_TWO_TYPE
     > {
-    children: Child[];
+    children: Inline[];
 }
