@@ -1,6 +1,10 @@
 import type { UploadedImage } from '../common';
 import type { Element } from './Element';
 
+export const ImageNode = {
+    TYPE: 'image-block',
+};
+
 export enum ImageLayout {
     CONTAINED = 'contained',
     EXPANDED = 'expanded',
@@ -12,8 +16,7 @@ export enum ImageLayout {
  */
 export type ImageWidth = string;
 
-export interface ImageNode extends Element {
-    type: 'image-block';
+export interface ImageNode extends Element<typeof ImageNode.TYPE> {
     file: UploadedImage;
     layout: ImageLayout;
     width: ImageWidth;

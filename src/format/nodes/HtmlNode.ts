@@ -1,6 +1,9 @@
 import type { Element } from './Element';
 
-export interface HtmlNode extends Element {
-    type: 'html';
+export const HtmlNode = {
+    TYPE: 'html',
+};
+
+export interface HtmlNode extends Element<typeof HtmlNode.TYPE> {
     content: string;
 }

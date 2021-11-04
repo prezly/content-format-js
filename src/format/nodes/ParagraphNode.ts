@@ -1,6 +1,9 @@
 import type { Element } from './Element';
 
-export interface ParagraphNode<Child> extends Element {
-    type: 'paragraph';
+export const ParagraphNode = {
+    TYPE: 'paragraph',
+};
+
+export interface ParagraphNode<Child> extends Element<typeof ParagraphNode.TYPE> {
     children: Child[];
 }

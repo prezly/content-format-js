@@ -1,7 +1,10 @@
 import type { Element } from './Element';
 
-export interface ContactNode extends Element {
-    type: 'contact';
+export const ContactNode = {
+    TYPE: 'contact',
+};
+
+export interface ContactNode extends Element<typeof ContactNode.TYPE> {
     uuid: string;
     contact: { uuid: string };
 }

@@ -1,6 +1,10 @@
 import type { UploadedImage } from '../common';
 import type { Element } from './Element';
 
+export const GalleryNode = {
+    TYPE: 'gallery',
+};
+
 export enum GalleryLayout {
     CONTAINED = 'contained',
     EXPANDED = 'expanded',
@@ -26,8 +30,7 @@ export interface GalleryImage {
     caption: string;
 }
 
-export interface GalleryNode extends Element {
-    type: 'gallery';
+export interface GalleryNode extends Element<typeof GalleryNode.TYPE> {
     uuid: string;
     images: GalleryImage[];
     layout: GalleryLayout;

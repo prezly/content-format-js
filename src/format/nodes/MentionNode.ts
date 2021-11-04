@@ -1,6 +1,9 @@
 import type { Element } from './Element';
 
-export interface MentionNode extends Element {
-    type: 'mention';
+export const MentionNode = {
+    TYPE: 'mention',
+};
+
+export interface MentionNode extends Element<typeof MentionNode.TYPE> {
     user: { id: number };
 }

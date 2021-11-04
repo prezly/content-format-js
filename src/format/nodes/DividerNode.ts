@@ -1,5 +1,7 @@
 import type { Element } from './Element';
 
-export interface DividerNode extends Element {
-    type: 'divider';
-}
+export const DividerNode = {
+    TYPE: 'divider',
+};
+
+export type DividerNode = Element<typeof DividerNode.TYPE>;

@@ -1,7 +1,10 @@
 import type { Element } from './Element';
 
-export interface CoverageNode extends Element {
-    type: 'coverage';
+export const CoverageNode = {
+    TYPE: 'coverage',
+};
+
+export interface CoverageNode extends Element<typeof CoverageNode.TYPE> {
     uuid: string;
     coverage: { id: number };
 }
