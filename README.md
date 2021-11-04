@@ -36,7 +36,8 @@ There are two core types of nodes: _Text_ and _Element_.
     ```
 
 2. `Element` objects represent any kind of rich content in a document (block or inline).
-   All elements have `type` property:
+   All elements are required to have `type` property, plus additional properties specific
+   to the given *Element* type:
 
     ```ts
     interface Element {
