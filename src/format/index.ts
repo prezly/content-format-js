@@ -1,4 +1,4 @@
-import { Element, Text } from './nodes';
+import type { Element, Text } from './nodes';
 
 export * from './common';
 export * from './nodes';
