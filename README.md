@@ -13,7 +13,13 @@ are stored directly in the content document.
 
 ## Concepts
 
-There are two types of objects in Prezly Content Format: _Text_ and _Nodes_.
+Every object in a Prezly Content Format document is a `Node`.
+
+```ts
+type Node = Element | Text;
+```
+
+There are two core types of nodes: _Text_ and _Element_.
 
 1. `Text` object is representing a portion of text with styling information:
 
@@ -29,25 +35,25 @@ There are two types of objects in Prezly Content Format: _Text_ and _Nodes_.
     }
     ```
 
-2. `Node` objects represent any kind of rich content in a document (block or inline).
-   All nodes have `type` property:
+2. `Element` objects represent any kind of rich content in a document (block or inline).
+   All elements have `type` property:
 
     ```ts
-    interface Node {
+    interface Element {
         type: string;
     }
     ```
 
-3. Some nodes may contain other nodes or text objects as children, 
-   we call them `Element` nodes.
+3. Some elements may be composed of other nodes and therefore have `children` array property:
 
     ```ts
-    interface Element extends Node {
-        children: (Element | Node | Text)[];
+    interface ComposedElement extends Element {
+        children: Node[];
     }
     ```
 
-5. `Document` – the object containing the whole content structure.
+4. `Document` – the object containing the whole content structure.
+   All top-level nodes inside a document are always block-level *Elements*.
 
     ```ts
     interface Document extends Element {
@@ -141,7 +147,6 @@ There is a number of block and inline elements our editor can generate.
         }
     ]
 }
-
 ```
 
 ## Rendering
