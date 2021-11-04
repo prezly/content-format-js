@@ -11,6 +11,8 @@ web, email, markdown, plaintext, PDF and so on.
 Story images, files attachments, videos and all the various types embedded content 
 are stored directly in the content document.
 
+Please refer to [Prezly Developer Portal][developers] for additional information on using Prezly API.  
+
 ## Concepts
 
 Every object in a Prezly Content Format document is a `Node`.
@@ -155,3 +157,6 @@ There is a number of block and inline elements our editor can generate.
 This content can be rendered into HTML, Markdown or any other format you may need using renderers.
 
 // TODO: Link renderers implementation
+
+
+[developers]: https://developers.prezly.com/?utm_medium=web&utm_source=github&utm_campaign=@prezly/content-format-js
