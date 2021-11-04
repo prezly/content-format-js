@@ -1,3 +1,3 @@
-export interface Element<T extends string = string> {
-    type: T;
+export interface Element<Type extends string = string> {
+    type: Type;
 }

@@ -1,10 +1,11 @@
-import type { Element } from '../Element';
+import type { ComposedElement } from '../ComposedElement';
+import type { Node } from '../Node';
 
 export const LinkNode = {
     TYPE: 'link',
 };
 
-export interface LinkNode<Child> extends Element<typeof LinkNode.TYPE> {
+export interface LinkNode<Child extends Node> extends ComposedElement<typeof LinkNode.TYPE> {
     href: string;
     children: Child[];
 }

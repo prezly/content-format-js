@@ -1,5 +1,7 @@
 import type { UploadedImage } from '../common';
+import type { ComposedElement } from '../ComposedElement';
 import type { Element } from '../Element';
+import type { Node } from '../Node';
 
 export const ImageNode = {
     TYPE: 'image-block',
@@ -24,6 +26,8 @@ export interface ImageNode extends Element<typeof ImageNode.TYPE> {
     href: string | null;
 }
 
-export interface ImageNodeWithCaption<Child> extends ImageNode {
+export interface ImageNodeWithCaption<Child extends Node>
+    extends ImageNode,
+        ComposedElement<typeof ImageNode.TYPE> {
     children: Child[];
 }
