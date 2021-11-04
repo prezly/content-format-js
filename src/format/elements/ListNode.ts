@@ -2,7 +2,8 @@ import { ComposedElement } from '../ComposedElement';
 import { Node } from '../Node';
 
 export const ListNode = {
-    TYPE: 'list',
+    BULLETED_LIST_TYPE: 'bulleted-list',
+    NUMBERED_LIST_TYPE: 'numbered-list',
 };
 
 export const ListItemNode = {
@@ -13,7 +14,10 @@ export const ListItemTextNode = {
     TYPE: 'list-item-text',
 };
 
-export interface ListNode<Block extends Node> extends ComposedElement<typeof ListNode.TYPE> {
+export interface ListNode<Block extends Node>
+    extends ComposedElement<
+        typeof ListNode.BULLETED_LIST_TYPE | typeof ListNode.NUMBERED_LIST_TYPE
+    > {
     children: ListItemNode<Block>[];
 }
 
