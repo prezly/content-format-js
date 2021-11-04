@@ -1,5 +1,5 @@
 import type { UploadedFile } from '../common';
-import type { Element } from './Element';
+import type { Element } from '../Element';
 
 export const AttachmentNode = {
     TYPE: 'attachment',

@@ -17,17 +17,3 @@ export interface OEmbedInfo {
     width?: number;
     height?: number;
 }
-
-export interface UploadedFile {
-    uuid: string;
-    version: number;
-    filename: string;
-    mime_type: string;
-    size: number;
-}
-
-export interface UploadedImage extends UploadedFile {
-    original_height: number;
-    original_width: number;
-    effects: string[];
-}
