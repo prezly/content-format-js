@@ -160,3 +160,7 @@ This content can be rendered into HTML, Markdown or any other format you may nee
 
 
 [developers]: https://developers.prezly.com/?utm_medium=web&utm_source=github&utm_campaign=@prezly/content-format-js
+
+## Credits
+
+Brought to you with :heart: by [Prezly](https://www.prezly.com/?utm_source=github&utm_campaign=prezly/content-format-js) &mdash; PR software for better, faster communication.
