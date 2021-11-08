@@ -1,5 +1,6 @@
 import type {
     AttachmentNode,
+    BookmarkNode,
     ContactNode,
     Document,
     DividerNode,
@@ -25,6 +26,7 @@ type NestableListNode = ListNode<ListItemTextNode<Inline> | NestableListNode>;
 
 export type StoryContent = Document<
     | AttachmentNode
+    | BookmarkNode
     | ContactNode
     | DividerNode
     | EmbedNode
