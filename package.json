@@ -14,7 +14,7 @@
     },
     "homepage": "https://github.com/prezly/content-format-js#readme",
     "scripts": {
-        "build": "ncc build src/index.ts -o build/ && esbuild src/index.ts --bundle --target=es6 --outfile=build/index.js",
+        "build": "tsc --project . && esbuild src/index.ts --bundle --target=es6 --outfile=build/index.js",
         "check": "npm run typescript && npm run prettier",
         "clean": "rimraf build/ node_modules/",
         "typescript": "tsc --project .",
@@ -29,7 +29,6 @@
         "npm": ">=7.0"
     },
     "devDependencies": {
-        "@vercel/ncc": "^0.31.1",
         "esbuild": "^0.13.12",
         "np": "^7.5.0",
         "prettier": "^2.4.1",
