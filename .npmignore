@@ -3,6 +3,8 @@
 .github/
 coverage/
 node_modules/
+.prettierrc
+.prettierignore
 *.eslintcache
 *.db
 *.log
