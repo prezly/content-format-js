@@ -1,3 +1,6 @@
+.idea/
+.git/
+.github/
 coverage/
 node_modules/
 *.eslintcache
