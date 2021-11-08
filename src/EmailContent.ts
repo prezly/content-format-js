@@ -6,12 +6,13 @@ import type {
     EmbedNode,
     ImageNode,
     LinkNode,
+    ListNode,
+    ListItemTextNode,
     ParagraphNode,
     PlaceholderNode,
     QuoteNode,
     Text,
 } from './format';
-import { ListItemTextNode, ListNode } from './format';
 
 export enum EmailPlaceholder {
     CONTACT_FIRST_NAME = 'contact.firstname',
