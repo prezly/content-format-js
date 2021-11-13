@@ -1,4 +1,4 @@
-import type { UploadedImage } from '../common';
+import type { UploadedImage } from '@prezly/uploads';
 import type { ComposedElement } from '../ComposedElement';
 import type { Element } from '../Element';
 import type { Node } from '../Node';

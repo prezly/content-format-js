@@ -1,4 +1,4 @@
-import type { UploadedImage } from '../common';
+import type { UploadedImage } from '@prezly/uploads';
 import type { Element } from '../Element';
 
 export const GalleryNode = {
