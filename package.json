@@ -19,7 +19,7 @@
         "check": "npm run typescript && npm run prettier",
         "clean": "rimraf build/ node_modules/",
         "typescript": "tsc --project .",
-        "prettier": "prettier --check './**/*.(js|ts|scss)'",
+        "prettier": "prettier --check 'src/*.(js|ts|scss)'",
         "prettier:fix": "npm run prettier -- --write --no-list-different",
         "release": "npm run release:prepare && npm run release:publish",
         "release:prepare": "npm run clean && npm install && npm run check && npm run build",
