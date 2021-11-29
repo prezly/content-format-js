@@ -71,6 +71,7 @@ There are two core types of nodes: _Text_ and _Element_.
 There is a number of block and inline elements our editor can generate.
 
 - [AttachmentNode](./src/format/elements/AttachmentNode.ts)
+- [BookmarkNode](./src/format/elements/BookmarkNode.ts)
 - [ContactNode](./src/format/elements/ContactNode.ts)
 - [CoverageNode](./src/format/elements/CoverageNode.ts)
 - [DividerNode](./src/format/elements/DividerNode.ts)
