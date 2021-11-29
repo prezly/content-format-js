@@ -1,6 +1,7 @@
 .idea/
 .git/
 .github/
+.nvmrc
 coverage/
 node_modules/
 .prettierrc
