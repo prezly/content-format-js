@@ -13,7 +13,7 @@ import type {
     ParagraphNode,
     PlaceholderNode,
     QuoteNode,
-    Text,
+    Text, VideoNode,
 } from './format';
 
 export enum StoryPlaceholder {
@@ -35,4 +35,5 @@ export type StoryContent = Document<
     | NestableListNode
     | ParagraphNode<Inline>
     | QuoteNode<Inline>
+    | VideoNode
 >;

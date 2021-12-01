@@ -14,6 +14,7 @@ import type {
     QuoteNode,
     Text,
 } from './format';
+import { VideoNode } from './format';
 
 export enum EmailPlaceholder {
     CONTACT_FIRST_NAME = 'contact.firstname',
@@ -37,4 +38,5 @@ export type EmailContent = Document<
     | NestableListNode
     | ParagraphNode<Inline>
     | QuoteNode<Inline>
+    | VideoNode
 >;
