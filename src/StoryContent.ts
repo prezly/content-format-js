@@ -13,7 +13,8 @@ import type {
     ParagraphNode,
     PlaceholderNode,
     QuoteNode,
-    Text, VideoNode,
+    Text,
+    VideoNode,
 } from './format';
 
 export enum StoryPlaceholder {

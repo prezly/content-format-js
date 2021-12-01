@@ -13,8 +13,8 @@ import type {
     PlaceholderNode,
     QuoteNode,
     Text,
+    VideoNode,
 } from './format';
-import { VideoNode } from './format';
 
 export enum EmailPlaceholder {
     CONTACT_FIRST_NAME = 'contact.firstname',
