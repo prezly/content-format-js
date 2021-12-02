@@ -12,7 +12,7 @@ export enum BookmarkCardLayout {
 
 export interface BookmarkNode extends Element<typeof BookmarkNode.TYPE> {
     uuid: string;
-    href: string;
+    url: string;
     oembed: OEmbedInfo;
     layout: BookmarkCardLayout;
     show_thumbnail: boolean;
