@@ -86,6 +86,7 @@ There is a number of block and inline elements our editor can generate.
 - [ParagraphNode](./src/format/elements/ParagraphNode.ts)
 - [PlaceholderNode](./src/format/elements/PlaceholderNode.ts)
 - [QuoteNode](./src/format/elements/QuoteNode.ts)
+- [VideoNode](./src/format/elements/VideoNode.ts)
 
 ## Example document
 

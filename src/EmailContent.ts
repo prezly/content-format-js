@@ -13,6 +13,7 @@ import type {
     PlaceholderNode,
     QuoteNode,
     Text,
+    VideoNode,
 } from './format';
 
 export enum EmailPlaceholder {
@@ -37,4 +38,5 @@ export type EmailContent = Document<
     | NestableListNode
     | ParagraphNode<Inline>
     | QuoteNode<Inline>
+    | VideoNode
 >;
