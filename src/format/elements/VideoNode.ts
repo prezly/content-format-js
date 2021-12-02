@@ -7,6 +7,6 @@ export const VideoNode = {
 
 export interface VideoNode extends Element<typeof VideoNode.TYPE> {
     uuid: string;
-    href: string;
+    url: string;
     oembed: OEmbedInfo;
 }
