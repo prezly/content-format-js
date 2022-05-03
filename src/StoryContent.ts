@@ -1,22 +1,20 @@
-import type {
-    AttachmentNode,
-    BookmarkNode,
-    ContactNode,
-    Document,
-    DividerNode,
-    EmbedNode,
-    GalleryNode,
-    ImageNodeWithCaption,
-    LinkNode,
-    ListNode,
-    ListItemTextNode,
-    ParagraphNode,
-    PlaceholderNode,
-    QuoteNode,
-    Text,
-    VideoNode,
-} from './format';
 import {
+    type AttachmentNode,
+    type BookmarkNode,
+    type ContactNode,
+    type Document,
+    type DividerNode,
+    type EmbedNode,
+    type GalleryNode,
+    type ImageNodeWithCaption,
+    type LinkNode,
+    type ListNode,
+    type ListItemTextNode,
+    type ParagraphNode,
+    type PlaceholderNode,
+    type QuoteNode,
+    type Text,
+    type VideoNode,
     validateAttachmentNode,
     validateBookmarkNode,
     validateContactNode,
@@ -38,7 +36,8 @@ export enum StoryPlaceholder {
 
 type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<Text> | Text;
 
-interface RecursiveListNode extends ListNode<ListItemTextNode<Inline> | RecursiveListNode> {}
+interface RecursiveListNode extends ListNode<ListItemTextNode<Inline> | RecursiveListNode> {
+}
 
 type Block =
     | AttachmentNode

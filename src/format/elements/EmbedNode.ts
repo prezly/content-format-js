@@ -1,8 +1,6 @@
-import type { OEmbedInfo } from '../common';
-import type { Element } from '../Element';
-import { isElement } from '../Element';
+import { type OEmbedInfo, isOEmbedInfo } from '../common';
+import { type Element, isElement } from '../Element';
 import { isNonEmptyString, isUuid } from '../validation';
-import { isOEmbedInfo } from '../common';
 
 export const EmbedNode = {
     TYPE: 'embed',

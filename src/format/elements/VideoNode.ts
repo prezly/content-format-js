@@ -1,8 +1,6 @@
-import type { Element } from '../Element';
-import type { OEmbedInfo } from '../common';
-import { isElement } from '../Element';
+import { type OEmbedInfo, isOEmbedInfo } from '../common';
+import { type Element, isElement } from '../Element';
 import { isNonEmptyString, isUuid } from '../validation';
-import { isOEmbedInfo } from '../common';
 
 export const VideoNode = {
     TYPE: 'video',

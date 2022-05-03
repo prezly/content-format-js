@@ -1,11 +1,8 @@
-import type { UploadedImage } from '@prezly/uploads';
-import type { ComposedElement } from '../ComposedElement';
-import type { Element } from '../Element';
-import type { Node } from '../Node';
-import { isElement } from '../Element';
-import { isComposedElement } from '../ComposedElement';
+import { type UploadedImage, isUploadedImage } from '@prezly/uploads';
+import { type ComposedElement, isComposedElement } from '../ComposedElement';
+import { type Element, isElement } from '../Element';
+import { type Node } from '../Node';
 import { isArrayOf, isEnum } from '../validation';
-import { isUploadedImage } from '@prezly/uploads';
 
 export const ImageNode = {
     TYPE: 'image-block',

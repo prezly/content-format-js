@@ -1,7 +1,5 @@
-import type { UploadedFile } from '@prezly/uploads';
-import type { Element } from '../Element';
-import { isElement } from '../Element';
-import { isUploadedFile } from '@prezly/uploads';
+import { type UploadedFile, isUploadedFile } from '@prezly/uploads';
+import { type Element, isElement } from '../Element';
 
 export const AttachmentNode = {
     TYPE: 'attachment',

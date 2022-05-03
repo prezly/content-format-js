@@ -1,5 +1,13 @@
-import type { Document, ParagraphNode, MentionNode, Text } from './format';
-import {validateDocument, validateMentionNode, validateParagraphNode, validateText} from "./format";
+import {
+    type Document,
+    type ParagraphNode,
+    type MentionNode,
+    type Text,
+    validateDocument,
+    validateMentionNode,
+    validateParagraphNode,
+    validateText,
+} from './format';
 
 type Inline = MentionNode | Text;
 

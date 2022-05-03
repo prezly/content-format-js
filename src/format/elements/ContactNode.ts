@@ -1,5 +1,4 @@
-import type { Element } from '../Element';
-import { isElement } from '../Element';
+import { type Element, isElement } from '../Element';
 import { isObject, isUuid } from '../validation';
 
 export const ContactNode = {

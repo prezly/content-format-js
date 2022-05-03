@@ -1,5 +1,4 @@
-import type { Element } from '../Element';
-import { isElement } from '../Element';
+import { type Element, isElement } from '../Element';
 
 export const HtmlNode = {
     TYPE: 'html',
