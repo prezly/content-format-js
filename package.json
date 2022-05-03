@@ -37,6 +37,7 @@
         "typescript": "^4.4.4"
     },
     "dependencies": {
-        "@prezly/uploads": "^0.2.0"
+        "@prezly/uploads": "^0.2.0",
+        "is-plain-object": "^5.0.0"
     }
 }
