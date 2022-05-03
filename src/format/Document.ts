@@ -1,6 +1,6 @@
-import { Element } from './Element';
+import { type ComposedElement, isComposedElement } from './ComposedElement';
+import { type Element } from './Element';
 import { isArrayOf, isNonEmptyString } from './validation';
-import { ComposedElement, isComposedElement } from './ComposedElement';
 
 export const Document = {
     TYPE: 'document',

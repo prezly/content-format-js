@@ -1,5 +1,5 @@
-import { ComposedElement, isComposedElement } from '../ComposedElement';
-import { Node } from '../Node';
+import { type ComposedElement, isComposedElement } from '../ComposedElement';
+import { type Node } from '../Node';
 import { isArrayOf } from '../validation';
 
 export enum ListType {

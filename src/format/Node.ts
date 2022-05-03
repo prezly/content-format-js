@@ -1,5 +1,5 @@
-import { Element, isElement } from './Element';
-import { isText, Text } from './Text';
+import { type Element, isElement } from './Element';
+import { type Text, isText } from './Text';
 
 export type Node = Element | Text;
 

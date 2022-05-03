@@ -1,5 +1,5 @@
-import { ComposedElement } from '../ComposedElement';
-import { Node } from '../Node';
+import { type ComposedElement } from '../ComposedElement';
+import { type Node } from '../Node';
 import { isElement } from '../Element';
 import { isArrayOf } from '../validation';
 

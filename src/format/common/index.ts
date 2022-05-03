@@ -1,1 +1,1 @@
-export { OEmbedInfo, isOEmbedInfo } from './OEmbedInfo';
+export * from './OEmbedInfo';

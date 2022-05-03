@@ -1,5 +1,5 @@
-import { Element, isElement } from './Element';
-import { Node } from './Node';
+import { type Element, isElement } from './Element';
+import { type Node } from './Node';
 import { isArrayOf } from './validation';
 
 export interface ComposedElement<Type extends string = string, Child extends Node = Node>

@@ -1,5 +1,5 @@
 import { type Element, isElement } from '../Element';
-import { isNonZeroInteger, isObject} from '../validation';
+import { isNonZeroInteger, isObject } from '../validation';
 
 export const MentionNode = {
     TYPE: 'mention',
