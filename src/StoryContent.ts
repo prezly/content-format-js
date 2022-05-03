@@ -22,7 +22,9 @@ import {
     validateEmbedNode,
     validateGalleryNode,
     validateImageNodeWithCaption,
-    validateLinkNode, validateListItemTextNode, validateListNode,
+    validateLinkNode,
+    validateListItemTextNode,
+    validateListNode,
     validateParagraphNode,
     validatePlaceholderNode,
     validateQuoteNode,
@@ -77,11 +79,13 @@ export function validateRecursiveListNode(node: any): RecursiveListNode | null {
 }
 
 export function validateInlineNode(node: any): Inline | null {
+    function isValidPlaceholderKey(key: string): key is StoryPlaceholder {
+        return Object.values(StoryPlaceholder).includes(key as StoryPlaceholder);
+    }
+
     return (
         validateText(node) ??
         validateLinkNode(node, validateText) ??
-        validatePlaceholderNode(node, (key): key is StoryPlaceholder =>
-            Object.values(StoryPlaceholder).includes(key as StoryPlaceholder),
-        )
+        validatePlaceholderNode(node, isValidPlaceholderKey)
     );
 }
