@@ -1,26 +1,20 @@
 import { Element } from './Element';
-import { isArrayOf } from './validation';
+import { isArrayOf, isNonEmptyString } from './validation';
+import { ComposedElement, isComposedElement } from './ComposedElement';
 
 export const Document = {
     TYPE: 'document',
 };
 
-export interface Document<Block extends Element> {
-    type: typeof Document.TYPE;
+export interface Document<Block extends Element>
+    extends ComposedElement<typeof Document.TYPE, Block> {
     version: string;
-    children: Block[];
 }
 
 export function isDocument<Doc extends Document<Block>, Block extends Element>(
     value: any,
 ): value is Doc {
-    return (
-        value &&
-        typeof value === 'object' &&
-        value.type === Document.TYPE &&
-        typeof value.version === 'string' &&
-        Array.isArray(value.children)
-    );
+    return isComposedElement(value, Document.TYPE);
 }
 
 export function validateDocument<Doc extends Document<Block>, Block extends Element>(
@@ -29,6 +23,7 @@ export function validateDocument<Doc extends Document<Block>, Block extends Elem
 ): Doc | null {
     const isValid =
         isDocument<Doc, Block>(value) &&
+        isNonEmptyString(value.version) &&
         isArrayOf(value.children, (node) => Boolean(validateBlockNode(node)));
 
     return isValid ? value : null;
