@@ -38,7 +38,7 @@ export enum StoryPlaceholder {
 
 type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<Text> | Text;
 
-type NestableListNode = ListNode<ListItemTextNode<Inline> | NestableListNode>;
+interface RecursiveListNode extends ListNode<ListItemTextNode<Inline> | RecursiveListNode> {}
 
 type Block =
     | AttachmentNode
@@ -48,7 +48,7 @@ type Block =
     | EmbedNode
     | GalleryNode
     | ImageNodeWithCaption<Inline>
-    | NestableListNode
+    | RecursiveListNode
     | ParagraphNode<Inline>
     | QuoteNode<Inline>
     | VideoNode;
@@ -64,16 +64,16 @@ export function validateBlockNode(node: any): Block | null {
         validateEmbedNode(node) ??
         validateGalleryNode(node) ??
         validateImageNodeWithCaption(node, validateInlineNode) ??
-        validateNestableListNode(node) ??
+        validateRecursiveListNode(node) ??
         validateParagraphNode(node, validateInlineNode) ??
         validateQuoteNode(node, validateInlineNode) ??
         validateVideoNode(node)
     );
 }
 
-export function validateNestableListNode(node: any): NestableListNode | null {
+export function validateRecursiveListNode(node: any): RecursiveListNode | null {
     return validateListNode(node, function (block) {
-        return validateListItemTextNode(block, validateInlineNode) ?? validateNestableListNode(block);
+        return validateListItemTextNode(block, validateInlineNode) ?? validateRecursiveListNode(block);
     })
 }
 

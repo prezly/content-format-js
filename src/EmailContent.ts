@@ -44,7 +44,7 @@ export enum EmailPlaceholder {
 
 type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder> | Text;
 
-type NestableListNode = ListNode<ListItemTextNode<Inline> | NestableListNode>;
+interface RecursiveListNode extends ListNode<ListItemTextNode<Inline> | RecursiveListNode> {}
 
 type Block =
     | AttachmentNode
@@ -53,7 +53,7 @@ type Block =
     | DividerNode
     | EmbedNode
     | ImageNode
-    | NestableListNode
+    | RecursiveListNode
     | ParagraphNode<Inline>
     | QuoteNode<Inline>
     | VideoNode;
@@ -72,18 +72,17 @@ function validateBlock(value: any): Block | null {
         validateDividerNode(value) ??
         validateEmbedNode(value) ??
         validateImageNode(value) ??
-        validateNestableListNode(value) ??
+        validateRecursiveListNode(value) ??
         validateParagraphNode(value, validateInlineNode) ??
         validateQuoteNode(value, validateInlineNode) ??
         validateVideoNode(value)
     );
 }
 
-function validateNestableListNode(value: any): NestableListNode | null {
+function validateRecursiveListNode(value: any): RecursiveListNode | null {
     return validateListNode(value, function (block) {
         return (
-            validateListItemTextNode(block, validateInlineNode) ??
-            validateNestableListNode(block)
+            validateListItemTextNode(block, validateInlineNode) ?? validateRecursiveListNode(block)
         );
     });
 }
