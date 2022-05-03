@@ -16,6 +16,24 @@ import type {
     VideoNode,
 } from './format';
 
+import {
+    validateAttachmentNode,
+    validateBookmarkNode,
+    validateCoverageNode,
+    validateDividerNode,
+    validateDocument,
+    validateEmbedNode,
+    validateImageNode,
+    validateLinkNode,
+    validateListItemTextNode,
+    validateListNode,
+    validateParagraphNode,
+    validatePlaceholderNode,
+    validateQuoteNode,
+    validateText,
+    validateVideoNode,
+} from './format';
+
 export enum EmailPlaceholder {
     CONTACT_FIRST_NAME = 'contact.firstname',
     CONTACT_LAST_NAME = 'contact.lastname',
@@ -24,11 +42,11 @@ export enum EmailPlaceholder {
     STORY_SHORT_URL = 'release.shorturl',
 }
 
-type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder>;
+type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder> | Text;
 
 type NestableListNode = ListNode<ListItemTextNode<Inline> | NestableListNode>;
 
-export type EmailContent = Document<
+type Block =
     | AttachmentNode
     | BookmarkNode
     | CoverageNode
@@ -38,5 +56,49 @@ export type EmailContent = Document<
     | NestableListNode
     | ParagraphNode<Inline>
     | QuoteNode<Inline>
-    | VideoNode
->;
+    | VideoNode;
+
+export type EmailContent = Document<Block>;
+
+export function validateEmailContent(value: any): EmailContent | null {
+    return validateDocument<EmailContent, Block>(value, validateBlock);
+}
+
+function validateBlock(value: any): Block | null {
+    return (
+        validateAttachmentNode(value) ??
+        validateBookmarkNode(value) ??
+        validateCoverageNode(value) ??
+        validateDividerNode(value) ??
+        validateEmbedNode(value) ??
+        validateImageNode(value) ??
+        validateNestableListNode(value) ??
+        validateParagraphNode(value, validateInlineNode) ??
+        validateQuoteNode(value, validateInlineNode) ??
+        validateVideoNode(value)
+    );
+}
+
+function validateNestableListNode(value: any): NestableListNode | null {
+    return validateListNode(value, function (block) {
+        return (
+            validateListItemTextNode(block, validateInlineNode) ??
+            validateNestableListNode(block)
+        );
+    });
+}
+
+function validateInlineNode(value: any): Inline | null {
+    function isValidPlaceholderKey(key: string): key is EmailPlaceholder {
+        return Object.values(EmailPlaceholder).includes(key as EmailPlaceholder);
+    }
+
+    return (
+        validateText(value) ??
+        validateLinkNode(value, validateText) ??
+        validatePlaceholderNode<PlaceholderNode<EmailPlaceholder>, EmailPlaceholder>(
+            value,
+            isValidPlaceholderKey,
+        )
+    );
+}
