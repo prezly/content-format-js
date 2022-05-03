@@ -19,6 +19,7 @@ import {
     validateBookmarkNode,
     validateContactNode,
     validateDividerNode,
+    validateDocument,
     validateEmbedNode,
     validateGalleryNode,
     validateImageNodeWithCaption,
@@ -55,6 +56,12 @@ type Block =
     | VideoNode;
 
 export type StoryContent = Document<Block>;
+
+export const StoryContent = {
+    validate(value: any): StoryContent | null {
+        return validateDocument<StoryContent, Block>(value, validateBlockNode);
+    }
+}
 
 export function validateBlockNode(node: any): Block | null {
     return (

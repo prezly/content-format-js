@@ -15,8 +15,10 @@ type Block = ParagraphNode<Inline>;
 
 export type NoteContent = Document<Block>;
 
-export function validateNoteContent(value: any): NoteContent | null {
-    return validateDocument(value, validateBlockNode);
+export const NoteContent = {
+    validate(value: any): NoteContent | null {
+        return validateDocument<NoteContent, Block>(value, validateBlockNode);
+    }
 }
 
 function validateBlockNode(node: any): Block | null {

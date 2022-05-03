@@ -41,7 +41,8 @@ export enum EmailPlaceholder {
 
 type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder> | Text;
 
-interface RecursiveListNode extends ListNode<ListItemTextNode<Inline> | RecursiveListNode> {}
+interface RecursiveListNode extends ListNode<ListItemTextNode<Inline> | RecursiveListNode> {
+}
 
 type Block =
     | AttachmentNode
@@ -57,11 +58,13 @@ type Block =
 
 export type EmailContent = Document<Block>;
 
-export function validateEmailContent(value: any): EmailContent | null {
-    return validateDocument<EmailContent, Block>(value, validateBlock);
+export const EmailContent = {
+    validate(value: any): EmailContent | null {
+        return validateDocument<EmailContent, Block>(value, validateBlockNode);
+    }
 }
 
-function validateBlock(value: any): Block | null {
+function validateBlockNode(value: any): Block | null {
     return (
         validateAttachmentNode(value) ??
         validateBookmarkNode(value) ??
