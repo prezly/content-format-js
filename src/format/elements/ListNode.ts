@@ -1,5 +1,5 @@
-import { ComposedElement } from '../ComposedElement';
-import { Node } from '../Node';
+import { type ComposedElement } from '../ComposedElement';
+import { type Node } from '../Node';
 
 export enum ListType {
     BULLETED = 'bulleted-list',
