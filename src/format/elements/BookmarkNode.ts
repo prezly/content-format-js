@@ -1,5 +1,5 @@
-import { type OEmbedInfo } from '../common';
-import { type Element } from '../Element';
+import type { OEmbedInfo } from '../common';
+import type { Element } from '../Element';
 
 export const BookmarkNode = {
     TYPE: 'bookmark',
