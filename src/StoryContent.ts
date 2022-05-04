@@ -13,6 +13,7 @@ import type {
     ParagraphNode,
     PlaceholderNode,
     QuoteNode,
+    StoryBookmarkNode,
     Text,
     VideoNode,
 } from './format';
@@ -39,6 +40,7 @@ type Block =
     | RecursiveListNode
     | OptionallyAlignable<ParagraphNode<Inline>>
     | OptionallyAlignable<QuoteNode<Inline>>
+    | StoryBookmarkNode
     | VideoNode;
 
 export type StoryContent = Document<Block>;
