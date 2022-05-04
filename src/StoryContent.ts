@@ -13,6 +13,7 @@ import {
     type ParagraphNode,
     type PlaceholderNode,
     type QuoteNode,
+    type StoryBookmarkNode,
     type Text,
     type VideoNode,
     validateAttachmentNode,
@@ -32,15 +33,17 @@ import {
     validateText,
     validateVideoNode,
 } from './format';
+import type { Alignable, OptionallyAlignable, Stylable } from './traits';
 
 export enum StoryPlaceholder {
     STORY_PUBLICATION_DATE = 'publication.date',
 }
 
-type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<Text> | Text;
+type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<Text> | Stylable<Text>;
 
-interface RecursiveListNode extends ListNode<ListItemTextNode<Inline> | RecursiveListNode> {
-}
+type RecursiveListNode = OptionallyAlignable<
+    ListNode<ListItemTextNode<Inline> | RecursiveListNode>
+>;
 
 type Block =
     | AttachmentNode
@@ -49,10 +52,11 @@ type Block =
     | DividerNode
     | EmbedNode
     | GalleryNode
-    | ImageNodeWithCaption<Inline>
+    | Alignable<ImageNodeWithCaption<Inline>>
     | RecursiveListNode
-    | ParagraphNode<Inline>
-    | QuoteNode<Inline>
+    | OptionallyAlignable<ParagraphNode<Inline>>
+    | OptionallyAlignable<QuoteNode<Inline>>
+    | StoryBookmarkNode
     | VideoNode;
 
 export type StoryContent = Document<Block>;
@@ -60,8 +64,8 @@ export type StoryContent = Document<Block>;
 export const StoryContent = {
     validate(value: any): StoryContent | null {
         return validateDocument<StoryContent, Block>(value, validateBlockNode);
-    }
-}
+    },
+};
 
 export function validateBlockNode(node: any): Block | null {
     return (
@@ -81,8 +85,10 @@ export function validateBlockNode(node: any): Block | null {
 
 export function validateRecursiveListNode(node: any): RecursiveListNode | null {
     return validateListNode(node, function (block) {
-        return validateListItemTextNode(block, validateInlineNode) ?? validateRecursiveListNode(block);
-    })
+        return (
+            validateListItemTextNode(block, validateInlineNode) ?? validateRecursiveListNode(block)
+        );
+    });
 }
 
 export function validateInlineNode(node: any): Inline | null {

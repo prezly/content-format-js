@@ -13,5 +13,6 @@ export * from './ListNode';
 export * from './MentionNode';
 export * from './ParagraphNode';
 export * from './PlaceholderNode';
+export * from './StoryBookmarkNode';
 export * from './QuoteNode';
 export * from './VideoNode';

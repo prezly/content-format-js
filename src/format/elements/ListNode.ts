@@ -1,5 +1,5 @@
 import { type ComposedElement, isComposedElement } from '../ComposedElement';
-import { type Node } from '../Node';
+import type { Node } from '../Node';
 import { isArrayOf } from '../validation';
 
 export enum ListType {
@@ -20,17 +20,14 @@ export const ListItemTextNode = {
     TYPE: 'list-item-text',
 };
 
-export type ListNode<Block extends Node, Type extends ListType = ListType> = ComposedElement<
-    Type,
-    ListItemNode<Block>
->;
+export interface ListNode<Block extends Node, Type extends ListType = ListType>
+    extends ComposedElement<Type, ListItemNode<Block>> {}
 
-export type ListItemNode<Block extends Node> = ComposedElement<typeof ListItemNode.TYPE, Block>;
+export interface ListItemNode<Block extends Node>
+    extends ComposedElement<typeof ListItemNode.TYPE, Block> {}
 
-export type ListItemTextNode<Inline extends Node> = ComposedElement<
-    typeof ListItemTextNode.TYPE,
-    Inline
->;
+export interface ListItemTextNode<Inline extends Node>
+    extends ComposedElement<typeof ListItemTextNode.TYPE, Inline> {}
 
 export function isListNode<List extends ListNode<Block>, Block extends Node>(
     value: any,

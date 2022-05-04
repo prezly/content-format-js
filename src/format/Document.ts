@@ -1,5 +1,5 @@
 import { type ComposedElement, isComposedElement } from './ComposedElement';
-import { type Element } from './Element';
+import type { Element } from './Element';
 import { isArrayOf, isNonEmptyString } from './validation';
 
 export const Document = {

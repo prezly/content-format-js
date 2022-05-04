@@ -8,8 +8,9 @@ import {
     validateParagraphNode,
     validateText,
 } from './format';
+import type { Stylable } from './traits';
 
-type Inline = MentionNode | Text;
+type Inline = MentionNode | Stylable<Text>;
 
 type Block = ParagraphNode<Inline>;
 
@@ -18,8 +19,8 @@ export type NoteContent = Document<Block>;
 export const NoteContent = {
     validate(value: any): NoteContent | null {
         return validateDocument<NoteContent, Block>(value, validateBlockNode);
-    }
-}
+    },
+};
 
 function validateBlockNode(node: any): Block | null {
     return validateParagraphNode(node, validateInlineNode);

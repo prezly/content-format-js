@@ -12,6 +12,7 @@ import {
     type ParagraphNode,
     type PlaceholderNode,
     type QuoteNode,
+    type StoryBookmarkNode,
     type Text,
     type VideoNode,
     validateAttachmentNode,
@@ -30,6 +31,7 @@ import {
     validateText,
     validateVideoNode,
 } from './format';
+import type { Alignable, OptionallyAlignable, Stylable } from './traits';
 
 export enum EmailPlaceholder {
     CONTACT_FIRST_NAME = 'contact.firstname',
@@ -39,10 +41,11 @@ export enum EmailPlaceholder {
     STORY_SHORT_URL = 'release.shorturl',
 }
 
-type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder> | Text;
+type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder> | Stylable<Text>;
 
-interface RecursiveListNode extends ListNode<ListItemTextNode<Inline> | RecursiveListNode> {
-}
+type RecursiveListNode = OptionallyAlignable<
+    ListNode<ListItemTextNode<Inline> | RecursiveListNode>
+>;
 
 type Block =
     | AttachmentNode
@@ -50,10 +53,11 @@ type Block =
     | CoverageNode
     | DividerNode
     | EmbedNode
-    | ImageNode
+    | Alignable<ImageNode>
     | RecursiveListNode
-    | ParagraphNode<Inline>
-    | QuoteNode<Inline>
+    | OptionallyAlignable<ParagraphNode<Inline>>
+    | OptionallyAlignable<QuoteNode<Inline>>
+    | StoryBookmarkNode
     | VideoNode;
 
 export type EmailContent = Document<Block>;
@@ -61,8 +65,8 @@ export type EmailContent = Document<Block>;
 export const EmailContent = {
     validate(value: any): EmailContent | null {
         return validateDocument<EmailContent, Block>(value, validateBlockNode);
-    }
-}
+    },
+};
 
 function validateBlockNode(value: any): Block | null {
     return (

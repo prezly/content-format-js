@@ -1,5 +1,5 @@
-import { type ComposedElement } from '../ComposedElement';
-import { type Node } from '../Node';
+import type { ComposedElement } from '../ComposedElement';
+import type { Node } from '../Node';
 import { isElement } from '../Element';
 import { isArrayOf } from '../validation';
 
@@ -44,10 +44,7 @@ export function validateHeading<
     Child extends Node,
 >(value: any, type: Type, validateChildNode: (node: any) => Child | null): Heading | null;
 
-export function validateHeading(
-    value: any,
-    ...params: [Function] | [HeadingType, Function]
-) {
+export function validateHeading(value: any, ...params: [Function] | [HeadingType, Function]) {
     if (params.length === 2) {
         const [type, validateChildNode] = params;
         const isValid =

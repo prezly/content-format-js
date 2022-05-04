@@ -1,7 +1,7 @@
 import { type UploadedImage, isUploadedImage } from '@prezly/uploads';
 import { type ComposedElement, isComposedElement } from '../ComposedElement';
 import { type Element, isElement } from '../Element';
-import { type Node } from '../Node';
+import type { Node } from '../Node';
 import { isArrayOf, isEnum } from '../validation';
 
 export const ImageNode = {
