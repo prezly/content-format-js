@@ -30,6 +30,7 @@ import {
     validateParagraphNode,
     validatePlaceholderNode,
     validateQuoteNode,
+    validateStoryBookmarkNode,
     validateText,
     validateVideoNode,
 } from './format';
@@ -77,6 +78,7 @@ export function validateBlockNode(node: any): Block | null {
         validateRecursiveListNode(node) ??
         validateParagraphNode(node, validateInlineNode) ??
         validateQuoteNode(node, validateInlineNode) ??
+        validateStoryBookmarkNode(node) ??
         validateVideoNode(node)
     );
 }

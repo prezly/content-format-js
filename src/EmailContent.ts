@@ -28,6 +28,7 @@ import {
     validateParagraphNode,
     validatePlaceholderNode,
     validateQuoteNode,
+    validateStoryBookmarkNode,
     validateText,
     validateVideoNode,
 } from './format';
@@ -66,18 +67,19 @@ export const EmailContent = {
     },
 };
 
-function validateBlockNode(value: any): Block | null {
+function validateBlockNode(node: any): Block | null {
     return (
-        validateAttachmentNode(value) ??
-        validateBookmarkNode(value) ??
-        validateCoverageNode(value) ??
-        validateDividerNode(value) ??
-        validateEmbedNode(value) ??
-        validateImageNode(value) ??
-        validateRecursiveListNode(value) ??
-        validateParagraphNode(value, validateInlineNode) ??
-        validateQuoteNode(value, validateInlineNode) ??
-        validateVideoNode(value)
+        validateAttachmentNode(node) ??
+        validateBookmarkNode(node) ??
+        validateCoverageNode(node) ??
+        validateDividerNode(node) ??
+        validateEmbedNode(node) ??
+        validateImageNode(node) ??
+        validateRecursiveListNode(node) ??
+        validateParagraphNode(node, validateInlineNode) ??
+        validateQuoteNode(node, validateInlineNode) ??
+        validateStoryBookmarkNode(node) ??
+        validateVideoNode(node)
     );
 }
 
