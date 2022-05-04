@@ -25,7 +25,7 @@ type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<Text>;
 
 type NestableListNode = ListNode<ListItemTextNode<Inline> | NestableListNode>;
 
-export type StoryContent = Document<
+type Block =
     | AttachmentNode
     | BookmarkNode
     | ContactNode
@@ -36,5 +36,6 @@ export type StoryContent = Document<
     | NestableListNode
     | ParagraphNode<Inline>
     | QuoteNode<Inline>
-    | VideoNode
->;
+    | VideoNode;
+
+export type StoryContent = Document<Block>;
