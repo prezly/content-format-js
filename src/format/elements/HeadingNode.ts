@@ -1,5 +1,5 @@
-import { type ComposedElement } from '../ComposedElement';
-import { type Node } from '../Node';
+import type { ComposedElement } from '../ComposedElement';
+import type { Node } from '../Node';
 
 export enum HeadingType {
     HEADING_ONE = 'heading-one',
