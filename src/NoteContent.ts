@@ -1,8 +1,5 @@
+import type * as Model from './format';
 import {
-    type Document,
-    type ParagraphNode,
-    type MentionNode,
-    type Text,
     validateDocument,
     validateMentionNode,
     validateParagraphNode,
@@ -10,22 +7,30 @@ import {
 } from './format';
 import type { Stylable } from './traits';
 
-type Inline = MentionNode | Stylable<Text>;
+// PUBLIC
 
-type Block = ParagraphNode<Inline>;
+export function validate(value: any): Document | null {
+    return validateDocument(value, validateBlockNode);
+}
 
-export type NoteContent = Document<Block>;
+// Core
+export type Document = Model.Document<BlockNode>;
+export type InlineNode = MentionNode | Text;
+export type BlockNode = ParagraphNode;
 
-export const NoteContent = {
-    validate(value: any): NoteContent | null {
-        return validateDocument<NoteContent, Block>(value, validateBlockNode);
-    },
-};
+// Inlines
+export type Text = Stylable<Model.Text>;
+export type MentionNode = Model.MentionNode;
 
-function validateBlockNode(node: any): Block | null {
+// Blocks
+export type ParagraphNode = Model.ParagraphNode<InlineNode>;
+
+// PRIVATE
+
+function validateBlockNode(node: any): BlockNode | null {
     return validateParagraphNode(node, validateInlineNode);
 }
 
-function validateInlineNode(node: any): Inline | null {
+function validateInlineNode(node: any): InlineNode | null {
     return validateText(node) ?? validateMentionNode(node);
 }

@@ -1,21 +1,5 @@
+import type * as Model from './format';
 import {
-    type AttachmentNode,
-    type BookmarkNode,
-    type ContactNode,
-    type Document,
-    type DividerNode,
-    type EmbedNode,
-    type GalleryNode,
-    type ImageNodeWithCaption,
-    type LinkNode,
-    type ListNode,
-    type ListItemTextNode,
-    type ParagraphNode,
-    type PlaceholderNode,
-    type QuoteNode,
-    type StoryBookmarkNode,
-    type Text,
-    type VideoNode,
     validateAttachmentNode,
     validateBookmarkNode,
     validateContactNode,
@@ -36,37 +20,61 @@ import {
 } from './format';
 import type { Alignable, OptionallyAlignable, Stylable } from './traits';
 
-export enum StoryPlaceholder {
-    STORY_PUBLICATION_DATE = 'publication.date',
+// PUBLIC
+
+export function validate(value: any): Document | null {
+    return validateDocument(value, validateBlockNode);
 }
 
-type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<Text> | Stylable<Text>;
-
-type RecursiveListNode = ListNode<ListItemTextNode<Inline> | RecursiveListNode>;
-
-type Block =
-    | Alignable<ImageNodeWithCaption<Inline>>
+// Core
+export type Document = Model.Document<BlockNode>;
+export type InlineNode = PlaceholderNode | LinkNode | Text;
+export type BlockNode =
+    | ImageNode
     | AttachmentNode
     | BookmarkNode
     | ContactNode
     | DividerNode
     | EmbedNode
     | GalleryNode
-    | OptionallyAlignable<ParagraphNode<Inline>>
-    | OptionallyAlignable<QuoteNode<Inline>>
+    | ParagraphNode
+    | QuoteNode
     | OptionallyAlignable<RecursiveListNode>
     | StoryBookmarkNode
     | VideoNode;
 
-export type StoryContent = Document<Block>;
+export enum PlaceholderType {
+    STORY_PUBLICATION_DATE = 'publication.date',
+}
 
-export const StoryContent = {
-    validate(value: any): StoryContent | null {
-        return validateDocument<StoryContent, Block>(value, validateBlockNode);
-    },
-};
+// Inlines
+export type Text = Stylable<Model.Text>;
+export type LinkNode = Model.LinkNode<Text>;
+export type PlaceholderNode = Model.PlaceholderNode<PlaceholderType>;
 
-export function validateBlockNode(node: any): Block | null {
+// Blocks
+export type AttachmentNode = Model.AttachmentNode;
+export type ImageNode = Alignable<Model.ImageNodeWithCaption<Text>>;
+export type BookmarkNode = Model.BookmarkNode;
+export type ContactNode = Model.ContactNode;
+export type DividerNode = Model.DividerNode;
+export type EmbedNode = Model.EmbedNode;
+export type GalleryNode = Model.GalleryNode;
+export type ParagraphNode = OptionallyAlignable<Model.ParagraphNode<InlineNode>>;
+export type QuoteNode = OptionallyAlignable<Model.QuoteNode<InlineNode>>;
+export type StoryBookmarkNode = Model.StoryBookmarkNode;
+export type VideoNode = Model.VideoNode;
+
+// Lists
+type RecursiveListNode = Model.ListNode<ListItemTextNode | RecursiveListNode>;
+
+export type ListItemTextNode = Model.ListItemTextNode<InlineNode>;
+export type ListItemNode = Model.ListItemNode<ListItemTextNode | RecursiveListNode>;
+export type ListNode = Alignable<RecursiveListNode>;
+
+// PRIVATE
+
+export function validateBlockNode(node: any): BlockNode | null {
     return (
         validateAttachmentNode(node) ??
         validateBookmarkNode(node) ??
@@ -74,7 +82,7 @@ export function validateBlockNode(node: any): Block | null {
         validateDividerNode(node) ??
         validateEmbedNode(node) ??
         validateGalleryNode(node) ??
-        validateImageNodeWithCaption(node, validateInlineNode) ??
+        validateImageNodeWithCaption(node, validateText) ??
         validateRecursiveListNode(node) ??
         validateParagraphNode(node, validateInlineNode) ??
         validateQuoteNode(node, validateInlineNode) ??
@@ -91,9 +99,9 @@ export function validateRecursiveListNode(node: any): RecursiveListNode | null {
     });
 }
 
-export function validateInlineNode(node: any): Inline | null {
-    function isValidPlaceholderKey(key: string): key is StoryPlaceholder {
-        return Object.values(StoryPlaceholder).includes(key as StoryPlaceholder);
+export function validateInlineNode(node: any): InlineNode | null {
+    function isValidPlaceholderKey(key: string): key is PlaceholderType {
+        return Object.values(PlaceholderType).includes(key as PlaceholderType);
     }
 
     return (

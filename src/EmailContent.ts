@@ -1,20 +1,5 @@
+import type * as Model from './format';
 import {
-    type AttachmentNode,
-    type BookmarkNode,
-    type CoverageNode,
-    type Document,
-    type DividerNode,
-    type EmbedNode,
-    type ImageNode,
-    type LinkNode,
-    type ListNode,
-    type ListItemTextNode,
-    type ParagraphNode,
-    type PlaceholderNode,
-    type QuoteNode,
-    type StoryBookmarkNode,
-    type Text,
-    type VideoNode,
     validateAttachmentNode,
     validateBookmarkNode,
     validateCoverageNode,
@@ -34,7 +19,29 @@ import {
 } from './format';
 import type { Alignable, OptionallyAlignable, Stylable } from './traits';
 
-export enum EmailPlaceholder {
+// PUBLIC
+
+export function validate(value: any): Document | null {
+    return validateDocument(value, validateBlockNode);
+}
+
+// Core
+export type Document = Model.Document<BlockNode>;
+export type InlineNode = LinkNode | PlaceholderNode | Text;
+export type BlockNode =
+    | ImageNode
+    | AttachmentNode
+    | BookmarkNode
+    | CoverageNode
+    | DividerNode
+    | EmbedNode
+    | ParagraphNode
+    | QuoteNode
+    | ListNode
+    | StoryBookmarkNode
+    | VideoNode;
+
+export enum PlaceholderType {
     CONTACT_FIRST_NAME = 'contact.firstname',
     CONTACT_LAST_NAME = 'contact.lastname',
     CONTACT_FULL_NAME = 'contact.fullname',
@@ -42,32 +49,33 @@ export enum EmailPlaceholder {
     STORY_SHORT_URL = 'release.shorturl',
 }
 
-type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder> | Stylable<Text>;
+// Inlines
+export type Text = Stylable<Model.Text>;
+export type LinkNode = Model.LinkNode<Text>;
+export type PlaceholderNode = Model.PlaceholderNode<PlaceholderType>;
 
-type RecursiveListNode = ListNode<ListItemTextNode<Inline> | RecursiveListNode>;
+// Blocks
+export type AttachmentNode = Model.AttachmentNode;
+export type ImageNode = Alignable<Model.ImageNode>;
+export type BookmarkNode = Model.BookmarkNode;
+export type CoverageNode = Model.CoverageNode;
+export type DividerNode = Model.DividerNode;
+export type EmbedNode = Model.EmbedNode;
+export type ParagraphNode = OptionallyAlignable<Model.ParagraphNode<InlineNode>>;
+export type QuoteNode = OptionallyAlignable<Model.QuoteNode<InlineNode>>;
+export type StoryBookmarkNode = Model.StoryBookmarkNode;
+export type VideoNode = Model.VideoNode;
 
-type Block =
-    | Alignable<ImageNode>
-    | AttachmentNode
-    | BookmarkNode
-    | CoverageNode
-    | DividerNode
-    | EmbedNode
-    | OptionallyAlignable<ParagraphNode<Inline>>
-    | OptionallyAlignable<QuoteNode<Inline>>
-    | OptionallyAlignable<RecursiveListNode>
-    | StoryBookmarkNode
-    | VideoNode;
+// Lists
+type RecursiveListNode = Model.ListNode<ListItemTextNode | RecursiveListNode>;
 
-export type EmailContent = Document<Block>;
+export type ListItemTextNode = Model.ListItemTextNode<InlineNode>;
+export type ListItemNode = Model.ListItemNode<ListItemTextNode | RecursiveListNode>;
+export type ListNode = Alignable<RecursiveListNode>;
 
-export const EmailContent = {
-    validate(value: any): EmailContent | null {
-        return validateDocument<EmailContent, Block>(value, validateBlockNode);
-    },
-};
+// PRIVATE
 
-function validateBlockNode(node: any): Block | null {
+function validateBlockNode(node: any): BlockNode | null {
     return (
         validateAttachmentNode(node) ??
         validateBookmarkNode(node) ??
@@ -91,17 +99,14 @@ function validateRecursiveListNode(value: any): RecursiveListNode | null {
     });
 }
 
-function validateInlineNode(value: any): Inline | null {
-    function isValidPlaceholderKey(key: string): key is EmailPlaceholder {
-        return Object.values(EmailPlaceholder).includes(key as EmailPlaceholder);
+function validateInlineNode(value: any): InlineNode | null {
+    function isValidPlaceholderKey(key: string): key is PlaceholderType {
+        return Object.values(PlaceholderType).includes(key as PlaceholderType);
     }
 
     return (
         validateText(value) ??
         validateLinkNode(value, validateText) ??
-        validatePlaceholderNode<PlaceholderNode<EmailPlaceholder>, EmailPlaceholder>(
-            value,
-            isValidPlaceholderKey,
-        )
+        validatePlaceholderNode(value, isValidPlaceholderKey)
     );
 }
