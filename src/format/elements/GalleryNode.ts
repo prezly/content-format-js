@@ -1,5 +1,5 @@
-import type { UploadedImage } from '@prezly/uploads';
-import type { Element } from '../Element';
+import { type UploadedImage } from '@prezly/uploads';
+import { type Element } from '../Element';
 
 export const GalleryNode = {
     TYPE: 'gallery',

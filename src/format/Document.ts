@@ -1,4 +1,4 @@
-import { Element } from './Element';
+import { type Element } from './Element';
 
 export const Document = {
     TYPE: 'document',

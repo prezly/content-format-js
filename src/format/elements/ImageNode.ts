@@ -1,7 +1,7 @@
-import type { UploadedImage } from '@prezly/uploads';
-import type { ComposedElement } from '../ComposedElement';
-import type { Element } from '../Element';
-import type { Node } from '../Node';
+import { type UploadedImage } from '@prezly/uploads';
+import { type ComposedElement } from '../ComposedElement';
+import { type Element } from '../Element';
+import { type Node } from '../Node';
 
 export const ImageNode = {
     TYPE: 'image-block',
