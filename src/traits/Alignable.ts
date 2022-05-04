@@ -4,23 +4,15 @@ export enum Alignment {
     RIGHT = 'right',
 }
 
-export interface AlignableNode {
+export interface Aligned {
     align: Alignment;
 }
 
-export interface OptionallyAlignableNode {
+export interface OptionallyAligned {
     align?: Alignment;
 }
 
-export type Alignable<T extends object> = T & AlignableNode;
+export type Alignable<T extends object> = T & Aligned;
 
-export type OptionallyAlignable<T extends object> = T & OptionallyAlignableNode;
+export type OptionallyAlignable<T extends object> = T & OptionallyAligned;
 
-export function isAlignableNode<T extends object>(value: T): value is T & AlignableNode {
-    return (
-        typeof value === 'object' &&
-        value &&
-        'align' in value &&
-        Object.values(Alignment).includes((value as any as AlignableNode).align)
-    );
-}
