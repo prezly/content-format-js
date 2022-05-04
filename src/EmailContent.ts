@@ -1,20 +1,21 @@
-import type {
-    AttachmentNode,
-    BookmarkNode,
-    CoverageNode,
-    Document,
-    DividerNode,
-    EmbedNode,
-    ImageNode,
-    LinkNode,
-    ListNode,
-    ListItemTextNode,
-    ParagraphNode,
-    PlaceholderNode,
-    QuoteNode,
-    Text,
-    VideoNode,
+import {
+    type AttachmentNode,
+    type BookmarkNode,
+    type CoverageNode,
+    type Document,
+    type DividerNode,
+    type EmbedNode,
+    type ImageNode,
+    type LinkNode,
+    type ListNode,
+    type ListItemTextNode,
+    type ParagraphNode,
+    type PlaceholderNode,
+    type QuoteNode,
+    type Text,
+    type VideoNode,
 } from './format';
+import { type Alignable, type OptionallyAlignable } from './traits';
 
 export enum EmailPlaceholder {
     CONTACT_FIRST_NAME = 'contact.firstname',
@@ -26,7 +27,9 @@ export enum EmailPlaceholder {
 
 type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder> | Text;
 
-type RecursiveListNode = ListNode<ListItemTextNode<Inline> | RecursiveListNode>;
+type RecursiveListNode = OptionallyAlignable<
+    ListNode<ListItemTextNode<Inline> | RecursiveListNode>
+>;
 
 type Block =
     | AttachmentNode
@@ -34,10 +37,10 @@ type Block =
     | CoverageNode
     | DividerNode
     | EmbedNode
-    | ImageNode
+    | Alignable<ImageNode>
     | RecursiveListNode
-    | ParagraphNode<Inline>
-    | QuoteNode<Inline>
+    | OptionallyAlignable<ParagraphNode<Inline>>
+    | OptionallyAlignable<QuoteNode<Inline>>
     | VideoNode;
 
 export type EmailContent = Document<Block>;

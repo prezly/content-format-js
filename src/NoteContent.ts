@@ -1,4 +1,4 @@
-import type { Document, ParagraphNode, MentionNode, Text } from './format';
+import { type Document, type MentionNode, type ParagraphNode, type Text } from './format';
 
 type Inline = MentionNode | Text;
 
