@@ -1,28 +1,10 @@
-import type * as Model from './model';
-import {
-    validateAttachmentNode,
-    validateBookmarkNode,
-    validateCoverageNode,
-    validateDividerNode,
-    validateDocument,
-    validateEmbedNode,
-    validateImageNode,
-    validateLinkNode,
-    validateListItemTextNode,
-    validateListNode,
-    validateParagraphNode,
-    validatePlaceholderNode,
-    validateQuoteNode,
-    validateStoryBookmarkNode,
-    validateText,
-    validateVideoNode,
-} from './model';
+import * as Model from './model';
 import type { Alignable, OptionallyAlignable, Stylable } from './traits';
 
 // PUBLIC
 
 export function validate(value: any): Document | null {
-    return validateDocument(value, validateBlockNode);
+    return Model.validateDocument(value, validateBlockNode);
 }
 
 // Core
@@ -77,24 +59,25 @@ export type ListNode = Alignable<RecursiveListNode>;
 
 function validateBlockNode(node: any): BlockNode | null {
     return (
-        validateAttachmentNode(node) ??
-        validateBookmarkNode(node) ??
-        validateCoverageNode(node) ??
-        validateDividerNode(node) ??
-        validateEmbedNode(node) ??
-        validateImageNode(node) ??
+        Model.validateAttachmentNode(node) ??
+        Model.validateBookmarkNode(node) ??
+        Model.validateCoverageNode(node) ??
+        Model.validateDividerNode(node) ??
+        Model.validateEmbedNode(node) ??
+        Model.validateImageNode(node) ??
         validateRecursiveListNode(node) ??
-        validateParagraphNode(node, validateInlineNode) ??
-        validateQuoteNode(node, validateInlineNode) ??
-        validateStoryBookmarkNode(node) ??
-        validateVideoNode(node)
+        Model.validateParagraphNode(node, validateInlineNode) ??
+        Model.validateQuoteNode(node, validateInlineNode) ??
+        Model.validateStoryBookmarkNode(node) ??
+        Model.validateVideoNode(node)
     );
 }
 
 function validateRecursiveListNode(value: any): RecursiveListNode | null {
-    return validateListNode(value, function (block) {
+    return Model.validateListNode(value, function (block) {
         return (
-            validateListItemTextNode(block, validateInlineNode) ?? validateRecursiveListNode(block)
+            Model.validateListItemTextNode(block, validateInlineNode) ??
+            validateRecursiveListNode(block)
         );
     });
 }
@@ -105,8 +88,8 @@ function validateInlineNode(value: any): InlineNode | null {
     }
 
     return (
-        validateText(value) ??
-        validateLinkNode(value, validateText) ??
-        validatePlaceholderNode(value, isValidPlaceholderKey)
+        Model.validateText(value) ??
+        Model.validateLinkNode(value, Model.validateText) ??
+        Model.validatePlaceholderNode(value, isValidPlaceholderKey)
     );
 }
