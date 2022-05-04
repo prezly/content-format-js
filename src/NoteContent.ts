@@ -2,4 +2,6 @@ import { type Document, type ParagraphNode, type MentionNode, type Text } from '
 
 type Inline = MentionNode | Text;
 
-export type NoteContent = Document<ParagraphNode<Inline>>;
+type Block = ParagraphNode<Inline>;
+
+export type NoteContent = Document<Block>;

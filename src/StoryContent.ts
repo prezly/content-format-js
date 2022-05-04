@@ -23,9 +23,9 @@ export enum StoryPlaceholder {
 
 type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<Text>;
 
-type NestableListNode = ListNode<ListItemTextNode<Inline> | NestableListNode>;
+type RecursiveListNode = ListNode<ListItemTextNode<Inline> | RecursiveListNode>;
 
-export type StoryContent = Document<
+type Block =
     | AttachmentNode
     | BookmarkNode
     | ContactNode
@@ -33,8 +33,9 @@ export type StoryContent = Document<
     | EmbedNode
     | GalleryNode
     | ImageNodeWithCaption<Inline>
-    | NestableListNode
+    | RecursiveListNode
     | ParagraphNode<Inline>
     | QuoteNode<Inline>
-    | VideoNode
->;
+    | VideoNode;
+
+export type StoryContent = Document<Block>;

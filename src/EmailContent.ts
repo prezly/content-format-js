@@ -26,17 +26,18 @@ export enum EmailPlaceholder {
 
 type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder>;
 
-type NestableListNode = ListNode<ListItemTextNode<Inline> | NestableListNode>;
+type RecursiveListNode = ListNode<ListItemTextNode<Inline> | RecursiveListNode>;
 
-export type EmailContent = Document<
+type Block =
     | AttachmentNode
     | BookmarkNode
     | CoverageNode
     | DividerNode
     | EmbedNode
     | ImageNode
-    | NestableListNode
+    | RecursiveListNode
     | ParagraphNode<Inline>
     | QuoteNode<Inline>
-    | VideoNode
->;
+    | VideoNode;
+
+export type EmailContent = Document<Block>;
