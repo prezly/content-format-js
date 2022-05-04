@@ -24,7 +24,9 @@ export enum StoryPlaceholder {
 
 type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<Text> | Text;
 
-type RecursiveListNode = OptionallyAlignable<ListNode<ListItemTextNode<Inline> | RecursiveListNode>>;
+type RecursiveListNode = OptionallyAlignable<
+    ListNode<ListItemTextNode<Inline> | RecursiveListNode>
+>;
 
 type Block =
     | AttachmentNode

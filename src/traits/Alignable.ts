@@ -15,4 +15,3 @@ export interface OptionallyAligned {
 export type Alignable<T extends object> = T & Aligned;
 
 export type OptionallyAlignable<T extends object> = T & OptionallyAligned;
-
