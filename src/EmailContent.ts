@@ -24,7 +24,7 @@ export enum EmailPlaceholder {
     STORY_SHORT_URL = 'release.shorturl',
 }
 
-type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder>;
+type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder> | Text;
 
 type RecursiveListNode = ListNode<ListItemTextNode<Inline> | RecursiveListNode>;
 

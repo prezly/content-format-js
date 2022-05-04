@@ -21,7 +21,7 @@ export enum StoryPlaceholder {
     STORY_PUBLICATION_DATE = 'publication.date',
 }
 
-type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<Text>;
+type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<Text> | Text;
 
 type NestableListNode = ListNode<ListItemTextNode<Inline> | NestableListNode>;
 
