@@ -1,4 +1,4 @@
-import type * as Model from './format';
+import type * as Model from './model';
 import {
     validateAttachmentNode,
     validateBookmarkNode,
@@ -17,7 +17,7 @@ import {
     validateStoryBookmarkNode,
     validateText,
     validateVideoNode,
-} from './format';
+} from './model';
 import type { Alignable, OptionallyAlignable, Stylable } from './traits';
 
 // PUBLIC

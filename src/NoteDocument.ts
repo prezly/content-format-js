@@ -1,10 +1,10 @@
-import type * as Model from './format';
+import type * as Model from './model';
 import {
     validateDocument,
     validateMentionNode,
     validateParagraphNode,
     validateText,
-} from './format';
+} from './model';
 import type { Stylable } from './traits';
 
 // PUBLIC

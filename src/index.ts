@@ -1,5 +1,5 @@
 export * from '@prezly/uploads';
-export * from './format';
+export * from './model';
 export * from './traits';
 
 import * as Email from './EmailDocument';
