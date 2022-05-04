@@ -1,5 +1,5 @@
-import type { Element } from '../Element';
-import type { OEmbedInfo } from '../common';
+import { type Element } from '../Element';
+import { type OEmbedInfo } from '../common';
 
 export const VideoNode = {
     TYPE: 'video',
