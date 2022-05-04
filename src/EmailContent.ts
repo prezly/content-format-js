@@ -15,6 +15,7 @@ import type {
     Text,
     VideoNode,
 } from './format';
+import type { Alignable, OptionallyAlignable, Stylable } from './traits';
 
 export enum EmailPlaceholder {
     CONTACT_FIRST_NAME = 'contact.firstname',
@@ -24,9 +25,11 @@ export enum EmailPlaceholder {
     STORY_SHORT_URL = 'release.shorturl',
 }
 
-type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder>;
+type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder> | Stylable<Text>;
 
-type RecursiveListNode = ListNode<ListItemTextNode<Inline> | RecursiveListNode>;
+type RecursiveListNode = OptionallyAlignable<
+    ListNode<ListItemTextNode<Inline> | RecursiveListNode>
+>;
 
 type Block =
     | AttachmentNode
@@ -34,10 +37,10 @@ type Block =
     | CoverageNode
     | DividerNode
     | EmbedNode
-    | ImageNode
+    | Alignable<ImageNode>
     | RecursiveListNode
-    | ParagraphNode<Inline>
-    | QuoteNode<Inline>
+    | OptionallyAlignable<ParagraphNode<Inline>>
+    | OptionallyAlignable<QuoteNode<Inline>>
     | VideoNode;
 
 export type EmailContent = Document<Block>;

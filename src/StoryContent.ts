@@ -16,14 +16,17 @@ import type {
     Text,
     VideoNode,
 } from './format';
+import type { Alignable, OptionallyAlignable, Stylable } from './traits';
 
 export enum StoryPlaceholder {
     STORY_PUBLICATION_DATE = 'publication.date',
 }
 
-type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<Text>;
+type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<Text> | Stylable<Text>;
 
-type RecursiveListNode = ListNode<ListItemTextNode<Inline> | RecursiveListNode>;
+type RecursiveListNode = OptionallyAlignable<
+    ListNode<ListItemTextNode<Inline> | RecursiveListNode>
+>;
 
 type Block =
     | AttachmentNode
@@ -32,10 +35,10 @@ type Block =
     | DividerNode
     | EmbedNode
     | GalleryNode
-    | ImageNodeWithCaption<Inline>
+    | Alignable<ImageNodeWithCaption<Inline>>
     | RecursiveListNode
-    | ParagraphNode<Inline>
-    | QuoteNode<Inline>
+    | OptionallyAlignable<ParagraphNode<Inline>>
+    | OptionallyAlignable<QuoteNode<Inline>>
     | VideoNode;
 
 export type StoryContent = Document<Block>;
