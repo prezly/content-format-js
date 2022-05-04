@@ -15,7 +15,7 @@ import type {
     Text,
     VideoNode,
 } from './format';
-import type { Alignable, OptionallyAlignable } from './traits';
+import type { Alignable, OptionallyAlignable, Stylable } from './traits';
 
 export enum EmailPlaceholder {
     CONTACT_FIRST_NAME = 'contact.firstname',
@@ -25,7 +25,7 @@ export enum EmailPlaceholder {
     STORY_SHORT_URL = 'release.shorturl',
 }
 
-type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder> | Text;
+type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder> | Stylable<Text>;
 
 type RecursiveListNode = OptionallyAlignable<
     ListNode<ListItemTextNode<Inline> | RecursiveListNode>
