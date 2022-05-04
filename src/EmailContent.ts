@@ -43,20 +43,18 @@ export enum EmailPlaceholder {
 
 type Inline = LinkNode<Text> | PlaceholderNode<EmailPlaceholder> | Stylable<Text>;
 
-type RecursiveListNode = OptionallyAlignable<
-    ListNode<ListItemTextNode<Inline> | RecursiveListNode>
->;
+type RecursiveListNode = ListNode<ListItemTextNode<Inline> | RecursiveListNode>;
 
 type Block =
+    | Alignable<ImageNode>
     | AttachmentNode
     | BookmarkNode
     | CoverageNode
     | DividerNode
     | EmbedNode
-    | Alignable<ImageNode>
-    | RecursiveListNode
     | OptionallyAlignable<ParagraphNode<Inline>>
     | OptionallyAlignable<QuoteNode<Inline>>
+    | OptionallyAlignable<RecursiveListNode>
     | StoryBookmarkNode
     | VideoNode;
 

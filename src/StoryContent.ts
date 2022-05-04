@@ -41,21 +41,19 @@ export enum StoryPlaceholder {
 
 type Inline = PlaceholderNode<StoryPlaceholder> | LinkNode<Text> | Stylable<Text>;
 
-type RecursiveListNode = OptionallyAlignable<
-    ListNode<ListItemTextNode<Inline> | RecursiveListNode>
->;
+type RecursiveListNode = ListNode<ListItemTextNode<Inline> | RecursiveListNode>;
 
 type Block =
+    | Alignable<ImageNodeWithCaption<Inline>>
     | AttachmentNode
     | BookmarkNode
     | ContactNode
     | DividerNode
     | EmbedNode
     | GalleryNode
-    | Alignable<ImageNodeWithCaption<Inline>>
-    | RecursiveListNode
     | OptionallyAlignable<ParagraphNode<Inline>>
     | OptionallyAlignable<QuoteNode<Inline>>
+    | OptionallyAlignable<RecursiveListNode>
     | StoryBookmarkNode
     | VideoNode;
 
