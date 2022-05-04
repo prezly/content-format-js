@@ -1,22 +1,22 @@
-import {
-    type AttachmentNode,
-    type BookmarkNode,
-    type ContactNode,
-    type Document,
-    type DividerNode,
-    type EmbedNode,
-    type GalleryNode,
-    type ImageNodeWithCaption,
-    type LinkNode,
-    type ListNode,
-    type ListItemTextNode,
-    type ParagraphNode,
-    type PlaceholderNode,
-    type QuoteNode,
-    type Text,
-    type VideoNode,
+import type {
+    AttachmentNode,
+    BookmarkNode,
+    ContactNode,
+    Document,
+    DividerNode,
+    EmbedNode,
+    GalleryNode,
+    ImageNodeWithCaption,
+    LinkNode,
+    ListNode,
+    ListItemTextNode,
+    ParagraphNode,
+    PlaceholderNode,
+    QuoteNode,
+    Text,
+    VideoNode,
 } from './format';
-import { type Alignable, type OptionallyAlignable } from './traits';
+import type { Alignable, OptionallyAlignable } from './traits';
 
 export enum StoryPlaceholder {
     STORY_PUBLICATION_DATE = 'publication.date',

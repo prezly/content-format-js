@@ -1,21 +1,21 @@
-import {
-    type AttachmentNode,
-    type BookmarkNode,
-    type CoverageNode,
-    type Document,
-    type DividerNode,
-    type EmbedNode,
-    type ImageNode,
-    type LinkNode,
-    type ListNode,
-    type ListItemTextNode,
-    type ParagraphNode,
-    type PlaceholderNode,
-    type QuoteNode,
-    type Text,
-    type VideoNode,
+import type {
+    AttachmentNode,
+    BookmarkNode,
+    CoverageNode,
+    Document,
+    DividerNode,
+    EmbedNode,
+    ImageNode,
+    LinkNode,
+    ListNode,
+    ListItemTextNode,
+    ParagraphNode,
+    PlaceholderNode,
+    QuoteNode,
+    Text,
+    VideoNode,
 } from './format';
-import { type Alignable, type OptionallyAlignable } from './traits';
+import type { Alignable, OptionallyAlignable } from './traits';
 
 export enum EmailPlaceholder {
     CONTACT_FIRST_NAME = 'contact.firstname',
