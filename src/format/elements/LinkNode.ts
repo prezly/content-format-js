@@ -9,6 +9,7 @@ export const LinkNode = {
 
 export interface LinkNode<Inline extends Node> extends ComposedElement<typeof LinkNode.TYPE> {
     href: string;
+    new_tab: boolean;
     children: Inline[];
 }
 
