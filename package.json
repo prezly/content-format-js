@@ -3,8 +3,16 @@
     "version": "0.50.2",
     "description": "Prezly Content Format types and utilities",
     "license": "MIT",
-    "main": "build/index.js",
-    "types": "build/index.d.ts",
+    "main": "build/commonjs/index.cjs",
+    "module": "build/esm/index.mjs",
+    "types": "build/types/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./build/types/index.d.ts",
+            "import": "./build/esm/index.mjs",
+            "default": "./build/commonjs/index.cjs"
+        }
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/prezly/content-format-js.git"
@@ -14,10 +22,15 @@
     },
     "homepage": "https://github.com/prezly/content-format-js#readme",
     "scripts": {
-        "build": "tsc --project . && esbuild src/index.ts --bundle --target=es6 --outfile=build/index.js",
+        "build": "npm run build:types && npm run build:cjs && npm run build:esm",
+        "build:types": "tsc --project .",
+        "build:cjs": "babel --extensions='.ts' src/ --config-file=./babel.cjs.config.json --out-dir=./build/commonjs && renamer --force --find '.js' --replace '.cjs' 'build/commonjs/**/*.{js,js.map}'",
+        "build:esm": "babel --extensions='.ts' src/ --config-file=./babel.esm.config.json --out-dir=./build/esm && renamer --force --find '.js' --replace '.mjs' 'build/esm/**/*.{js,js.map}'",
         "test": "echo 'No tests yet'",
         "check": "npm run typescript && npm run prettier",
-        "clean": "rimraf build/ node_modules/",
+        "clean": "npm run clean:build && npm run clean:node_modules",
+        "clean:build": "rimraf build/",
+        "clean:node_modules": "rimraf node_modules/",
         "typescript": "tsc --project .",
         "prettier": "prettier --check 'src/**/*.(js|ts|scss)'",
         "prettier:fix": "npm run prettier -- --write",
@@ -30,9 +43,14 @@
         "npm": ">=7.0"
     },
     "devDependencies": {
-        "esbuild": "^0.13.12",
+        "@babel/cli": "^7.17.10",
+        "@babel/core": "^7.17.10",
+        "@babel/preset-env": "^7.17.10",
+        "@babel/preset-typescript": "^7.16.7",
+        "babel-plugin-add-import-extension": "^1.6.0",
         "np": "^7.5.0",
         "prettier": "^2.6.2",
+        "renamer": "^4.0.0",
         "rimraf": "^3.0.2",
         "typescript": "~4.5.0"
     },
