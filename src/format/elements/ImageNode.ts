@@ -2,7 +2,7 @@ import { type UploadedImage, isUploadedImage } from '@prezly/uploads';
 import { type ComposedElement, isComposedElement } from '../ComposedElement';
 import { type Element, isElement } from '../Element';
 import type { Node } from '../Node';
-import { isArrayOf, isEnum } from '../validation';
+import { isArrayOf, isBoolean, isEnum } from '../validation';
 
 export const ImageNode = {
     TYPE: 'image-block',
@@ -22,6 +22,7 @@ export interface ImageNode extends Element<typeof ImageNode.TYPE> {
     file: UploadedImage;
     layout: ImageLayout;
     width: ImageWidth;
+    new_tab: boolean;
     href: string | null;
 }
 
@@ -46,6 +47,7 @@ export function validateImageNode(value: any): ImageNode | null {
     const isValid =
         isImageNode(value) &&
         (value.href === null || typeof value.href === 'string') &&
+        isBoolean(value.new_tab) &&
         isEnum(value.layout, ImageLayout) &&
         isUploadedImage(value.file) &&
         typeof value.width === 'string' &&
