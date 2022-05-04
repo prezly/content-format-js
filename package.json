@@ -19,8 +19,8 @@
         "check": "npm run typescript && npm run prettier",
         "clean": "rimraf build/ node_modules/",
         "typescript": "tsc --project .",
-        "prettier": "prettier --check 'src/*.(js|ts|scss)'",
-        "prettier:fix": "npm run prettier -- --write --no-list-different",
+        "prettier": "prettier --check 'src/**/*.(js|ts|scss)'",
+        "prettier:fix": "npm run prettier -- --write",
         "release": "npm run release:prepare && npm run release:publish",
         "release:prepare": "npm run clean && npm install && npm run check && npm run build",
         "release:publish": "np --no-2fa"
@@ -32,9 +32,9 @@
     "devDependencies": {
         "esbuild": "^0.13.12",
         "np": "^7.5.0",
-        "prettier": "^2.4.1",
+        "prettier": "^2.6.2",
         "rimraf": "^3.0.2",
-        "typescript": "^4.4.4"
+        "typescript": "~4.5.0"
     },
     "dependencies": {
         "@prezly/uploads": "^0.2.0"
