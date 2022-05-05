@@ -23,6 +23,7 @@ export type BlockNode =
     | DividerNode
     | EmbedNode
     | HeadingNode
+    | HtmlNode
     | ImageNode
     | GalleryNode
     | ParagraphNode
@@ -32,6 +33,7 @@ export type BlockNode =
     | VideoNode;
 
 export type HeadingType = Core.HeadingType;
+
 export enum PlaceholderType {
     STORY_PUBLICATION_DATE = 'publication.date',
 }
@@ -49,6 +51,7 @@ export type DividerNode = Core.DividerNode;
 export type EmbedNode = Core.EmbedNode;
 export type GalleryNode = Core.GalleryNode;
 export type HeadingNode = Core.HeadingNode<HeadingType, InlineNode>;
+export type HtmlNode = Core.HtmlNode;
 export type ImageNode = Alignable<Core.ImageNodeWithCaption<Text>>;
 export type ParagraphNode = OptionallyAlignable<Core.ParagraphNode<InlineNode>>;
 export type QuoteNode = OptionallyAlignable<Core.QuoteNode<InlineNode>>;
@@ -83,6 +86,7 @@ export const isEmbedNode = Core.isEmbedNode;
 export const isGalleryNode = Core.isGalleryNode;
 export const isHeadingNode = (value: any, type?: HeadingType): value is HeadingNode =>
     type ? Core.isHeadingNode(value, type) : Core.isHeadingNode(value);
+export const isHtmlNode = Core.isHtmlNode;
 export const isImageNode = (value: any): value is ImageNode => Core.isImageNodeWithCaption(value);
 export const isListNode = (value: any): value is ListNode => Core.isListNode(value);
 export const isListItemNode = (value: any): value is ListItemNode => Core.isListItemNode(value);
@@ -107,6 +111,7 @@ export function isBlockNode(value: any): value is BlockNode {
         isGalleryNode(value) ||
         isImageNode(value) ||
         isHeadingNode(value) ||
+        isHtmlNode(value) ||
         isListNode(value) ||
         isListItemNode(value) ||
         isListItemTextNode(value) ||
@@ -127,8 +132,9 @@ function validateBlockNode(node: any): BlockNode | null {
         Core.validateDividerNode(node) ??
         Core.validateEmbedNode(node) ??
         Core.validateGalleryNode(node) ??
-        Core.validateImageNodeWithCaption(node, Core.validateText) ??
         Core.validateHeadingNode(node, validateInlineNode) ??
+        Core.validateHtmlNode(node) ??
+        Core.validateImageNodeWithCaption(node, Core.validateText) ??
         validateListNode(node) ??
         Core.validateParagraphNode(node, validateInlineNode) ??
         Core.validateQuoteNode(node, validateInlineNode) ??
