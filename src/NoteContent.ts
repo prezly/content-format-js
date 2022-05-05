@@ -4,8 +4,8 @@ import type { Stylable } from './traits';
 // TYPES
 
 // Core
-export type Document = Core.Document<BlockNode>;
-export const Document = Core.Document;
+export type DocumentNode = Core.DocumentNode<BlockNode>;
+export const DocumentNode = Core.DocumentNode;
 
 export type Node = InlineNode | BlockNode;
 export type ComposedElement = ParagraphNode;
@@ -24,9 +24,9 @@ export const ParagraphNode = Core.ParagraphNode;
 
 // PUBLIC
 
-export const validate = (value: any): Document | null => Core.validateDocument(value, validateBlockNode);
+export const validate = (value: any): DocumentNode | null => Core.validateDocumentNode(value, validateBlockNode);
 
-export const isDocument = (value: any): value is Document => Core.isDocument(value);
+export const isDocument = (value: any): value is DocumentNode => Core.isDocumentNode(value);
 export const isNode = (value: any): value is Node => Core.isNode(value);
 export const isComposedElement = (value: any): value is ComposedElement => Core.isComposedElement(value);
 
