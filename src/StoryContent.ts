@@ -6,6 +6,14 @@ import type { Alignable, OptionallyAlignable, Stylable } from './traits';
 // Core
 export type Document = Core.Document<BlockNode>;
 export type Node = InlineNode | BlockNode;
+export type ComposedElement =
+    | LinkNode
+    | ImageNode
+    | ParagraphNode
+    | QuoteNode
+    | ListNode
+    | ListItemNode
+    | ListItemTextNode;
 export type InlineNode = PlaceholderNode | LinkNode | Text;
 export type BlockNode =
     | ImageNode
@@ -56,7 +64,7 @@ export const validate = (value: any): Document | null => Core.validateDocument(v
 
 export const isDocument = (value: any): value is Document => Core.isDocument<Document, BlockNode>(value);
 export const isNode = (value: any): value is Node => Core.isNode(value);
-export const isComposedElement = Core.isComposedElement;
+export const isComposedElement = (value: any): value is ComposedElement => Core.isComposedElement(value);
 
 // Inlines
 export const isText = (value: any): value is Text => Core.isText(value);
