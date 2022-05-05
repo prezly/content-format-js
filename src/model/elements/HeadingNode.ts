@@ -36,11 +36,11 @@ export function validateHeadingNode<Heading extends HeadingNode<HeadingType, Chi
     validateChildNode: (node: any) => Child | null,
 ): Heading | null;
 
-export function validateHeadingNode<Heading extends HeadingNode<Type, Child>, Type extends HeadingType, Child extends Node>(
-    value: any,
-    type: Type,
-    validateChildNode: (node: any) => Child | null,
-): Heading | null;
+export function validateHeadingNode<
+    Heading extends HeadingNode<Type, Child>,
+    Type extends HeadingType,
+    Child extends Node,
+>(value: any, type: Type, validateChildNode: (node: any) => Child | null): Heading | null;
 
 export function validateHeadingNode(value: any, ...params: [Function] | [HeadingType, Function]) {
     if (params.length === 2) {
