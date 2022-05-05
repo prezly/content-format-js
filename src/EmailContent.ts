@@ -34,11 +34,11 @@ export type PlaceholderNode = Core.PlaceholderNode<PlaceholderType>;
 
 // Blocks
 export type AttachmentNode = Core.AttachmentNode;
-export type ImageNode = Alignable<Core.ImageNode>;
 export type BookmarkNode = Core.BookmarkNode;
 export type CoverageNode = Core.CoverageNode;
 export type DividerNode = Core.DividerNode;
 export type EmbedNode = Core.EmbedNode;
+export type ImageNode = Alignable<Core.ImageNode>;
 export type ParagraphNode = OptionallyAlignable<Core.ParagraphNode<InlineNode>>;
 export type QuoteNode = OptionallyAlignable<Core.QuoteNode<InlineNode>>;
 export type StoryBookmarkNode = Core.StoryBookmarkNode;
@@ -53,8 +53,50 @@ export type ListNode = Alignable<RecursiveListNode>;
 
 // PUBLIC
 
-export function validate(value: any): Document | null {
-    return Core.validateDocument(value, validateBlockNode);
+export const validate = (value: any): Document | null => Core.validateDocument(value, validateBlockNode);
+
+export const isDocument = (value: any): value is Document => Core.isDocument(value);
+
+// Inlines
+export const isText = (value: any): value is Text => Core.isText(value);
+export const isLinkNode = (value: any): value is LinkNode => Core.isLinkNode(value);
+export const isPlaceholderNode = (value: any): value is PlaceholderNode => Core.isPlaceholderNode(value);
+// Blocks
+export const isAttachmentNode = Core.isAttachmentNode;
+export const isBookmarkNode = Core.isBookmarkNode;
+export const isCoverageNode = Core.isCoverageNode;
+export const isDividerNode = Core.isDividerNode;
+export const isEmbedNode = Core.isEmbedNode;
+export const isImageNode = (value: any): value is ImageNode => Core.isImageNode(value);
+export const isListNode = (value: any): value is ListNode => Core.isListNode(value);
+export const isListItemNode = (value: any): value is ListItemNode => Core.isListItemNode(value);
+export const isListItemTextNode = (value: any): value is ListItemTextNode => Core.isListItemTextNode(value);
+export const isParagraphNode = (value: any): value is ParagraphNode => Core.isParagraphNode(value);
+export const isQuoteNode = (value: any): value is QuoteNode => Core.isQuoteNode(value);
+export const isStoryBookmarkNode = Core.isStoryBookmarkNode;
+export const isVideoNode = Core.isVideoNode;
+
+// Groups
+export function isInlineNode(value: any): value is InlineNode {
+    return isText(value) || isLinkNode(value) || isPlaceholderNode(value);
+}
+
+export function isBlockNode(value: any): value is BlockNode {
+    return (
+        isAttachmentNode(value) ||
+        isBookmarkNode(value) ||
+        isCoverageNode(value) ||
+        isDividerNode(value) ||
+        isEmbedNode(value) ||
+        isImageNode(value) ||
+        isListNode(value) ||
+        isListItemNode(value) ||
+        isListItemTextNode(value) ||
+        isParagraphNode(value) ||
+        isQuoteNode(value) ||
+        isStoryBookmarkNode(value) ||
+        isVideoNode(value)
+    );
 }
 
 // PRIVATE
@@ -77,10 +119,7 @@ function validateBlockNode(node: any): BlockNode | null {
 
 function validateListNode(value: any): RecursiveListNode | null {
     return Core.validateListNode(value, function (block) {
-        return (
-            Core.validateListItemTextNode(block, validateInlineNode) ??
-            validateListNode(block)
-        );
+        return Core.validateListItemTextNode(block, validateInlineNode) ?? validateListNode(block);
     });
 }
 

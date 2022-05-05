@@ -17,9 +17,17 @@ export type ParagraphNode = Core.ParagraphNode<InlineNode>;
 
 // PUBLIC
 
-export function validate(value: any): Document | null {
-    return Core.validateDocument(value, validateBlockNode);
-}
+export const validate = (value: any): Document | null => Core.validateDocument(value, validateBlockNode);
+
+export const isDocument = (value: any): value is Document => Core.isDocument(value);
+// Inlines
+export const isText = (value: any): value is Text => Core.isText(value);
+export const isMentionNode = (value: any): value is MentionNode => Core.isMentionNode(value);
+// BLocks
+export const isParagraphNode = (value: any): value is ParagraphNode => Core.isParagraphNode(value);
+// Groups
+export const isInlineNode = (value: any): value is InlineNode => isText(value) || isMentionNode(value);
+export const isBlockNode = (value: any): value is BlockNode => isParagraphNode(value);
 
 // PRIVATE
 
