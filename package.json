@@ -17,14 +17,15 @@
     "scripts": {
         "build": "turbo run build",
         "test": "turbo run test",
-        "clean": "npm run clean --workspaces",
-        "clean:build": "npm run clean:build --workspaces",
-        "clean:node_modules": "npm run clean:node_modules --workspaces",
-        "prettier": "npm run prettier --workspaces",
-        "prettier:fix": "npm run prettier:fix --workspaces",
+        "clean": "turbo run clean",
+        "clean:build": "turbo run clean:build",
+        "clean:node_modules": "turbo run clean:node_modules",
+        "check": "npm run prettier",
+        "prettier": "turbo run prettier",
+        "prettier:fix": "turbo run prettier:fix",
         "release": "npm run release:prepare && npm run release:publish",
         "release:prepare": "npm run clean && npm install && npm run check && npm run build",
-        "release:publish": "np --no-2fa"
+        "release:publish": "lerna publish"
     },
     "devEngines": {
         "node": ">=14.0",
@@ -36,6 +37,7 @@
         "@babel/preset-env": "^7.17.10",
         "@babel/preset-typescript": "^7.16.7",
         "babel-plugin-add-import-extension": "^1.6.0",
+        "lerna": "^4.0.0",
         "np": "^7.5.0",
         "prettier": "^2.6.2",
         "renamer": "^4.0.0",

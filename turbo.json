@@ -3,14 +3,12 @@
   "baseBranch": "origin/main",
   "pipeline": {
     "build": {
-      "outputs": [
-        "build/**"
-      ]
+      "outputs": ["build/**"],
+      "inputs": ["src/**/*.ts"]
     },
     "test": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["build"],
+      "inputs": ["build/**/*.{cjs,mjs,d.ts}"],
       "outputs": []
     },
     "prettier": {
@@ -27,9 +25,6 @@
     },
     "clean:node_modules": {
       "outputs": []
-    },
-    "dev": {
-      "cache": false
     }
   }
 }
