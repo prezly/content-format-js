@@ -8,6 +8,7 @@ export type Document = Core.Document<BlockNode>;
 export type Node = InlineNode | BlockNode;
 export type ComposedElement =
     | LinkNode
+    | HeadingNode
     | ImageNode
     | ParagraphNode
     | QuoteNode
@@ -16,12 +17,13 @@ export type ComposedElement =
     | ListItemTextNode;
 export type InlineNode = PlaceholderNode | LinkNode | Text;
 export type BlockNode =
-    | ImageNode
     | AttachmentNode
     | BookmarkNode
     | ContactNode
     | DividerNode
     | EmbedNode
+    | HeadingNode
+    | ImageNode
     | GalleryNode
     | ParagraphNode
     | QuoteNode
@@ -29,6 +31,7 @@ export type BlockNode =
     | StoryBookmarkNode
     | VideoNode;
 
+export type HeadingType = Core.HeadingType;
 export enum PlaceholderType {
     STORY_PUBLICATION_DATE = 'publication.date',
 }
@@ -40,12 +43,13 @@ export type PlaceholderNode = Core.PlaceholderNode<PlaceholderType>;
 
 // Blocks
 export type AttachmentNode = Core.AttachmentNode;
-export type ImageNode = Alignable<Core.ImageNodeWithCaption<Text>>;
 export type BookmarkNode = Core.BookmarkNode;
 export type ContactNode = Core.ContactNode;
 export type DividerNode = Core.DividerNode;
 export type EmbedNode = Core.EmbedNode;
 export type GalleryNode = Core.GalleryNode;
+export type HeadingNode = Core.HeadingNode<HeadingType, InlineNode>;
+export type ImageNode = Alignable<Core.ImageNodeWithCaption<Text>>;
 export type ParagraphNode = OptionallyAlignable<Core.ParagraphNode<InlineNode>>;
 export type QuoteNode = OptionallyAlignable<Core.QuoteNode<InlineNode>>;
 export type StoryBookmarkNode = Core.StoryBookmarkNode;
@@ -77,6 +81,8 @@ export const isContactNode = Core.isContactNode;
 export const isDividerNode = Core.isDividerNode;
 export const isEmbedNode = Core.isEmbedNode;
 export const isGalleryNode = Core.isGalleryNode;
+export const isHeadingNode = (value: any, type?: HeadingType): value is HeadingNode =>
+    type ? Core.isHeadingNode(value, type) : Core.isHeadingNode(value);
 export const isImageNode = (value: any): value is ImageNode => Core.isImageNodeWithCaption(value);
 export const isListNode = (value: any): value is ListNode => Core.isListNode(value);
 export const isListItemNode = (value: any): value is ListItemNode => Core.isListItemNode(value);
@@ -100,6 +106,7 @@ export function isBlockNode(value: any): value is BlockNode {
         isEmbedNode(value) ||
         isGalleryNode(value) ||
         isImageNode(value) ||
+        isHeadingNode(value) ||
         isListNode(value) ||
         isListItemNode(value) ||
         isListItemTextNode(value) ||
@@ -121,6 +128,7 @@ function validateBlockNode(node: any): BlockNode | null {
         Core.validateEmbedNode(node) ??
         Core.validateGalleryNode(node) ??
         Core.validateImageNodeWithCaption(node, Core.validateText) ??
+        Core.validateHeadingNode(node, validateInlineNode) ??
         validateListNode(node) ??
         Core.validateParagraphNode(node, validateInlineNode) ??
         Core.validateQuoteNode(node, validateInlineNode) ??

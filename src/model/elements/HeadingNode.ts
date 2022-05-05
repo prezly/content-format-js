@@ -31,18 +31,18 @@ export function isHeadingNode(value: any, type?: HeadingType) {
     return isElement(value) && (type === undefined || value.type === type);
 }
 
-export function validateHeading<Heading extends HeadingNode<HeadingType, Child>, Child extends Node>(
+export function validateHeadingNode<Heading extends HeadingNode<HeadingType, Child>, Child extends Node>(
     value: any,
     validateChildNode: (node: any) => Child | null,
 ): Heading | null;
 
-export function validateHeading<Heading extends HeadingNode<Type, Child>, Type extends HeadingType, Child extends Node>(
+export function validateHeadingNode<Heading extends HeadingNode<Type, Child>, Type extends HeadingType, Child extends Node>(
     value: any,
     type: Type,
     validateChildNode: (node: any) => Child | null,
 ): Heading | null;
 
-export function validateHeading(value: any, ...params: [Function] | [HeadingType, Function]) {
+export function validateHeadingNode(value: any, ...params: [Function] | [HeadingType, Function]) {
     if (params.length === 2) {
         const [type, validateChildNode] = params;
         const isValid =
