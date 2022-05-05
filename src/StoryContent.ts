@@ -54,6 +54,8 @@ export type ListNode = OptionallyAlignable<RecursiveListNode>;
 export const validate = (value: any): Document | null => Core.validateDocument(value, validateBlockNode);
 
 export const isDocument = (value: any): value is Document => Core.isDocument<Document, BlockNode>(value);
+export const isComposedElement = Core.isComposedElement;
+
 // Inlines
 export const isText = (value: any): value is Text => Core.isText(value);
 export const isLinkNode = (value: any): value is LinkNode => Core.isLinkNode(value);

@@ -20,6 +20,8 @@ export type ParagraphNode = Core.ParagraphNode<InlineNode>;
 export const validate = (value: any): Document | null => Core.validateDocument(value, validateBlockNode);
 
 export const isDocument = (value: any): value is Document => Core.isDocument(value);
+export const isComposedElement = Core.isComposedElement;
+
 // Inlines
 export const isText = (value: any): value is Text => Core.isText(value);
 export const isMentionNode = (value: any): value is MentionNode => Core.isMentionNode(value);
