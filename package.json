@@ -7,6 +7,21 @@
     "module": "build/esm/index.mjs",
     "types": "build/types/index.d.ts",
     "exports": {
+        "./EmailContent": {
+            "types": "./build/types/EmailContent.d.ts",
+            "import": "./build/esm/EmailContent.mjs",
+            "default": "./build/commonjs/EmailContent.cjs"
+        },
+        "./NoteContent": {
+            "types": "./build/types/NoteContent.d.ts",
+            "import": "./build/esm/NoteContent.mjs",
+            "default": "./build/commonjs/NoteContent.cjs"
+        },
+        "./StoryContent": {
+            "types": "./build/types/StoryContent.d.ts",
+            "import": "./build/esm/StoryContent.mjs",
+            "default": "./build/commonjs/StoryContent.cjs"
+        },
         ".": {
             "types": "./build/types/index.d.ts",
             "import": "./build/esm/index.mjs",
@@ -58,6 +73,7 @@
         "typescript": "~4.5.0"
     },
     "dependencies": {
-        "@prezly/uploads": "^0.2.0"
+        "@prezly/uploads": "^0.2.0",
+        "is-plain-object": "^5.0.0"
     }
 }
