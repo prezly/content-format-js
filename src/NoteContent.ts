@@ -5,6 +5,8 @@ import type { Stylable } from './traits';
 
 // Core
 export type Document = Core.Document<BlockNode>;
+export const Document = Core.Document;
+
 export type Node = InlineNode | BlockNode;
 export type ComposedElement = ParagraphNode;
 export type InlineNode = MentionNode | Text;
@@ -12,10 +14,13 @@ export type BlockNode = ParagraphNode;
 
 // Inlines
 export type Text = Stylable<Core.Text>;
+
 export type MentionNode = Core.MentionNode;
+export const MentionNode = Core.MentionNode;
 
 // Blocks
 export type ParagraphNode = Core.ParagraphNode<InlineNode>;
+export const ParagraphNode = Core.ParagraphNode;
 
 // PUBLIC
 

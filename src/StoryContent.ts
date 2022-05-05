@@ -5,6 +5,8 @@ import type { Alignable, OptionallyAlignable, Stylable } from './traits';
 
 // Core
 export type Document = Core.Document<BlockNode>;
+export const Document = Core.Document;
+
 export type Node = InlineNode | BlockNode;
 export type ComposedElement =
     | LinkNode
@@ -33,6 +35,7 @@ export type BlockNode =
     | VideoNode;
 
 export type HeadingType = Core.HeadingType;
+export const HeadingType = Core.HeadingType;
 
 export enum PlaceholderType {
     STORY_PUBLICATION_DATE = 'publication.date',
@@ -40,30 +43,64 @@ export enum PlaceholderType {
 
 // Inlines
 export type Text = Stylable<Core.Text>;
+
 export type LinkNode = Core.LinkNode<Text>;
+export const LinkNode = Core.LinkNode;
+
 export type PlaceholderNode = Core.PlaceholderNode<PlaceholderType>;
+export const PlaceholderNode = Core.PlaceholderNode;
 
 // Blocks
 export type AttachmentNode = Core.AttachmentNode;
+export const AttachmentNode = Core.AttachmentNode;
+
 export type BookmarkNode = Core.BookmarkNode;
+export const BookmarkNode = Core.BookmarkNode;
+
 export type ContactNode = Core.ContactNode;
+export const ContactNode = Core.ContactNode;
+
 export type DividerNode = Core.DividerNode;
+export const DividerNode = Core.DividerNode;
+
 export type EmbedNode = Core.EmbedNode;
+export const EmbedNode = Core.EmbedNode;
+
 export type GalleryNode = Core.GalleryNode;
+export const GalleryNode = Core.GalleryNode;
+
 export type HeadingNode = Core.HeadingNode<HeadingType, InlineNode>;
+export const HeadingNode = Core.HeadingNode;
+
 export type HtmlNode = Core.HtmlNode;
+export const HtmlNode = Core.HtmlNode;
+
 export type ImageNode = Alignable<Core.ImageNodeWithCaption<Text>>;
+export const ImageNode = Core.ImageNode;
+
 export type ParagraphNode = OptionallyAlignable<Core.ParagraphNode<InlineNode>>;
+export const ParagraphNode = Core.ParagraphNode;
+
 export type QuoteNode = OptionallyAlignable<Core.QuoteNode<InlineNode>>;
+export const QuoteNode = Core.QuoteNode;
+
 export type StoryBookmarkNode = Core.StoryBookmarkNode;
+export const StoryBookmarkNode = Core.StoryBookmarkNode;
+
 export type VideoNode = Core.VideoNode;
+export const VideoNode = Core.VideoNode;
 
 // Lists
 type RecursiveListNode = Core.ListNode<ListItemTextNode | RecursiveListNode>;
 
 export type ListItemTextNode = Core.ListItemTextNode<InlineNode>;
+export const ListItemTextNode = Core.ListItemTextNode;
+
 export type ListItemNode = Core.ListItemNode<ListItemTextNode | RecursiveListNode>;
+export const ListItemNode = Core.ListItemNode;
+
 export type ListNode = OptionallyAlignable<RecursiveListNode>;
+export const ListNode = Core.ListNode;
 
 // PUBLIC
 
