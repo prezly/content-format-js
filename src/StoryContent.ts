@@ -1,14 +1,10 @@
-import * as Model from './model';
+import * as Core from './model';
 import type { Alignable, OptionallyAlignable, Stylable } from './traits';
 
-// PUBLIC
-
-export function validate(value: any): Document | null {
-    return Model.validateDocument(value, validateBlockNode);
-}
+// TYPES
 
 // Core
-export type Document = Model.Document<BlockNode>;
+export type Document = Core.Document<BlockNode>;
 export type InlineNode = PlaceholderNode | LinkNode | Text;
 export type BlockNode =
     | ImageNode
@@ -29,66 +25,72 @@ export enum PlaceholderType {
 }
 
 // Inlines
-export type Text = Stylable<Model.Text>;
-export type LinkNode = Model.LinkNode<Text>;
-export type PlaceholderNode = Model.PlaceholderNode<PlaceholderType>;
+export type Text = Stylable<Core.Text>;
+export type LinkNode = Core.LinkNode<Text>;
+export type PlaceholderNode = Core.PlaceholderNode<PlaceholderType>;
 
 // Blocks
-export type AttachmentNode = Model.AttachmentNode;
-export type ImageNode = Alignable<Model.ImageNodeWithCaption<Text>>;
-export type BookmarkNode = Model.BookmarkNode;
-export type ContactNode = Model.ContactNode;
-export type DividerNode = Model.DividerNode;
-export type EmbedNode = Model.EmbedNode;
-export type GalleryNode = Model.GalleryNode;
-export type ParagraphNode = OptionallyAlignable<Model.ParagraphNode<InlineNode>>;
-export type QuoteNode = OptionallyAlignable<Model.QuoteNode<InlineNode>>;
-export type StoryBookmarkNode = Model.StoryBookmarkNode;
-export type VideoNode = Model.VideoNode;
+export type AttachmentNode = Core.AttachmentNode;
+export type ImageNode = Alignable<Core.ImageNodeWithCaption<Text>>;
+export type BookmarkNode = Core.BookmarkNode;
+export type ContactNode = Core.ContactNode;
+export type DividerNode = Core.DividerNode;
+export type EmbedNode = Core.EmbedNode;
+export type GalleryNode = Core.GalleryNode;
+export type ParagraphNode = OptionallyAlignable<Core.ParagraphNode<InlineNode>>;
+export type QuoteNode = OptionallyAlignable<Core.QuoteNode<InlineNode>>;
+export type StoryBookmarkNode = Core.StoryBookmarkNode;
+export type VideoNode = Core.VideoNode;
 
 // Lists
-type RecursiveListNode = Model.ListNode<ListItemTextNode | RecursiveListNode>;
+type RecursiveListNode = Core.ListNode<ListItemTextNode | RecursiveListNode>;
 
-export type ListItemTextNode = Model.ListItemTextNode<InlineNode>;
-export type ListItemNode = Model.ListItemNode<ListItemTextNode | RecursiveListNode>;
+export type ListItemTextNode = Core.ListItemTextNode<InlineNode>;
+export type ListItemNode = Core.ListItemNode<ListItemTextNode | RecursiveListNode>;
 export type ListNode = Alignable<RecursiveListNode>;
+
+// PUBLIC
+
+export function validate(value: any): Document | null {
+    return Core.validateDocument(value, validateBlockNode);
+}
 
 // PRIVATE
 
-export function validateBlockNode(node: any): BlockNode | null {
+function validateBlockNode(node: any): BlockNode | null {
     return (
-        Model.validateAttachmentNode(node) ??
-        Model.validateBookmarkNode(node) ??
-        Model.validateContactNode(node) ??
-        Model.validateDividerNode(node) ??
-        Model.validateEmbedNode(node) ??
-        Model.validateGalleryNode(node) ??
-        Model.validateImageNodeWithCaption(node, Model.validateText) ??
-        validateRecursiveListNode(node) ??
-        Model.validateParagraphNode(node, validateInlineNode) ??
-        Model.validateQuoteNode(node, validateInlineNode) ??
-        Model.validateStoryBookmarkNode(node) ??
-        Model.validateVideoNode(node)
+        Core.validateAttachmentNode(node) ??
+        Core.validateBookmarkNode(node) ??
+        Core.validateContactNode(node) ??
+        Core.validateDividerNode(node) ??
+        Core.validateEmbedNode(node) ??
+        Core.validateGalleryNode(node) ??
+        Core.validateImageNodeWithCaption(node, Core.validateText) ??
+        validateListNode(node) ??
+        Core.validateParagraphNode(node, validateInlineNode) ??
+        Core.validateQuoteNode(node, validateInlineNode) ??
+        Core.validateStoryBookmarkNode(node) ??
+        Core.validateVideoNode(node)
     );
 }
 
-export function validateRecursiveListNode(node: any): RecursiveListNode | null {
-    return Model.validateListNode(node, function (block) {
+function validateListNode(node: any): RecursiveListNode | null {
+    return Core.validateListNode(node, function (block) {
         return (
-            Model.validateListItemTextNode(block, validateInlineNode) ??
-            validateRecursiveListNode(block)
+            Core.validateListItemTextNode(block, validateInlineNode) ??
+            validateListNode(block)
         );
     });
 }
 
-export function validateInlineNode(node: any): InlineNode | null {
+function validateInlineNode(node: any): InlineNode | null {
     function isValidPlaceholderKey(key: string): key is PlaceholderType {
         return Object.values(PlaceholderType).includes(key as PlaceholderType);
     }
 
     return (
-        Model.validateText(node) ??
-        Model.validateLinkNode(node, Model.validateText) ??
-        Model.validatePlaceholderNode(node, isValidPlaceholderKey)
+        Core.validateText(node) ??
+        Core.validateLinkNode(node, Core.validateText) ??
+        Core.validatePlaceholderNode(node, isValidPlaceholderKey)
     );
 }

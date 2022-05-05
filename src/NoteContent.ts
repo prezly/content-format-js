@@ -1,30 +1,32 @@
-import * as Model from './model';
+import * as Core from './model';
 import type { Stylable } from './traits';
 
-// PUBLIC
-
-export function validate(value: any): Document | null {
-    return Model.validateDocument(value, validateBlockNode);
-}
+// TYPES
 
 // Core
-export type Document = Model.Document<BlockNode>;
+export type Document = Core.Document<BlockNode>;
 export type InlineNode = MentionNode | Text;
 export type BlockNode = ParagraphNode;
 
 // Inlines
-export type Text = Stylable<Model.Text>;
-export type MentionNode = Model.MentionNode;
+export type Text = Stylable<Core.Text>;
+export type MentionNode = Core.MentionNode;
 
 // Blocks
-export type ParagraphNode = Model.ParagraphNode<InlineNode>;
+export type ParagraphNode = Core.ParagraphNode<InlineNode>;
+
+// PUBLIC
+
+export function validate(value: any): Document | null {
+    return Core.validateDocument(value, validateBlockNode);
+}
 
 // PRIVATE
 
 function validateBlockNode(node: any): BlockNode | null {
-    return Model.validateParagraphNode(node, validateInlineNode);
+    return Core.validateParagraphNode(node, validateInlineNode);
 }
 
 function validateInlineNode(node: any): InlineNode | null {
-    return Model.validateText(node) ?? Model.validateMentionNode(node);
+    return Core.validateText(node) ?? Core.validateMentionNode(node);
 }
