@@ -5,6 +5,7 @@ import type { Stylable } from './traits';
 
 // Core
 export type Document = Core.Document<BlockNode>;
+export type Node = InlineNode | BlockNode;
 export type InlineNode = MentionNode | Text;
 export type BlockNode = ParagraphNode;
 
@@ -20,6 +21,7 @@ export type ParagraphNode = Core.ParagraphNode<InlineNode>;
 export const validate = (value: any): Document | null => Core.validateDocument(value, validateBlockNode);
 
 export const isDocument = (value: any): value is Document => Core.isDocument(value);
+export const isNode = (value: any): value is Node => Core.isNode(value);
 export const isComposedElement = Core.isComposedElement;
 
 // Inlines

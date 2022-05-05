@@ -5,6 +5,7 @@ import type { Alignable, OptionallyAlignable, Stylable } from './traits';
 
 // Core
 export type Document = Core.Document<BlockNode>;
+export type Node = InlineNode | BlockNode;
 export type InlineNode = PlaceholderNode | LinkNode | Text;
 export type BlockNode =
     | ImageNode
@@ -54,6 +55,7 @@ export type ListNode = OptionallyAlignable<RecursiveListNode>;
 export const validate = (value: any): Document | null => Core.validateDocument(value, validateBlockNode);
 
 export const isDocument = (value: any): value is Document => Core.isDocument<Document, BlockNode>(value);
+export const isNode = (value: any): value is Node => Core.isNode(value);
 export const isComposedElement = Core.isComposedElement;
 
 // Inlines
