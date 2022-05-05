@@ -12,6 +12,6 @@ export interface OptionallyAligned {
     align?: Alignment;
 }
 
-export type Alignable<T extends object> = T & Aligned;
+export type Alignable<T extends Record<string, any>> = T & Aligned;
 
-export type OptionallyAlignable<T extends object> = T & OptionallyAligned;
+export type OptionallyAlignable<T extends Record<string, any>> = T & OptionallyAligned;

@@ -6,4 +6,4 @@ interface Styled {
     superscript?: boolean;
 }
 
-export type Stylable<T extends object> = T & Styled;
+export type Stylable<T extends Record<string, any>> = T & Styled;
