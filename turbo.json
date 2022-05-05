@@ -1,0 +1,30 @@
+{
+  "$schema": "https://turborepo.org/schema.json",
+  "baseBranch": "origin/main",
+  "pipeline": {
+    "build": {
+      "outputs": ["build/**"],
+      "inputs": ["src/**/*.ts"]
+    },
+    "test": {
+      "dependsOn": ["build"],
+      "inputs": ["build/**/*.{cjs,mjs,d.ts}"],
+      "outputs": []
+    },
+    "prettier": {
+      "outputs": []
+    },
+    "prettier:fix": {
+      "outputs": []
+    },
+    "clean": {
+      "outputs": []
+    },
+    "clean:build": {
+      "outputs": []
+    },
+    "clean:node_modules": {
+      "outputs": []
+    }
+  }
+}
