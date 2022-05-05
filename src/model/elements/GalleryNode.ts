@@ -56,8 +56,7 @@ export function validateGalleryNode(value: any): GalleryNode | null {
 }
 
 function validateGalleryImage(value: any): GalleryImage | null {
-    const isValid =
-        isObject(value) && typeof value.caption === 'string' && isUploadedImage(value.file);
+    const isValid = isObject(value) && typeof value.caption === 'string' && isUploadedImage(value.file);
 
     return isValid ? (value as unknown as GalleryImage) : null;
 }

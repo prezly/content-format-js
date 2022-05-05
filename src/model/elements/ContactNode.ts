@@ -15,11 +15,7 @@ export function isContactNode(value: any): value is ContactNode {
 }
 
 export function validateContactNode(value: any): ContactNode | null {
-    const isValid =
-        isContactNode(value) &&
-        isUuid(value.uuid) &&
-        isObject(value.contact) &&
-        isUuid(value.contact.uuid);
+    const isValid = isContactNode(value) && isUuid(value.uuid) && isObject(value.contact) && isUuid(value.contact.uuid);
 
     return isValid ? value : null;
 }

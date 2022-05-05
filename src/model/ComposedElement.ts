@@ -2,8 +2,7 @@ import { type Element, isElement } from './Element';
 import type { Node } from './Node';
 import { isArrayOf } from './validation';
 
-export interface ComposedElement<Type extends string = string, Child extends Node = Node>
-    extends Element<Type> {
+export interface ComposedElement<Type extends string = string, Child extends Node = Node> extends Element<Type> {
     children: Child[];
 }
 

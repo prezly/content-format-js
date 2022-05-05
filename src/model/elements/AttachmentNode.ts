@@ -15,10 +15,7 @@ export function isAttachmentNode(value: any): value is AttachmentNode {
 }
 
 export function validateAttachmentNode(value: any): AttachmentNode | null {
-    const isValid =
-        isAttachmentNode(value) &&
-        typeof value.description === 'string' &&
-        isUploadedFile(value.file);
+    const isValid = isAttachmentNode(value) && typeof value.description === 'string' && isUploadedFile(value.file);
 
     return isValid ? value : null;
 }

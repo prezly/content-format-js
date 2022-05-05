@@ -18,10 +18,7 @@ export function isEmbedNode(value: any): value is EmbedNode {
 
 export function validateEmbedNode(value: any): EmbedNode | null {
     const isValid =
-        isEmbedNode(value) &&
-        isNonEmptyString(value.url) &&
-        isUuid(value.uuid) &&
-        isOEmbedInfo(value.oembed);
+        isEmbedNode(value) && isNonEmptyString(value.url) && isUuid(value.uuid) && isOEmbedInfo(value.oembed);
 
     return isValid ? value : null;
 }

@@ -18,10 +18,7 @@ export function isVideoNode(value: any): value is VideoNode {
 
 export function validateVideoNode(value: any): VideoNode | null {
     const isValid =
-        isVideoNode(value) &&
-        isNonEmptyString(value.url) &&
-        isUuid(value.uuid) &&
-        isOEmbedInfo(value.oembed);
+        isVideoNode(value) && isNonEmptyString(value.url) && isUuid(value.uuid) && isOEmbedInfo(value.oembed);
 
     return isValid ? value : null;
 }

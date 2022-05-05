@@ -13,9 +13,7 @@ export interface LinkNode<Inline extends Node> extends ComposedElement<typeof Li
     children: Inline[];
 }
 
-export function isLinkNode<Link extends LinkNode<Inline>, Inline extends Node>(
-    value: any,
-): value is Link {
+export function isLinkNode<Link extends LinkNode<Inline>, Inline extends Node>(value: any): value is Link {
     return isElement(value, LinkNode.TYPE);
 }
 

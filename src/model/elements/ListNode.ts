@@ -23,21 +23,16 @@ export const ListItemTextNode = {
 export interface ListNode<Block extends Node, Type extends ListType = ListType>
     extends ComposedElement<Type, ListItemNode<Block>> {}
 
-export interface ListItemNode<Block extends Node>
-    extends ComposedElement<typeof ListItemNode.TYPE, Block> {}
+export interface ListItemNode<Block extends Node> extends ComposedElement<typeof ListItemNode.TYPE, Block> {}
 
-export interface ListItemTextNode<Inline extends Node>
-    extends ComposedElement<typeof ListItemTextNode.TYPE, Inline> {}
+export interface ListItemTextNode<Inline extends Node> extends ComposedElement<typeof ListItemTextNode.TYPE, Inline> {}
 
-export function isListNode<List extends ListNode<Block>, Block extends Node>(
+export function isListNode<List extends ListNode<Block>, Block extends Node>(value: any): value is List;
+
+export function isListNode<List extends ListNode<Block, Type>, Block extends Node, Type extends ListType>(
     value: any,
+    type: Type,
 ): value is List;
-
-export function isListNode<
-    List extends ListNode<Block, Type>,
-    Block extends Node,
-    Type extends ListType,
->(value: any, type: Type): value is List;
 
 export function isListNode(value: any, type?: ListType): boolean {
     return type === undefined ? isComposedElement(value) : isComposedElement(value, type);
@@ -49,18 +44,17 @@ export function isListItemNode<ListItem extends ListItemNode<Block>, Block exten
     return isComposedElement(value, ListItemNode.TYPE);
 }
 
-export function isListItemTextNode<
-    ListItemText extends ListItemTextNode<Inline>,
-    Inline extends Node,
->(value: any): value is ListItemText {
+export function isListItemTextNode<ListItemText extends ListItemTextNode<Inline>, Inline extends Node>(
+    value: any,
+): value is ListItemText {
     return isComposedElement(value, ListItemTextNode.TYPE);
 }
 
-export function validateListNode<
-    List extends ListNode<Block, Type>,
-    Block extends Node,
-    Type extends ListType,
->(value: any, type: Type, validateBlockNode: (node: any) => Block | null): List | null;
+export function validateListNode<List extends ListNode<Block, Type>, Block extends Node, Type extends ListType>(
+    value: any,
+    type: Type,
+    validateBlockNode: (node: any) => Block | null,
+): List | null;
 
 export function validateListNode<List extends ListNode<Block>, Block extends Node>(
     value: any,
@@ -70,9 +64,7 @@ export function validateListNode<List extends ListNode<Block>, Block extends Nod
 export function validateListNode(value: any, ...params: [Function] | [ListType, Function]) {
     if (params.length === 1) {
         const [validateBlockNode] = params;
-        const isValid =
-            isListNode(value) &&
-            isArrayOf(value.children, (node) => Boolean(validateBlockNode(node)));
+        const isValid = isListNode(value) && isArrayOf(value.children, (node) => Boolean(validateBlockNode(node)));
 
         return isValid ? value : null;
     }
@@ -92,16 +84,15 @@ export function validateListItemNode<ListItem extends ListItemNode<Block>, Block
     validateChildNode: (node: any) => Block | null,
 ): ListItem | null {
     const isValid =
-        isListItemNode<ListItem, Block>(value) &&
-        isArrayOf(value.children, (node) => Boolean(validateChildNode(node)));
+        isListItemNode<ListItem, Block>(value) && isArrayOf(value.children, (node) => Boolean(validateChildNode(node)));
 
     return isValid ? value : null;
 }
 
-export function validateListItemTextNode<
-    ListItemText extends ListItemTextNode<Inline>,
-    Inline extends Node,
->(value: any, validateChildNode: (node: any) => Inline | null): ListItemText | null {
+export function validateListItemTextNode<ListItemText extends ListItemTextNode<Inline>, Inline extends Node>(
+    value: any,
+    validateChildNode: (node: any) => Inline | null,
+): ListItemText | null {
     const isValid =
         isListItemTextNode<ListItemText, Inline>(value) &&
         isArrayOf(value.children, (node) => Boolean(validateChildNode(node)));

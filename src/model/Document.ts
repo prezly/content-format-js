@@ -6,14 +6,11 @@ export const Document = {
     TYPE: 'document',
 };
 
-export interface Document<Block extends Element>
-    extends ComposedElement<typeof Document.TYPE, Block> {
+export interface Document<Block extends Element> extends ComposedElement<typeof Document.TYPE, Block> {
     version: string;
 }
 
-export function isDocument<Doc extends Document<Block>, Block extends Element>(
-    value: any,
-): value is Doc {
+export function isDocument<Doc extends Document<Block>, Block extends Element>(value: any): value is Doc {
     return isComposedElement(value, Document.TYPE);
 }
 

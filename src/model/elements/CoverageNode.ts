@@ -16,10 +16,7 @@ export function isCoverageNode(value: any): value is CoverageNode {
 
 export function validateCoverageNode(value: any): CoverageNode | null {
     const isValid =
-        isCoverageNode(value) &&
-        isUuid(value.uuid) &&
-        isObject(value.coverage) &&
-        isNonZeroInteger(value.coverage.id);
+        isCoverageNode(value) && isUuid(value.uuid) && isObject(value.coverage) && isNonZeroInteger(value.coverage.id);
 
     return isValid ? value : null;
 }

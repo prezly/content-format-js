@@ -26,9 +26,7 @@ export interface ImageNode extends Element<typeof ImageNode.TYPE> {
     href: string | null;
 }
 
-export interface ImageNodeWithCaption<Child extends Node>
-    extends ImageNode,
-        ComposedElement<typeof ImageNode.TYPE> {
+export interface ImageNodeWithCaption<Child extends Node> extends ImageNode, ComposedElement<typeof ImageNode.TYPE> {
     children: Child[];
 }
 
@@ -36,10 +34,9 @@ export function isImageNode(value: any): value is ImageNode {
     return isElement(value, ImageNode.TYPE);
 }
 
-export function isImageNodeWithCaption<
-    Image extends ImageNodeWithCaption<Child>,
-    Child extends Node,
->(value: any): value is Image {
+export function isImageNodeWithCaption<Image extends ImageNodeWithCaption<Child>, Child extends Node>(
+    value: any,
+): value is Image {
     return isComposedElement(value, ImageNode.TYPE);
 }
 
@@ -56,10 +53,10 @@ export function validateImageNode(value: any): ImageNode | null {
     return isValid ? value : null;
 }
 
-export function validateImageNodeWithCaption<
-    Image extends ImageNodeWithCaption<Child>,
-    Child extends Node,
->(value: any, validateChildNode: (value: any) => Child | null): Image | null {
+export function validateImageNodeWithCaption<Image extends ImageNodeWithCaption<Child>, Child extends Node>(
+    value: any,
+    validateChildNode: (value: any) => Child | null,
+): Image | null {
     const isValid =
         isImageNodeWithCaption<Image, Child>(value) &&
         Boolean(validateImageNode(value)) &&
