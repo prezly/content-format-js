@@ -7,20 +7,20 @@
     "module": "build/esm/index.mjs",
     "types": "build/types/index.d.ts",
     "exports": {
-        "./EmailDocument": {
-            "types": "./build/types/EmailDocument.d.ts",
-            "import": "./build/esm/EmailDocument.mjs",
-            "default": "./build/commonjs/EmailDocument.cjs"
+        "./EmailContent": {
+            "types": "./build/types/EmailContent.d.ts",
+            "import": "./build/esm/EmailContent.mjs",
+            "default": "./build/commonjs/EmailContent.cjs"
         },
-        "./NoteDocument": {
-            "types": "./build/types/NoteDocument.d.ts",
-            "import": "./build/esm/NoteDocument.mjs",
-            "default": "./build/commonjs/NoteDocument.cjs"
+        "./NoteContent": {
+            "types": "./build/types/NoteContent.d.ts",
+            "import": "./build/esm/NoteContent.mjs",
+            "default": "./build/commonjs/NoteContent.cjs"
         },
-        "./StoryDocument": {
-            "types": "./build/types/StoryDocument.d.ts",
-            "import": "./build/esm/StoryDocument.mjs",
-            "default": "./build/commonjs/StoryDocument.cjs"
+        "./StoryContent": {
+            "types": "./build/types/StoryContent.d.ts",
+            "import": "./build/esm/StoryContent.mjs",
+            "default": "./build/commonjs/StoryContent.cjs"
         },
         ".": {
             "types": "./build/types/index.d.ts",
