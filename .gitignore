@@ -1,8 +1,8 @@
 .idea/
-build/
-dist/
-coverage/
 node_modules/
+packages/*/build/
+packages/*/node_modules/
+tsconfig.tsbuildinfo
 *.eslintcache
 *.db
 *.log
