@@ -23,7 +23,7 @@
   "homepage": "https://github.com/prezly/content-format-js#readme",
   "scripts": {
     "build": "npm run build:types && npm run build:cjs && npm run build:esm",
-    "build:types": "tsc --build .",
+    "build:types": "tsc --project .",
     "build:cjs": "babel --extensions='.ts' src/ --config-file=../../babel.cjs.config.json --out-dir=./build/commonjs && renamer --force --find '.js' --replace '.cjs' 'build/commonjs/**/*.{js,js.map}'",
     "build:esm": "babel --extensions='.ts' src/ --config-file=../../babel.esm.config.json --out-dir=./build/esm && renamer --force --find '.js' --replace '.mjs' 'build/esm/**/*.{js,js.map}'",
     "test": "npm run test:build",
@@ -32,7 +32,7 @@
     "test:cjs": "node build/commonjs/index.cjs",
     "check": "npm run prettier",
     "clean": "npm run clean:build && npm run clean:node_modules",
-    "clean:build": "rimraf build/",
+    "clean:build": "rimraf build/ .turbo/",
     "clean:node_modules": "rimraf node_modules/",
     "prettier": "prettier --check 'src/**/*.(js|ts|scss)'",
     "prettier:fix": "npm run prettier -- --write"

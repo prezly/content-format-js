@@ -3,11 +3,12 @@
   "baseBranch": "origin/main",
   "pipeline": {
     "build": {
+      "dependsOn": ["^build"],
       "outputs": ["build/**"],
       "inputs": ["src/**/*.ts"]
     },
     "test": {
-      "dependsOn": ["build"],
+      "dependsOn": ["^build"],
       "inputs": ["build/**/*.{cjs,mjs,d.ts}"],
       "outputs": []
     },
