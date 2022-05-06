@@ -2,14 +2,28 @@
   "$schema": "https://turborepo.org/schema.json",
   "baseBranch": "origin/main",
   "pipeline": {
-    "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["build/**"],
+    "build:all": {
+      "dependsOn": ["build:types", "build:esm", "build:cjs"],
+      "inputs": ["src/**/*.ts"]
+    },
+    "build:types": {
+      "dependsOn": ["^build:types"],
+      "outputs": ["build/types/**"],
+      "inputs": ["src/**/*.ts"]
+    },
+    "build:esm": {
+      "dependsOn": ["^build:esm"],
+      "outputs": ["build/esm/**"],
+      "inputs": ["src/**/*.ts"]
+    },
+    "build:cjs": {
+      "dependsOn": ["^build:cjs"],
+      "outputs": ["build/commonjs/**"],
       "inputs": ["src/**/*.ts"]
     },
     "test": {
-      "dependsOn": ["^build"],
-      "inputs": ["build/**/*.{cjs,mjs,d.ts}"],
+      "dependsOn": ["^build:all"],
+      "inputs": ["build/**/*"],
       "outputs": []
     },
     "prettier": {
