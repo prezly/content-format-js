@@ -47,6 +47,7 @@ export type BlockNode =
     | EmbedNode
     | GalleryNode
     | HeadingNode
+    | HtmlNode
     | ImageNode
     | ParagraphNode
     | QuoteNode
@@ -62,6 +63,7 @@ export namespace BlockNode {
             EmbedNode.isEmbedNode(value) ||
             GalleryNode.isGalleryNode(value) ||
             HeadingNode.isHeadingNode(value) ||
+            HtmlNode.isHtmlNode(value) ||
             ImageNode.isImageNode(value) ||
             ParagraphNode.isParagraphNode(value) ||
             QuoteNode.isQuoteNode(value) ||
@@ -79,6 +81,7 @@ export namespace BlockNode {
             EmbedNode.validateEmbedNode(value) ??
             GalleryNode.validateGalleryNode(value) ??
             HeadingNode.validateHeadingNode(value) ??
+            HtmlNode.validateHtmlNode(value) ??
             ImageNode.validateImageNode(value) ??
             ParagraphNode.validateParagraphNode(value) ??
             QuoteNode.validateQuoteNode(value) ??
@@ -212,6 +215,8 @@ export namespace HeadingNode {
         );
     }
 }
+
+export import HtmlNode = Core.HtmlNode;
 
 export type ImageNode = Core.Alignable<Core.ImageNode> & Core.ComposedElement<typeof ImageNode.TYPE, InlineNode>;
 export namespace ImageNode {
