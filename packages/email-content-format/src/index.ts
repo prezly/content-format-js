@@ -47,10 +47,11 @@ export type BlockNode =
     | EmbedNode
     | HeadingNode
     | ImageNode
+    | ListNode
     | ParagraphNode
     | QuoteNode
-    | ListNode
     | StoryBookmarkNode
+    | StoryEmbedNode
     | VideoNode;
 export namespace BlockNode {
     export function isBlockNode(value: any): value is BlockNode {
@@ -61,10 +62,11 @@ export namespace BlockNode {
             EmbedNode.isEmbedNode(value) ||
             HeadingNode.isHeadingNode(value) ||
             ImageNode.isImageNode(value) ||
+            ListNode.isListNode(value) ||
             ParagraphNode.isParagraphNode(value) ||
             QuoteNode.isQuoteNode(value) ||
-            ListNode.isListNode(value) ||
             StoryBookmarkNode.isStoryBookmarkNode(value) ||
+            StoryEmbedNode.isStoryEmbedNode(value) ||
             VideoNode.isVideoNode(value)
         );
     }
@@ -77,10 +79,11 @@ export namespace BlockNode {
             EmbedNode.validateEmbedNode(value) ??
             HeadingNode.validateHeadingNode(value) ??
             ImageNode.validateImageNode(value) ??
+            ListNode.validateListNode(value) ??
             ParagraphNode.validateParagraphNode(value) ??
             QuoteNode.validateQuoteNode(value) ??
-            ListNode.validateListNode(value) ??
             StoryBookmarkNode.validateStoryBookmarkNode(value) ??
+            StoryEmbedNode.validateStoryEmbedNode(value) ??
             VideoNode.validateVideoNode(value)
         );
     }
@@ -194,6 +197,7 @@ export import CoverageNode = Core.CoverageNode;
 export import DividerNode = Core.DividerNode;
 export import EmbedNode = Core.EmbedNode;
 export import StoryBookmarkNode = Core.StoryBookmarkNode;
+export import StoryEmbedNode = Core.StoryEmbedNode;
 export import VideoNode = Core.VideoNode;
 
 export type HeadingNode = Core.Alignable<Core.HeadingNode<InlineNode>, false>;
