@@ -35,7 +35,7 @@ export namespace OEmbedInfo {
 export interface OEmbedInfo {
     version: '1.0';
     url: string;
-    type: OEmbedInfo.Type;
+    type: `${OEmbedInfo.Type}`;
     title?: string;
     description?: string;
     screenshot_url?: string;

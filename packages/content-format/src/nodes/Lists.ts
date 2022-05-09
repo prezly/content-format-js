@@ -3,7 +3,7 @@ import type { Node } from '../Node';
 
 type ValidateFn = (value: any) => Node | null;
 
-export interface ListNode<Block extends Node, Type extends string = ListNode.Type>
+export interface ListNode<Block extends Node, Type extends string = `${ListNode.Type}`>
     extends ComposedElement<Type, ListItemNode<Block>> {}
 
 export interface ListItemNode<Child extends Node> extends ComposedElement<typeof ListItemNode.TYPE, Child> {}
@@ -18,12 +18,12 @@ export namespace ListNode {
 
     export function isListNode<List extends ListNode<Block>, Block extends Node>(value: any): value is List;
 
-    export function isListNode<List extends ListNode<Block, Type>, Block extends Node, Type extends ListNode.Type>(
+    export function isListNode<List extends ListNode<Block, Type>, Block extends Node, Type extends `${ListNode.Type}`>(
         value: any,
         type: Type,
     ): value is List;
 
-    export function isListNode(value: any, type?: ListNode.Type): boolean {
+    export function isListNode(value: any, type?: `${ListNode.Type}`): boolean {
         return type === undefined
             ? ComposedElement.isComposedElement(value)
             : ComposedElement.isComposedElement(value, type);
@@ -32,7 +32,7 @@ export namespace ListNode {
     export function validateListNode<
         List extends ListNode<Block, Type>,
         Block extends Node,
-        Type extends ListNode.Type,
+        Type extends `${ListNode.Type}`,
     >(value: any, type: Type, validateChildNode: (node: any) => Block | null): List | null;
 
     export function validateListNode<List extends ListNode<Block>, Block extends Node>(
@@ -40,7 +40,7 @@ export namespace ListNode {
         validateBlockNode: (node: any) => Block | null,
     ): List | null;
 
-    export function validateListNode(value: any, ...params: [ValidateFn] | [ListNode.Type, ValidateFn]) {
+    export function validateListNode(value: any, ...params: [ValidateFn] | [`${ListNode.Type}`, ValidateFn]) {
         if (params.length === 1) {
             const [validateBlockNode] = params;
             const isValid =

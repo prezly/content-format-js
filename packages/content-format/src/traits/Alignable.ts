@@ -1,7 +1,7 @@
 import { isEnum } from '../validation';
 
 export type Alignable<T extends Record<string, any>, Required extends boolean = true> = T &
-    (Required extends true ? { align: Alignable.Alignment } : { align?: Alignable.Alignment });
+    (Required extends true ? { align: `${Alignable.Alignment}` } : { align?: `${Alignable.Alignment}` });
 
 export namespace Alignable {
     export enum Alignment {

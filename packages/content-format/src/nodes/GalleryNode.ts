@@ -5,9 +5,9 @@ import { isArrayOf, isEnum, isObject, isUuid } from '../validation';
 export interface GalleryNode extends Element<typeof GalleryNode.TYPE> {
     uuid: string;
     images: GalleryNode.GalleryImage[];
-    layout: GalleryNode.Layout;
-    padding: GalleryNode.Padding;
-    thumbnail_size: GalleryNode.ImageSize;
+    layout: `${GalleryNode.Layout}`;
+    padding: `${GalleryNode.Padding}`;
+    thumbnail_size: `${GalleryNode.ImageSize}`;
 }
 
 export namespace GalleryNode {

@@ -2,7 +2,7 @@ import { Element } from '../Element';
 import { isNonEmptyString } from '../validation';
 
 export interface PlaceholderNode<Key extends string> extends Element<typeof PlaceholderNode.TYPE> {
-    key: Key;
+    key: `${Key}`;
 }
 
 export namespace PlaceholderNode {

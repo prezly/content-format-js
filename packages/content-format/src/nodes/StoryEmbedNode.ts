@@ -5,8 +5,8 @@ export interface StoryEmbedNode extends Element<typeof StoryEmbedNode.TYPE> {
     story: {
         uuid: string;
     };
-    appearance: StoryEmbedNode.Appearance;
-    position: StoryEmbedNode.Position;
+    appearance: `${StoryEmbedNode.Appearance}`;
+    position: `${StoryEmbedNode.Position}`;
 }
 
 export namespace StoryEmbedNode {

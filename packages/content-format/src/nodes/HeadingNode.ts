@@ -2,7 +2,7 @@ import { ComposedElement } from '../ComposedElement';
 import type { Node } from '../Node';
 import { Element } from '../Element';
 
-export interface HeadingNode<Child extends Node> extends ComposedElement<HeadingNode.Type, Child> {}
+export interface HeadingNode<Child extends Node> extends ComposedElement<`${HeadingNode.Type}`, Child> {}
 
 export namespace HeadingNode {
     export enum Type {
@@ -17,7 +17,7 @@ export namespace HeadingNode {
         type: Type,
     ): value is Heading;
 
-    export function isHeadingNode(value: any, type?: Type) {
+    export function isHeadingNode(value: any, type?: `${Type}`) {
         if (type === undefined) {
             return Element.isElement(value) && (value.type === Type.HEADING_ONE || value.type === Type.HEADING_TWO);
         }
@@ -31,11 +31,11 @@ export namespace HeadingNode {
 
     export function validateHeadingNode<Heading extends HeadingNode<Child>, Child extends Node>(
         value: any,
-        type: Type,
+        type: `${Type}`,
         validateChildNode: (node: any) => Child | null,
     ): Heading | null;
 
-    export function validateHeadingNode(value: any, ...params: [ValidateFn] | [Type, ValidateFn]) {
+    export function validateHeadingNode(value: any, ...params: [ValidateFn] | [`${Type}`, ValidateFn]) {
         if (params.length === 2) {
             const [type, validateChildNode] = params;
             const isValid = ComposedElement.validateComposedElement(value, type, validateChildNode);

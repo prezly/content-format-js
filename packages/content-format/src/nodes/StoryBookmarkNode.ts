@@ -6,7 +6,7 @@ export interface StoryBookmarkNode extends Element<typeof StoryBookmarkNode.TYPE
     story: {
         uuid: string;
     };
-    layout: StoryBookmarkNode.Layout;
+    layout: `${StoryBookmarkNode.Layout}`;
     show_thumbnail: boolean;
     new_tab: boolean;
 }

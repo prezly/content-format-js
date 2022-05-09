@@ -4,7 +4,7 @@ import { isBoolean, isEnum } from '../validation';
 
 export interface ImageNode extends Element<typeof ImageNode.TYPE> {
     file: ImageNode.File;
-    layout: ImageNode.Layout;
+    layout: `${ImageNode.Layout}`;
     width: ImageNode.Width;
     new_tab: boolean;
     href: string | null;

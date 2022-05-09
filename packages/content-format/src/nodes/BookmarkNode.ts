@@ -6,7 +6,7 @@ export interface BookmarkNode extends Element<typeof BookmarkNode.TYPE> {
     uuid: string;
     url: string;
     oembed: BookmarkNode.OEmbedInfo;
-    layout: BookmarkNode.Layout;
+    layout: `${BookmarkNode.Layout}`;
     show_thumbnail: boolean;
     new_tab: boolean;
 }
