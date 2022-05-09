@@ -51,4 +51,3 @@ export interface OEmbedInfo {
     width?: number;
     height?: number;
 }
-

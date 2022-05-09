@@ -6,7 +6,7 @@ export interface ContactNode extends Element<typeof ContactNode.TYPE> {
     contact: { uuid: string };
 }
 
-export namespace ContactNode  {
+export namespace ContactNode {
     export const TYPE = 'contact';
 
     export function isContactNode(value: any): value is ContactNode {
@@ -14,7 +14,8 @@ export namespace ContactNode  {
     }
 
     export function validateContactNode(value: any): ContactNode | null {
-        const isValid = isContactNode(value) && isUuid(value.uuid) && isObject(value.contact) && isUuid(value.contact.uuid);
+        const isValid =
+            isContactNode(value) && isUuid(value.uuid) && isObject(value.contact) && isUuid(value.contact.uuid);
 
         return isValid ? value : null;
     }

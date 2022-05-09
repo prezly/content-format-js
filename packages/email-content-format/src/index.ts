@@ -258,8 +258,6 @@ export namespace QuoteNode {
     }
 }
 
-
-
 export type ListNode = Core.Alignable<RecursiveListNode, false>;
 export namespace ListNode {
     export import Type = Core.ListNode.Type;
