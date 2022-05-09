@@ -1,6 +1,6 @@
 # Prezly Content Format
 
-_Stories_ in Prezly are using structured document format to store the content.
+_Stories_, _Emails_ and _Notes_ in Prezly are using structured document format to store the content.
 
 Using structured content gives lots of advantages over traditional HTML markup: 
 structured content can be easily extended to allow embedding images, galleries, 
@@ -8,7 +8,7 @@ contact cards and file attachments right into the content itself.
 While being possible to present the content in different mediums: 
 web, email, markdown, plaintext, PDF and so on.
 
-Story images, files attachments, videos and all the various types embedded content 
+Images, files attachments, videos and all the various types embedded content 
 are stored directly in the content document.
 
 Please refer to [Prezly Developer Portal][developers] for additional information on using Prezly API.  
@@ -59,7 +59,7 @@ There are two core types of nodes: _Text_ and _Element_.
    All top-level nodes inside a document are always block-level *Elements*.
 
     ```ts
-    interface Document extends Element {
+    interface Document extends ComposedElement {
         type: 'document';
         version: string;
         children: Element[];
@@ -70,23 +70,24 @@ There are two core types of nodes: _Text_ and _Element_.
 
 There is a number of block and inline elements our editor can generate.
 
-- [AttachmentNode](packages/content-format/src/model/elements/AttachmentNode.ts)
-- [BookmarkNode](packages/content-format/src/model/elements/BookmarkNode.ts)
-- [ContactNode](packages/content-format/src/model/elements/ContactNode.ts)
-- [CoverageNode](packages/content-format/src/model/elements/CoverageNode.ts)
-- [DividerNode](packages/content-format/src/model/elements/DividerNode.ts)
-- [EmbedNode](packages/content-format/src/model/elements/EmbedNode.ts)
-- [GalleryNode](packages/content-format/src/model/elements/GalleryNode.ts)
-- [HeadingNode](packages/content-format/src/model/elements/HeadingNode.ts)
-- [HtmlNode](packages/content-format/src/model/elements/HtmlNode.ts)
-- [ImageNode](packages/content-format/src/model/elements/ImageNode.ts)
-- [LinkNode](packages/content-format/src/model/elements/LinkNode.ts)
-- [ListNode](packages/content-format/src/model/elements/ListNode.ts)
-- [MentionNode](packages/content-format/src/model/elements/MentionNode.ts)
-- [ParagraphNode](packages/content-format/src/model/elements/ParagraphNode.ts)
-- [PlaceholderNode](packages/content-format/src/model/elements/PlaceholderNode.ts)
-- [QuoteNode](packages/content-format/src/model/elements/QuoteNode.ts)
-- [VideoNode](packages/content-format/src/model/elements/VideoNode.ts)
+- [AttachmentNode](packages/content-format/src/nodes/AttachmentNode.ts)
+- [BookmarkNode](packages/content-format/src/nodes/BookmarkNode.ts)
+- [ContactNode](packages/content-format/src/nodes/ContactNode.ts)
+- [CoverageNode](packages/content-format/src/nodes/CoverageNode.ts)
+- [DividerNode](packages/content-format/src/nodes/DividerNode.ts)
+- [EmbedNode](packages/content-format/src/nodes/EmbedNode.ts)
+- [GalleryNode](packages/content-format/src/nodes/GalleryNode.ts)
+- [HeadingNode](packages/content-format/src/nodes/HeadingNode.ts)
+- [HtmlNode](packages/content-format/src/nodes/HtmlNode.ts)
+- [ImageNode](packages/content-format/src/nodes/ImageNode.ts)
+- [LinkNode](packages/content-format/src/nodes/LinkNode.ts)
+- [ListNode](packages/content-format/src/nodes/ListNode.ts)
+- [MentionNode](packages/content-format/src/nodes/MentionNode.ts)
+- [ParagraphNode](packages/content-format/src/nodes/ParagraphNode.ts)
+- [PlaceholderNode](packages/content-format/src/nodes/PlaceholderNode.ts)
+- [QuoteNode](packages/content-format/src/nodes/QuoteNode.ts)
+- [StoryBookmarkNode](packages/content-format/src/nodes/StoryBookmarkNode.ts)
+- [VideoNode](packages/content-format/src/nodes/VideoNode.ts)
 
 ## Example document
 
@@ -126,7 +127,6 @@ There is a number of block and inline elements our editor can generate.
             },
             "layout": "expanded",
             "width": "100%",
-            "width_factor": "100%",
             "children": [
                 {
                     "text": "Usage stats for Q1 2021"
