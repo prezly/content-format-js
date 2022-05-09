@@ -328,10 +328,14 @@ export namespace ListItemTextNode {
     }
 }
 
-type RecursiveListNode = Core.ListNode<ListItemTextNode | ListItemNode>;
+type RecursiveListNode = Core.ListNode<ListItemTextNode | RecursiveListNode>;
 
 function validateRecursiveListNode(value: any, type?: ListNode.Type): RecursiveListNode | null {
+    function validateBlock(value: any) {
+        return ListItemTextNode.validateListItemTextNode(value) ?? validateRecursiveListNode(value);
+    }
+
     return type
-        ? Core.ListNode.validateListNode(value, type, ListItemNode.validateListItemNode)
-        : Core.ListNode.validateListNode(value, ListItemNode.validateListItemNode);
+        ? Core.ListNode.validateListNode(value, type, validateBlock)
+        : Core.ListNode.validateListNode(value, validateBlock);
 }
