@@ -9,7 +9,7 @@ export * from './HeadingNode';
 export * from './HtmlNode';
 export * from './ImageNode';
 export * from './LinkNode';
-export * from './ListNode';
+export * from './Lists';
 export * from './MentionNode';
 export * from './ParagraphNode';
 export * from './PlaceholderNode';
