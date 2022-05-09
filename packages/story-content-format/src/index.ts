@@ -95,6 +95,7 @@ export namespace BlockNode {
 export type ComposedElement =
     | LinkNode
     | HeadingNode
+    | ImageNode
     | ParagraphNode
     | QuoteNode
     | ListNode
@@ -105,6 +106,7 @@ export namespace ComposedElement {
         return (
             LinkNode.isLinkNode(value) ||
             HeadingNode.isHeadingNode(value) ||
+            ImageNode.isImageNode(value) ||
             ParagraphNode.isParagraphNode(value) ||
             QuoteNode.isQuoteNode(value) ||
             ListNode.isListNode(value) ||
