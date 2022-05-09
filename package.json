@@ -18,7 +18,7 @@
         "build": "turbo run build:all",
         "test": "turbo run test",
         "clean": "turbo run clean",
-        "clean:build": "turbo run clean:build",
+        "clean:build": "turbo run clean:build && rm -rf node_modules/.cache",
         "clean:node_modules": "turbo run clean:node_modules",
         "check": "npm run prettier",
         "prettier": "turbo run prettier",
