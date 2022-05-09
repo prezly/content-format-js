@@ -1,6 +1,6 @@
 import * as Core from '@prezly/content-format';
 
-export type DocumentNode = Core.DocumentNode<BlockNode>;
+export type DocumentNode = Core.DocumentNode<TopLevelNode>;
 export namespace DocumentNode {
     export import TYPE = Core.DocumentNode.TYPE;
 
@@ -14,6 +14,7 @@ export namespace DocumentNode {
 }
 
 export type Node = InlineNode | BlockNode;
+export type TopLevelNode = Exclude<BlockNode, ListItemNode | ListItemTextNode>;
 export namespace Node {
     export function isNode(value: any): value is Node {
         return InlineNode.isInlineNode(value) || BlockNode.isBlockNode(value);
