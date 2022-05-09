@@ -125,6 +125,8 @@ export namespace ComposedElement {
 
 // NODES
 
+export import Alignment = Core.Alignable.Alignment;
+
 // Inline Nodes
 
 export type Text = Core.Stylable<Core.Text>;
@@ -203,6 +205,7 @@ export import VideoNode = Core.VideoNode;
 export type HeadingNode = Core.Alignable<Core.HeadingNode<InlineNode>, false>;
 export namespace HeadingNode {
     export import Type = Core.HeadingNode.Type;
+    export import Alignment = Core.Alignable.Alignment;
 
     export function isHeadingNode(value: any): value is HeadingNode {
         return Core.HeadingNode.isHeadingNode(value);
@@ -236,6 +239,7 @@ export namespace ImageNode {
 export type ParagraphNode = Core.Alignable<Core.ParagraphNode<InlineNode>, false>;
 export namespace ParagraphNode {
     export import TYPE = Core.ParagraphNode.TYPE;
+    export import Alignment = Core.Alignable.Alignment;
 
     export function isParagraphNode(value: any): value is ParagraphNode {
         return Core.ParagraphNode.isParagraphNode(value);
@@ -249,6 +253,7 @@ export namespace ParagraphNode {
 export type QuoteNode = Core.Alignable<Core.QuoteNode<InlineNode>, false>;
 export namespace QuoteNode {
     export import TYPE = Core.QuoteNode.TYPE;
+    export import Alignment = Core.Alignable.Alignment;
 
     export function isQuoteNode(value: any): value is QuoteNode {
         return Core.QuoteNode.isQuoteNode(value);
@@ -265,6 +270,7 @@ export namespace QuoteNode {
 export type ListNode = Core.Alignable<RecursiveListNode, false>;
 export namespace ListNode {
     export import Type = Core.ListNode.Type;
+    export import Alignment = Core.Alignable.Alignment;
 
     export function isListNode(value: any): value is ListNode {
         return Core.ListNode.isListNode(value);
