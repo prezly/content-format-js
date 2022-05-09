@@ -2,7 +2,7 @@ import * as Core from '@prezly/content-format';
 
 export type DocumentNode = Core.DocumentNode<BlockNode>;
 export namespace DocumentNode {
-    export const TYPE = Core.DocumentNode.TYPE;
+    export import TYPE = Core.DocumentNode.TYPE;
 
     export function isDocumentNode(value: any): value is DocumentNode {
         return Core.DocumentNode.isDocumentNode(value);
@@ -147,7 +147,7 @@ export namespace Text {
 
 export type LinkNode = Core.LinkNode<Text>;
 export namespace LinkNode {
-    export const TYPE = Core.LinkNode.TYPE;
+    export import TYPE = Core.LinkNode.TYPE;
 
     export function isLinkNode(value: any): value is LinkNode {
         return Core.LinkNode.isLinkNode(value);
@@ -181,8 +181,8 @@ export namespace PlaceholderNode {
 
 export type AttachmentNode = Core.AttachmentNode;
 export namespace AttachmentNode {
-    export const TYPE = Core.AttachmentNode.TYPE;
-    export type File = Core.AttachmentNode.File;
+    export import TYPE = Core.AttachmentNode.TYPE;
+    export import File = Core.AttachmentNode.File;
 
     export function isAttachmentNode(value: any): value is AttachmentNode {
         return Core.AttachmentNode.isAttachmentNode(value);
@@ -220,7 +220,7 @@ export import HtmlNode = Core.HtmlNode;
 
 export type ImageNode = Core.Alignable<Core.ImageNode> & Core.ComposedElement<typeof ImageNode.TYPE, InlineNode>;
 export namespace ImageNode {
-    export const TYPE = Core.ImageNode.TYPE;
+    export import TYPE = Core.ImageNode.TYPE;
     export import File = Core.ImageNode.File;
     export import Width = Core.ImageNode.Width;
     export import Layout = Core.ImageNode.Layout;
@@ -243,7 +243,7 @@ export namespace ImageNode {
 
 export type ParagraphNode = Core.Alignable<Core.ParagraphNode<InlineNode>, false>;
 export namespace ParagraphNode {
-    export const TYPE = Core.ParagraphNode.TYPE;
+    export import TYPE = Core.ParagraphNode.TYPE;
     export import Alignment = Core.Alignable.Alignment;
 
     export function isParagraphNode(value: any): value is ParagraphNode {
@@ -260,7 +260,7 @@ export namespace ParagraphNode {
 
 export type QuoteNode = Core.Alignable<Core.QuoteNode<InlineNode>, false>;
 export namespace QuoteNode {
-    export const TYPE = Core.QuoteNode.TYPE;
+    export import TYPE = Core.QuoteNode.TYPE;
     export import Alignment = Core.Alignable.Alignment;
 
     export function isQuoteNode(value: any): value is QuoteNode {
