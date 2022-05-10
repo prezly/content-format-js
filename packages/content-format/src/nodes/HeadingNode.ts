@@ -1,6 +1,5 @@
 import { ComposedElement } from '../ComposedElement';
 import type { Node } from '../Node';
-import { Element } from '../Element';
 
 export interface HeadingNode<Child extends Node> extends ComposedElement<`${HeadingNode.Type}`, Child> {}
 
@@ -19,9 +18,12 @@ export namespace HeadingNode {
 
     export function isHeadingNode(value: any, type?: `${Type}`) {
         if (type === undefined) {
-            return Element.isElement(value) && (value.type === Type.HEADING_ONE || value.type === Type.HEADING_TWO);
+            return (
+                ComposedElement.isComposedElement(value) &&
+                (value.type === Type.HEADING_ONE || value.type === Type.HEADING_TWO)
+            );
         }
-        return Element.isElement(value, type);
+        return ComposedElement.isComposedElement(value, type);
     }
 
     export function validateHeadingNode<Heading extends HeadingNode<Child>, Child extends Node>(
