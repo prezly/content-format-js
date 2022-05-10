@@ -96,6 +96,7 @@ export namespace BlockNode {
 }
 
 export type ComposedElement =
+    | DocumentNode
     | LinkNode
     | HeadingNode
     | ImageNode
@@ -107,6 +108,7 @@ export type ComposedElement =
 export namespace ComposedElement {
     export function isComposedElement(value: any): value is ComposedElement {
         return (
+            DocumentNode.isDocumentNode(value) ||
             LinkNode.isLinkNode(value) ||
             HeadingNode.isHeadingNode(value) ||
             ImageNode.isImageNode(value) ||
@@ -120,6 +122,7 @@ export namespace ComposedElement {
 
     export function validateComposedElement(value: any): ComposedElement | null {
         return (
+            DocumentNode.valueDocumentNode(value) ??
             LinkNode.validateLinkNode(value) ??
             HeadingNode.validateHeadingNode(value) ??
             ParagraphNode.validateParagraphNode(value) ??

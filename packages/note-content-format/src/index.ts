@@ -24,14 +24,14 @@ export namespace Node {
     }
 }
 
-export type ComposedElement = ParagraphNode;
+export type ComposedElement = DocumentNode | ParagraphNode;
 export namespace ComposedElement {
     export function isComposedElement(value: any): value is ComposedElement {
-        return ParagraphNode.isParagraphNode(value);
+        return DocumentNode.isDocumentNode(value) || ParagraphNode.isParagraphNode(value);
     }
 
     export function validateComposedElement(value: any): ComposedElement | null {
-        return ParagraphNode.validateParagraphNode(value);
+        return DocumentNode.validateDocumentNode(value) ?? ParagraphNode.validateParagraphNode(value);
     }
 }
 
