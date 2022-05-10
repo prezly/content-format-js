@@ -3,22 +3,22 @@
   "baseBranch": "origin/main",
   "pipeline": {
     "build:all": {
-      "dependsOn": ["build:types", "build:esm", "build:cjs"]
+      "dependsOn": ["build:ts", "build:esm", "build:commonjs"]
     },
-    "build:types": {
-      "dependsOn": ["^build:types"],
-      "outputs": ["build/types/**"]
+    "build:ts": {
+      "dependsOn": ["^build:ts"],
+      "outputs": ["build/**", "dist/types/**"]
     },
     "build:esm": {
-      "dependsOn": ["^build:esm"],
-      "outputs": ["build/esm/**"]
+      "dependsOn": ["build:ts"],
+      "outputs": ["dist/esm/**"]
     },
-    "build:cjs": {
-      "dependsOn": ["^build:cjs"],
-      "outputs": ["build/commonjs/**"]
+    "build:commonjs": {
+      "dependsOn": ["build:ts"],
+      "outputs": ["dist/commonjs/**"]
     },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["build:ts", "build:esm", "build:commonjs"],
       "outputs": []
     },
     "prettier": {

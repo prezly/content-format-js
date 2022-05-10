@@ -2,6 +2,7 @@
 .git/
 .github/
 .nvmrc
+build/
 coverage/
 node_modules/
 .prettierrc

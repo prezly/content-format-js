@@ -3,14 +3,14 @@
   "version": "0.55.0",
   "description": "Prezly Email Content Format types and utilities",
   "license": "MIT",
-  "main": "build/commonjs/index.cjs",
-  "module": "build/esm/index.mjs",
-  "types": "build/types/index.d.ts",
+  "main": "dist/commonjs/index.cjs",
+  "module": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./build/types/index.d.ts",
-      "import": "./build/esm/index.mjs",
-      "default": "./build/commonjs/index.cjs"
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "default": "./dist/commonjs/index.cjs"
     }
   },
   "repository": {
@@ -22,18 +22,18 @@
   },
   "homepage": "https://github.com/prezly/content-format-js#readme",
   "scripts": {
-    "build": "npm run build:types && npm run build:cjs && npm run build:esm",
-    "build:types": "rimraf build/types && tsc --project .",
-    "build:cjs": "rimraf build/commonjs && babel --extensions='.ts' src/ --config-file=../../babel.cjs.config.json --out-dir=./build/commonjs && renamer --force --find '.js' --replace '.cjs' 'build/commonjs/**/*.{js,js.map}'",
-    "build:esm": "rimraf build/esm && babel --extensions='.ts' src/ --config-file=../../babel.esm.config.json --out-dir=./build/esm && renamer --force --find '.js' --replace '.mjs' 'build/esm/**/*.{js,js.map}'",
+    "build": "npm run build:ts && npm run build:commonjs && npm run build:esm",
+    "build:ts": "tsc --project .",
+    "build:commonjs": "babel --extensions='.js' build/ --config-file=../../babel.cjs.config.json --out-dir=./dist/commonjs && renamer --force --find '.js' --replace '.cjs' 'dist/commonjs/**/*.{js,js.map}'",
+    "build:esm": "babel --extensions='.js' build/ --config-file=../../babel.esm.config.json --out-dir=./dist/esm && renamer --force --find '.js' --replace '.mjs' 'dist/esm/**/*.{js,js.map}'",
     "test": "npm run test:build",
     "test:build": "npm run test:cjs && npm run test:esm && npm run test:types",
-    "test:esm": "node build/esm/index.mjs",
-    "test:cjs": "node build/commonjs/index.cjs",
-    "test:types": "tsc --noEmit --esModuleInterop --skipLibCheck build/types/index.d.ts",
+    "test:esm": "node dist/esm/index.mjs",
+    "test:cjs": "node dist/commonjs/index.cjs",
+    "test:types": "tsc --noEmit --esModuleInterop --skipLibCheck dist/types/index.d.ts",
     "check": "npm run prettier",
     "clean": "npm run clean:build && npm run clean:node_modules",
-    "clean:build": "rimraf build/ .turbo/",
+    "clean:build": "rimraf build/ dist/ .turbo/ tsconfig.tsbuildinfo",
     "clean:node_modules": "rimraf node_modules/",
     "prettier": "prettier --check 'src/**/*.(js|ts|scss)'",
     "prettier:fix": "npm run prettier -- --write"
