@@ -1,6 +1,6 @@
 {
   "name": "@prezly/content-format",
-  "version": "0.55.0",
+  "version": "0.55.1",
   "description": "Prezly Content Format types and utilities",
   "license": "MIT",
   "main": "dist/commonjs/index.cjs",
