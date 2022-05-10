@@ -20,17 +20,17 @@ export namespace GalleryNode {
     }
 
     export enum ImageSize {
-        L = 'L',
-        M = 'M',
-        S = 'S',
-        XL = 'XL',
-        XS = 'XS',
+        XSMALL = 'XS',
+        SMALL = 'S',
+        MEDIUM = 'M',
+        LARGE = 'L',
+        XLARGE = 'XL',
     }
 
     export enum Padding {
-        L = 'L',
-        M = 'M',
-        S = 'S',
+        LARGE = 'L',
+        MEDIUM = 'M',
+        SMALL = 'S',
     }
 
     export interface GalleryImage {
