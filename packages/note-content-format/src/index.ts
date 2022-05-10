@@ -13,7 +13,7 @@ export namespace DocumentNode {
     }
 }
 
-export type Node = InlineNode | BlockNode;
+export type Node = DocumentNode | InlineNode | BlockNode;
 export namespace Node {
     export function isNode(value: any): value is Node {
         return InlineNode.isInlineNode(value) || BlockNode.isBlockNode(value);
