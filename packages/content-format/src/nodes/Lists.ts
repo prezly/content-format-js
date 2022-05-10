@@ -24,9 +24,12 @@ export namespace ListNode {
     ): value is List;
 
     export function isListNode(value: any, type?: `${ListNode.Type}`): boolean {
-        return type === undefined
-            ? ComposedElement.isComposedElement(value)
-            : ComposedElement.isComposedElement(value, type);
+        if (type) {
+            return ComposedElement.isComposedElement(value, type);
+        }
+        return (
+            ComposedElement.isComposedElement(value) && (value.type === Type.NUMBERED || value.type === Type.BULLETED)
+        );
     }
 
     export function validateListNode<
