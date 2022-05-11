@@ -130,6 +130,7 @@ export namespace ComposedElement {
 // NODES
 
 export import Alignment = Core.Alignable.Alignment;
+export import OEmbedInfo = Core.OEmbedInfo;
 
 // Inline Nodes
 
