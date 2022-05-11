@@ -1,6 +1,6 @@
 {
   "name": "@prezly/story-content-format",
-  "version": "0.55.3",
+  "version": "0.55.4",
   "description": "Prezly Story Content Format types and utilities",
   "license": "MIT",
   "main": "dist/commonjs/index.cjs",
