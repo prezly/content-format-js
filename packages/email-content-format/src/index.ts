@@ -212,8 +212,8 @@ export namespace HeadingNode {
     export import Type = Core.HeadingNode.Type;
     export import Alignment = Core.Alignable.Alignment;
 
-    export function isHeadingNode(value: any): value is HeadingNode {
-        return Core.HeadingNode.isHeadingNode(value);
+    export function isHeadingNode(value: any, type?: HeadingNode.Type): value is HeadingNode {
+        return type ? Core.HeadingNode.isHeadingNode(value, type) : Core.HeadingNode.isHeadingNode(value);
     }
 
     export function validateHeadingNode(value: any): HeadingNode | null {
