@@ -16,6 +16,7 @@
     "homepage": "https://github.com/prezly/content-format-js#readme",
     "scripts": {
         "build": "turbo run build:all",
+        "watch": "turbo run watch:all",
         "test": "turbo run test",
         "clean": "turbo run clean",
         "clean:build": "turbo run clean:build && rm -rf node_modules/.cache",

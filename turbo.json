@@ -17,6 +17,18 @@
       "dependsOn": ["build:ts"],
       "outputs": ["dist/commonjs/**"]
     },
+    "watch:all": {
+      "dependsOn": ["watch:ts", "watch:esm", "watch:commonjs"]
+    },
+    "watch:ts": {
+      "dependsOn": ["^build:ts"]
+    },
+    "watch:esm": {
+      "dependsOn": ["build:ts"]
+    },
+    "watch:commonjs": {
+      "dependsOn": ["build:ts"]
+    },
     "test": {
       "dependsOn": ["build:ts", "build:esm", "build:commonjs"],
       "outputs": []
