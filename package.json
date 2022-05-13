@@ -1,6 +1,7 @@
 {
-    "name": "@prezly/content-format",
-    "version": "0.51.0",
+    "name": "content-format-js",
+    "private": true,
+    "version": "0.0.0",
     "description": "Prezly Content Format types and utilities",
     "license": "MIT",
     "workspaces": [
