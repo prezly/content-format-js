@@ -4,7 +4,7 @@ import {isBoolean, isEnum, isNonZeroInteger, isObject, isUuid} from '../validati
 export interface CoverageNode extends Element<typeof CoverageNode.TYPE> {
     uuid: string;
     coverage: { id: number };
-    layout: CoverageNode.Layout;
+    layout: `${CoverageNode.Layout}`;
     new_tab: boolean;
     show_thumbnail: boolean;
 }
