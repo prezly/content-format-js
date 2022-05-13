@@ -1,5 +1,5 @@
 import { Element } from '../Element';
-import {isBoolean, isEnum, isNonZeroInteger, isObject, isUuid} from '../validation';
+import { isBoolean, isEnum, isNonZeroInteger, isObject, isUuid } from '../validation';
 
 export interface CoverageNode extends Element<typeof CoverageNode.TYPE> {
     uuid: string;
