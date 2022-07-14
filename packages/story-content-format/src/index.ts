@@ -56,7 +56,11 @@ export type BlockNode =
     | ListItemNode
     | ListItemTextNode
     | StoryBookmarkNode
-    | VideoNode;
+    | VideoNode
+    | TableNode
+    | TableRowNode
+    | TableCellNode;
+
 export namespace BlockNode {
     export function isBlockNode(value: any): value is BlockNode {
         return (
@@ -104,7 +108,11 @@ export type ComposedElement =
     | QuoteNode
     | ListNode
     | ListItemNode
-    | ListItemTextNode;
+    | ListItemTextNode
+    | TableNode
+    | TableRowNode
+    | TableCellNode;
+
 export namespace ComposedElement {
     export function isComposedElement(value: any): value is ComposedElement {
         return (
@@ -116,7 +124,10 @@ export namespace ComposedElement {
             QuoteNode.isQuoteNode(value) ||
             ListNode.isListNode(value) ||
             ListItemNode.isListItemNode(value) ||
-            ListItemTextNode.isListItemTextNode(value)
+            ListItemTextNode.isListItemTextNode(value) ||
+            TableNode.isTableNode(value) ||
+            TableRowNode.isTableRowNode(value) ||
+            TableCellNode.isTableCellNode(value)
         );
     }
 
@@ -343,3 +354,7 @@ function validateRecursiveListNode(value: any, type?: ListNode.Type): RecursiveL
         ? Core.ListNode.validateListNode(value, type, validateBlock)
         : Core.ListNode.validateListNode(value, validateBlock);
 }
+
+export import TableNode = Core.TableNode;
+export import TableRowNode = Core.TableRowNode;
+export import TableCellNode = Core.TableCellNode;
