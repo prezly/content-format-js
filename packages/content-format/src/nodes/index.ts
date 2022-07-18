@@ -16,5 +16,5 @@ export * from './PlaceholderNode';
 export * from './QuoteNode';
 export * from './StoryBookmarkNode';
 export * from './StoryEmbedNode';
-export * from './Table';
+export * from './Tables';
 export * from './VideoNode';

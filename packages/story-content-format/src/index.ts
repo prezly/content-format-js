@@ -355,6 +355,49 @@ function validateRecursiveListNode(value: any, type?: ListNode.Type): RecursiveL
         : Core.ListNode.validateListNode(value, validateBlock);
 }
 
-export import TableNode = Core.TableNode;
-export import TableRowNode = Core.TableRowNode;
-export import TableCellNode = Core.TableCellNode;
+export type TableNode = Core.TableNode<TableRowNode>;
+
+export namespace TableNode {
+    export import TYPE = Core.TableNode.TYPE;
+
+    export function isTableNode(value: Node): value is TableNode {
+        return Core.TableNode.isTableNode(value);
+    }
+
+    export function validateTableNode(value: any): TableNode | null {
+        return Core.TableNode.validateTableNode(value, (n) => TableRowNode.validateTableRowNode(n));
+    }
+}
+
+export type TableRowNode = Core.TableRowNode<TableCellNode>;
+
+export namespace TableRowNode {
+    export import TYPE = Core.TableRowNode.TYPE;
+
+    export function isTableRowNode(value: Node): value is TableRowNode {
+        return Core.TableRowNode.isTableRowNode(value);
+    }
+
+    export function validateTableRowNode(value: any): TableRowNode | null {
+        return Core.TableRowNode.validateTableRowNode(value, (n) => TableCellNode.validateTableCellNode(n));
+    }
+}
+
+export type TableCellNode = Core.TableCellNode<TableCellChildElement>;
+
+export namespace TableCellNode {
+    export import TYPE = Core.TableCellNode.TYPE;
+
+    export function isTableCellNode(value: Node): value is TableCellNode {
+        return Core.TableCellNode.isTableCellNode(value);
+    }
+
+    export function validateTableCellNode(value: any): TableCellNode | null {
+        return Core.TableCellNode.validateTableCellNode(
+            value,
+            (n) => ParagraphNode.validateParagraphNode(n) || ListNode.validateListNode(n),
+        );
+    }
+}
+
+export type TableCellChildElement = ParagraphNode | ListNode;
