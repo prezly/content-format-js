@@ -76,7 +76,10 @@ export namespace BlockNode {
             QuoteNode.isQuoteNode(value) ||
             ListNode.isListNode(value) ||
             StoryBookmarkNode.isStoryBookmarkNode(value) ||
-            VideoNode.isVideoNode(value)
+            VideoNode.isVideoNode(value) ||
+            TableNode.isTableNode(value) ||
+            TableRowNode.isTableRowNode(value) ||
+            TableCellNode.isTableCellNode(value)
         );
     }
 
@@ -94,7 +97,10 @@ export namespace BlockNode {
             QuoteNode.validateQuoteNode(value) ??
             ListNode.validateListNode(value) ??
             StoryBookmarkNode.validateStoryBookmarkNode(value) ??
-            VideoNode.validateVideoNode(value)
+            VideoNode.validateVideoNode(value) ??
+            TableNode.validateTableNode(value) ??
+            TableRowNode.validateTableRowNode(value) ??
+            TableCellNode.validateTableCellNode(value)
         );
     }
 }
@@ -140,7 +146,10 @@ export namespace ComposedElement {
             QuoteNode.validateQuoteNode(value) ??
             ListNode.validateListNode(value) ??
             ListItemNode.validateListItemNode(value) ??
-            ListItemTextNode.validateListItemTextNode(value)
+            ListItemTextNode.validateListItemTextNode(value) ??
+            TableNode.validateTableNode(value) ??
+            TableRowNode.validateTableRowNode(value) ??
+            TableCellNode.validateTableCellNode(value)
         );
     }
 }
