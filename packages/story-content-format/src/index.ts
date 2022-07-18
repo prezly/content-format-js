@@ -56,7 +56,11 @@ export type BlockNode =
     | ListItemNode
     | ListItemTextNode
     | StoryBookmarkNode
-    | VideoNode;
+    | VideoNode
+    | TableNode
+    | TableRowNode
+    | TableCellNode;
+
 export namespace BlockNode {
     export function isBlockNode(value: any): value is BlockNode {
         return (
@@ -72,7 +76,10 @@ export namespace BlockNode {
             QuoteNode.isQuoteNode(value) ||
             ListNode.isListNode(value) ||
             StoryBookmarkNode.isStoryBookmarkNode(value) ||
-            VideoNode.isVideoNode(value)
+            VideoNode.isVideoNode(value) ||
+            TableNode.isTableNode(value) ||
+            TableRowNode.isTableRowNode(value) ||
+            TableCellNode.isTableCellNode(value)
         );
     }
 
@@ -90,7 +97,10 @@ export namespace BlockNode {
             QuoteNode.validateQuoteNode(value) ??
             ListNode.validateListNode(value) ??
             StoryBookmarkNode.validateStoryBookmarkNode(value) ??
-            VideoNode.validateVideoNode(value)
+            VideoNode.validateVideoNode(value) ??
+            TableNode.validateTableNode(value) ??
+            TableRowNode.validateTableRowNode(value) ??
+            TableCellNode.validateTableCellNode(value)
         );
     }
 }
@@ -104,7 +114,11 @@ export type ComposedElement =
     | QuoteNode
     | ListNode
     | ListItemNode
-    | ListItemTextNode;
+    | ListItemTextNode
+    | TableNode
+    | TableRowNode
+    | TableCellNode;
+
 export namespace ComposedElement {
     export function isComposedElement(value: any): value is ComposedElement {
         return (
@@ -116,7 +130,10 @@ export namespace ComposedElement {
             QuoteNode.isQuoteNode(value) ||
             ListNode.isListNode(value) ||
             ListItemNode.isListItemNode(value) ||
-            ListItemTextNode.isListItemTextNode(value)
+            ListItemTextNode.isListItemTextNode(value) ||
+            TableNode.isTableNode(value) ||
+            TableRowNode.isTableRowNode(value) ||
+            TableCellNode.isTableCellNode(value)
         );
     }
 
@@ -129,7 +146,10 @@ export namespace ComposedElement {
             QuoteNode.validateQuoteNode(value) ??
             ListNode.validateListNode(value) ??
             ListItemNode.validateListItemNode(value) ??
-            ListItemTextNode.validateListItemTextNode(value)
+            ListItemTextNode.validateListItemTextNode(value) ??
+            TableNode.validateTableNode(value) ??
+            TableRowNode.validateTableRowNode(value) ??
+            TableCellNode.validateTableCellNode(value)
         );
     }
 }
@@ -343,3 +363,50 @@ function validateRecursiveListNode(value: any, type?: ListNode.Type): RecursiveL
         ? Core.ListNode.validateListNode(value, type, validateBlock)
         : Core.ListNode.validateListNode(value, validateBlock);
 }
+
+export type TableNode = Core.TableNode<TableRowNode>;
+
+export namespace TableNode {
+    export import TYPE = Core.TableNode.TYPE;
+
+    export function isTableNode(value: Node): value is TableNode {
+        return Core.TableNode.isTableNode(value);
+    }
+
+    export function validateTableNode(value: any): TableNode | null {
+        return Core.TableNode.validateTableNode(value, (n) => TableRowNode.validateTableRowNode(n));
+    }
+}
+
+export type TableRowNode = Core.TableRowNode<TableCellNode>;
+
+export namespace TableRowNode {
+    export import TYPE = Core.TableRowNode.TYPE;
+
+    export function isTableRowNode(value: Node): value is TableRowNode {
+        return Core.TableRowNode.isTableRowNode(value);
+    }
+
+    export function validateTableRowNode(value: any): TableRowNode | null {
+        return Core.TableRowNode.validateTableRowNode(value, (n) => TableCellNode.validateTableCellNode(n));
+    }
+}
+
+export type TableCellNode = Core.TableCellNode<TableCellChildElement>;
+
+export namespace TableCellNode {
+    export import TYPE = Core.TableCellNode.TYPE;
+
+    export function isTableCellNode(value: Node): value is TableCellNode {
+        return Core.TableCellNode.isTableCellNode(value);
+    }
+
+    export function validateTableCellNode(value: any): TableCellNode | null {
+        return Core.TableCellNode.validateTableCellNode(
+            value,
+            (n) => ParagraphNode.validateParagraphNode(n) || ListNode.validateListNode(n),
+        );
+    }
+}
+
+export type TableCellChildElement = ParagraphNode | ListNode;
