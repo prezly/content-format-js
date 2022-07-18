@@ -368,6 +368,7 @@ export type TableNode = Core.TableNode<TableRowNode>;
 
 export namespace TableNode {
     export import TYPE = Core.TableNode.TYPE;
+    export import TableHeader = Core.TableNode.TableHeader;
 
     export function isTableNode(value: Node): value is TableNode {
         return Core.TableNode.isTableNode(value);
