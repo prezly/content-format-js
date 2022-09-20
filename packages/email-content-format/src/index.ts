@@ -25,18 +25,14 @@ export namespace Node {
     }
 }
 
-export type InlineNode = LinkNode | PlaceholderNode | Text;
+export type InlineNode = LinkNode | VariableNode | Text;
 export namespace InlineNode {
     export function isInlineNode(value: any): value is InlineNode {
-        return Text.isText(value) || LinkNode.isLinkNode(value) || PlaceholderNode.isPlaceholderNode(value);
+        return Text.isText(value) || LinkNode.isLinkNode(value) || VariableNode.isVariableNode(value);
     }
 
     export function validateInlineNode(value: any): InlineNode | null {
-        return (
-            Text.validateText(value) ??
-            LinkNode.validateLinkNode(value) ??
-            PlaceholderNode.validatePlaceholderNode(value)
-        );
+        return Text.validateText(value) ?? LinkNode.validateLinkNode(value) ?? VariableNode.validateVariableNode(value);
     }
 }
 
@@ -180,9 +176,9 @@ export namespace LinkNode {
     }
 }
 
-export type PlaceholderNode = Core.PlaceholderNode<PlaceholderNode.Key>;
-export namespace PlaceholderNode {
-    export import TYPE = Core.PlaceholderNode.TYPE;
+export type VariableNode = Core.VariableNode<VariableNode.Key>;
+export namespace VariableNode {
+    export import TYPE = Core.VariableNode.TYPE;
 
     export enum Key {
         CONTACT_FIRST_NAME = 'contact.firstname',
@@ -192,12 +188,12 @@ export namespace PlaceholderNode {
         STORY_SHORT_URL = 'release.shorturl',
     }
 
-    export function isPlaceholderNode(value: any): value is PlaceholderNode {
-        return Core.PlaceholderNode.isPlaceholderNode(value);
+    export function isVariableNode(value: any): value is VariableNode {
+        return Core.VariableNode.isVariableNode(value);
     }
 
-    export function validatePlaceholderNode(value: any): PlaceholderNode | null {
-        return Core.PlaceholderNode.validatePlaceholderNode(value, function (key): key is Key {
+    export function validateVariableNode(value: any): VariableNode | null {
+        return Core.VariableNode.validateVariableNode(value, function (key): key is Key {
             return Object.values(Key).includes(key as Key);
         });
     }

@@ -12,7 +12,7 @@ export * from './LinkNode';
 export * from './Lists';
 export * from './MentionNode';
 export * from './ParagraphNode';
-export * from './PlaceholderNode';
+export * from './VariableNode';
 export * from './QuoteNode';
 export * from './StoryBookmarkNode';
 export * from './StoryEmbedNode';
