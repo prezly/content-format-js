@@ -84,9 +84,9 @@ There is a number of block and inline elements our editor can generate.
 - [ListNode](packages/content-format/src/nodes/ListNode.ts)
 - [MentionNode](packages/content-format/src/nodes/MentionNode.ts)
 - [ParagraphNode](packages/content-format/src/nodes/ParagraphNode.ts)
-- [PlaceholderNode](packages/content-format/src/nodes/PlaceholderNode.ts)
 - [QuoteNode](packages/content-format/src/nodes/QuoteNode.ts)
 - [StoryBookmarkNode](packages/content-format/src/nodes/StoryBookmarkNode.ts)
+- [VariableNode](packages/content-format/src/nodes/VariableNode.ts)
 - [VideoNode](packages/content-format/src/nodes/VideoNode.ts)
 
 ## Example document
