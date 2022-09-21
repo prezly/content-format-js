@@ -47,6 +47,7 @@ export type BlockNode =
     | HtmlNode
     | ImageNode
     | ParagraphNode
+    | PlaceholderNode
     | QuoteNode
     | ListNode
     | ListItemNode
@@ -69,6 +70,7 @@ export namespace BlockNode {
             HtmlNode.isHtmlNode(value) ||
             ImageNode.isImageNode(value) ||
             ParagraphNode.isParagraphNode(value) ||
+            PlaceholderNode.isPlaceholderNode(value) ||
             QuoteNode.isQuoteNode(value) ||
             ListNode.isListNode(value) ||
             StoryBookmarkNode.isStoryBookmarkNode(value) ||
@@ -90,6 +92,7 @@ export namespace BlockNode {
             HtmlNode.validateHtmlNode(value) ??
             ImageNode.validateImageNode(value) ??
             ParagraphNode.validateParagraphNode(value) ??
+            PlaceholderNode.validatePlaceholderNode(value) ??
             QuoteNode.validateQuoteNode(value) ??
             ListNode.validateListNode(value) ??
             StoryBookmarkNode.validateStoryBookmarkNode(value) ??
@@ -282,6 +285,8 @@ export namespace ParagraphNode {
         );
     }
 }
+
+export import PlaceholderNode = Core.PlaceholderNode;
 
 export type QuoteNode = Core.Alignable<Core.QuoteNode<InlineNode>, false>;
 export namespace QuoteNode {
