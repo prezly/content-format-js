@@ -14,7 +14,7 @@ export namespace DocumentNode {
 }
 
 export type Node = DocumentNode | InlineNode | BlockNode;
-export type TopLevelNode = Exclude<BlockNode, ListItemNode | ListItemTextNode>;
+export type TopLevelNode = Exclude<BlockNode, ListItemNode | ListItemTextNode | TableRowNode | TableCellNode>;
 export namespace Node {
     export function isNode(value: any): value is Node {
         return InlineNode.isInlineNode(value) || BlockNode.isBlockNode(value);
