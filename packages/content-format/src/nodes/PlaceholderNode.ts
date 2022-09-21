@@ -2,7 +2,9 @@ import { Element } from '../Element';
 
 import Type = PlaceholderNode.Type;
 
-export interface PlaceholderNode extends Element<Type> {}
+export interface PlaceholderNode extends Element<Type> {
+    uuid: string;
+}
 
 export namespace PlaceholderNode {
     export type Type = `placeholder:${string}`;
@@ -21,7 +23,7 @@ export namespace PlaceholderNode {
     }
 
     export function validatePlaceholderNode(value: any): PlaceholderNode | null {
-        const isValid = isPlaceholderNode(value);
+        const isValid = isPlaceholderNode(value) && typeof value.uuid === 'string';
         return isValid ? value : null;
     }
 }
