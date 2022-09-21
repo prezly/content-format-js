@@ -14,7 +14,7 @@ export namespace DocumentNode {
 }
 
 export type Node = DocumentNode | InlineNode | BlockNode;
-export type TopLevelNode = Exclude<BlockNode, ListItemNode | ListItemTextNode>;
+export type TopLevelNode = Exclude<BlockNode, ListItemNode | ListItemTextNode | TableRowNode | TableCellNode>;
 export namespace Node {
     export function isNode(value: any): value is Node {
         return InlineNode.isInlineNode(value) || BlockNode.isBlockNode(value);
@@ -46,6 +46,7 @@ export type BlockNode =
     | ImageNode
     | ListNode
     | ParagraphNode
+    | PlaceholderNode
     | QuoteNode
     | StoryBookmarkNode
     | StoryEmbedNode
@@ -65,6 +66,7 @@ export namespace BlockNode {
             ImageNode.isImageNode(value) ||
             ListNode.isListNode(value) ||
             ParagraphNode.isParagraphNode(value) ||
+            PlaceholderNode.isPlaceholderNode(value) ||
             QuoteNode.isQuoteNode(value) ||
             StoryBookmarkNode.isStoryBookmarkNode(value) ||
             StoryEmbedNode.isStoryEmbedNode(value) ||
@@ -85,6 +87,7 @@ export namespace BlockNode {
             ImageNode.validateImageNode(value) ??
             ListNode.validateListNode(value) ??
             ParagraphNode.validateParagraphNode(value) ??
+            PlaceholderNode.validatePlaceholderNode(value) ??
             QuoteNode.validateQuoteNode(value) ??
             StoryBookmarkNode.validateStoryBookmarkNode(value) ??
             StoryEmbedNode.validateStoryEmbedNode(value) ??
@@ -270,6 +273,8 @@ export namespace ParagraphNode {
         return Core.ParagraphNode.validateParagraphNode(value, InlineNode.validateInlineNode);
     }
 }
+
+export import PlaceholderNode = Core.PlaceholderNode;
 
 export type QuoteNode = Core.Alignable<Core.QuoteNode<InlineNode>, false>;
 export namespace QuoteNode {
