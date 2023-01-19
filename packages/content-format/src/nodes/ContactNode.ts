@@ -25,6 +25,7 @@ export namespace ContactNode {
         mobile: string;
         twitter: string;
         facebook: string;
+        address: string;
     }
 
     export function isContactNode(value: any): value is ContactNode {
