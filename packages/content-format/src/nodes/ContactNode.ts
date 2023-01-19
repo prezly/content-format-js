@@ -1,8 +1,13 @@
 import { Element } from '../Element';
 import { isObject, isUuid } from '../validation';
 
+interface NewsroomContact {
+    uuid: string;
+}
+
 export interface ContactNode extends Element<typeof ContactNode.TYPE> {
     uuid: string;
+    reference: NewsroomContact['uuid'] | null;
     contact: ContactNode.ContactInfo;
 }
 
@@ -10,18 +15,17 @@ export namespace ContactNode {
     export const TYPE = 'contact';
 
     export interface ContactInfo {
-        id: number;
-        uuid: string;
-        name: string;
-        email: string | null;
-        phone: string | null;
-        mobile: string | null;
-        company: string | null;
-        description: string | null;
-        website: string | null;
-        twitter: string | null;
-        facebook: string | null;
         avatar_url: string | null;
+        name: string;
+        company: string;
+        description: string;
+        email: string;
+        website: string;
+        phone: string;
+        mobile: string;
+        twitter: string;
+        facebook: string;
+        address: string;
     }
 
     export function isContactNode(value: any): value is ContactNode {
@@ -29,8 +33,7 @@ export namespace ContactNode {
     }
 
     export function validateContactNode(value: any): ContactNode | null {
-        const isValid =
-            isContactNode(value) && isUuid(value.uuid) && isObject(value.contact) && isUuid(value.contact.uuid);
+        const isValid = isContactNode(value) && isUuid(value.uuid) && isObject(value.contact);
 
         return isValid ? value : null;
     }
