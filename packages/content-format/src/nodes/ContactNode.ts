@@ -9,7 +9,7 @@ export interface ContactNode extends Element<typeof ContactNode.TYPE> {
     uuid: string;
     reference: NewsroomContact['uuid'] | null;
     contact: ContactNode.ContactInfo;
-    layout: ContactNode.Layout;
+    layout: `${ContactNode.Layout}`;
     show_avatar: boolean;
 }
 
