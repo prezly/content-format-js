@@ -39,6 +39,7 @@ export namespace InlineNode {
 export type BlockNode =
     | AttachmentNode
     | BookmarkNode
+    | ContactNode
     | CoverageNode
     | DividerNode
     | EmbedNode
@@ -59,6 +60,7 @@ export namespace BlockNode {
     export function isBlockNode(value: any): value is BlockNode {
         return (
             AttachmentNode.isAttachmentNode(value) ||
+            ContactNode.isContactNode(value) ||
             CoverageNode.isCoverageNode(value) ||
             DividerNode.isDividerNode(value) ||
             EmbedNode.isEmbedNode(value) ||
@@ -80,6 +82,7 @@ export namespace BlockNode {
     export function validateBlockNode(value: any): BlockNode | null {
         return (
             AttachmentNode.validateAttachmentNode(value) ??
+            ContactNode.validateContactNode(value) ??
             CoverageNode.validateCoverageNode(value) ??
             DividerNode.validateDividerNode(value) ??
             EmbedNode.validateEmbedNode(value) ??
@@ -219,6 +222,7 @@ export namespace AttachmentNode {
 }
 
 export import BookmarkNode = Core.BookmarkNode;
+export import ContactNode = Core.ContactNode;
 export import CoverageNode = Core.CoverageNode;
 export import DividerNode = Core.DividerNode;
 export import EmbedNode = Core.EmbedNode;
