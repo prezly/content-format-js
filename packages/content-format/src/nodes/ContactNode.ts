@@ -1,5 +1,5 @@
 import { Element } from '../Element';
-import { isObject, isUuid } from '../validation';
+import { isBoolean, isEnum, isObject, isUuid } from '../validation';
 
 interface NewsroomContact {
     uuid: string;
@@ -9,6 +9,8 @@ export interface ContactNode extends Element<typeof ContactNode.TYPE> {
     uuid: string;
     reference: NewsroomContact['uuid'] | null;
     contact: ContactNode.ContactInfo;
+    layout: ContactNode.Layout;
+    show_avatar: boolean;
 }
 
 export namespace ContactNode {
@@ -28,12 +30,22 @@ export namespace ContactNode {
         address: string;
     }
 
+    export enum Layout {
+        CARD = 'card',
+        SIGNATURE = 'signature',
+    }
+
     export function isContactNode(value: any): value is ContactNode {
         return Element.isElement(value, TYPE);
     }
 
     export function validateContactNode(value: any): ContactNode | null {
-        const isValid = isContactNode(value) && isUuid(value.uuid) && isObject(value.contact);
+        const isValid =
+            isContactNode(value) &&
+            isUuid(value.uuid) &&
+            isObject(value.contact) &&
+            isEnum(value.layout, ContactNode.Layout) &&
+            isBoolean(value.show_avatar);
 
         return isValid ? value : null;
     }
