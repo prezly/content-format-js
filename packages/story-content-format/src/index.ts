@@ -231,9 +231,18 @@ export type HeadingNode = Core.Alignable<Core.HeadingNode<InlineNode>, false>;
 export namespace HeadingNode {
     export import Type = Core.HeadingNode.Type;
     export import Alignment = Core.Alignable.Alignment;
+    export import Role = Core.HeadingNode.Role;
 
     export function isHeadingNode(value: any, type?: HeadingNode.Type): value is HeadingNode {
         return type ? Core.HeadingNode.isHeadingNode(value, type) : Core.HeadingNode.isHeadingNode(value);
+    }
+
+    export function isTitleHeadingNode(value: any): value is HeadingNode & { role: HeadingNode.Role.TITLE } {
+        return Core.HeadingNode.isTitleHeadingNode(value);
+    }
+
+    export function isSubtitleHeadingNode(value: any): value is HeadingNode & { role: HeadingNode.Role.SUBTITLE } {
+        return Core.HeadingNode.isSubtitleHeadingNode(value);
     }
 
     export function validateHeadingNode(value: any): HeadingNode | null {
