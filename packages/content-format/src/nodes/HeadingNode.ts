@@ -2,7 +2,7 @@ import { ComposedElement } from '../ComposedElement';
 import type { Node } from '../Node';
 
 export interface HeadingNode<Child extends Node> extends ComposedElement<`${HeadingNode.Type}`, Child> {
-    role?: HeadingNode.Role;
+    role?: `${HeadingNode.Role}`;
 }
 
 export namespace HeadingNode {
