@@ -1,12 +1,19 @@
 import { ComposedElement } from '../ComposedElement';
 import type { Node } from '../Node';
 
-export interface HeadingNode<Child extends Node> extends ComposedElement<`${HeadingNode.Type}`, Child> {}
+export interface HeadingNode<Child extends Node> extends ComposedElement<`${HeadingNode.Type}`, Child> {
+    role?: HeadingNode.Role;
+}
 
 export namespace HeadingNode {
     export enum Type {
         HEADING_ONE = 'heading-one',
         HEADING_TWO = 'heading-two',
+    }
+
+    export enum Role {
+        TITLE = 'title',
+        SUBTITLE = 'subtitle',
     }
 
     export function isHeadingNode<Heading extends HeadingNode<Child>, Child extends Node>(value: any): value is Heading;
@@ -24,6 +31,22 @@ export namespace HeadingNode {
             );
         }
         return ComposedElement.isComposedElement(value, type);
+    }
+
+    export function isTitleHeadingNode<Heading extends HeadingNode<Child>, Child extends Node>(
+        value: any,
+    ): value is Heading & { role: HeadingNode.Role.TITLE };
+
+    export function isTitleHeadingNode(value: any) {
+        return isHeadingNode(value) && value.role === HeadingNode.Role.TITLE;
+    }
+
+    export function isSubtitleHeadingNode<Heading extends HeadingNode<Child>, Child extends Node>(
+        value: any,
+    ): value is Heading & { role: HeadingNode.Role.SUBTITLE };
+
+    export function isSubtitleHeadingNode(value: any) {
+        return isHeadingNode(value) && value.role === HeadingNode.Role.SUBTITLE;
     }
 
     export function validateHeadingNode<Heading extends HeadingNode<Child>, Child extends Node>(
