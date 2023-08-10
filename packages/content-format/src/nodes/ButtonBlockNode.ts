@@ -7,7 +7,6 @@ export interface ButtonBlockNode extends Element<typeof ButtonBlockNode.TYPE> {
     label: string;
     layout: `${ButtonBlockNode.Layout}`;
     variant: `${ButtonBlockNode.Variant}`;
-    show_thumbnail: boolean;
     new_tab: boolean;
 }
 
