@@ -6,10 +6,17 @@ export interface EmbedNode extends Element<typeof EmbedNode.TYPE> {
     uuid: string;
     url: string;
     oembed: OEmbed;
+    layout: `${EmbedNode.Layout}`;
 }
 
 export namespace EmbedNode {
     export const TYPE = 'embed';
+
+    export enum Layout {
+        CONTAINED = 'contained',
+        EXPANDED = 'expanded',
+        FULL_WIDTH = 'full-width',
+    }
 
     export import OEmbedInfo = OEmbed;
 
