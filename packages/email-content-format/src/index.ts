@@ -40,6 +40,7 @@ export type BlockNode =
     | AttachmentNode
     | BookmarkNode
     | ButtonBlockNode
+    | CalloutNode
     | ContactNode
     | CoverageNode
     | DividerNode
@@ -62,6 +63,7 @@ export namespace BlockNode {
         return (
             AttachmentNode.isAttachmentNode(value) ||
             ButtonBlockNode.isButtonBlockNode(value) ||
+            CalloutNode.isCalloutNode(value) ||
             ContactNode.isContactNode(value) ||
             CoverageNode.isCoverageNode(value) ||
             DividerNode.isDividerNode(value) ||
@@ -85,6 +87,7 @@ export namespace BlockNode {
         return (
             AttachmentNode.validateAttachmentNode(value) ??
             ButtonBlockNode.validateButtonBlockNode(value) ??
+            CalloutNode.validateCalloutNode(value) ??
             ContactNode.validateContactNode(value) ??
             CoverageNode.validateCoverageNode(value) ??
             DividerNode.validateDividerNode(value) ??
@@ -110,6 +113,7 @@ export type ComposedElement =
     | LinkNode
     | HeadingNode
     | ParagraphNode
+    | CalloutNode
     | QuoteNode
     | ListNode
     | ListItemNode
@@ -125,6 +129,7 @@ export namespace ComposedElement {
             LinkNode.isLinkNode(value) ||
             HeadingNode.isHeadingNode(value) ||
             ParagraphNode.isParagraphNode(value) ||
+            CalloutNode.isCalloutNode(value) ||
             QuoteNode.isQuoteNode(value) ||
             ListNode.isListNode(value) ||
             ListItemNode.isListItemNode(value) ||
@@ -141,6 +146,7 @@ export namespace ComposedElement {
             LinkNode.validateLinkNode(value) ??
             HeadingNode.validateHeadingNode(value) ??
             ParagraphNode.validateParagraphNode(value) ??
+            CalloutNode.validateCalloutNode(value) ??
             QuoteNode.validateQuoteNode(value) ??
             ListNode.validateListNode(value) ??
             ListItemNode.validateListItemNode(value) ??
@@ -226,6 +232,24 @@ export namespace AttachmentNode {
 
 export import BookmarkNode = Core.BookmarkNode;
 export import ButtonBlockNode = Core.ButtonBlockNode;
+
+export type CalloutNode = Core.Alignable<Core.CalloutNode<InlineNode>, false>;
+export namespace CalloutNode {
+    export import TYPE = Core.CalloutNode.TYPE;
+    export import Alignment = Core.Alignable.Alignment;
+
+    export function isCalloutNode(value: any): value is CalloutNode {
+        return Core.CalloutNode.isCalloutNode(value);
+    }
+
+    export function validateCalloutNode(value: any): CalloutNode | null {
+        return Core.Alignable.validateAlignable<CalloutNode, false>(
+            Core.CalloutNode.validateCalloutNode(value, InlineNode.validateInlineNode),
+            false,
+        );
+    }
+}
+
 export import ContactNode = Core.ContactNode;
 export import CoverageNode = Core.CoverageNode;
 export import DividerNode = Core.DividerNode;

@@ -9,6 +9,7 @@ export namespace Stylable {
         UNDERLINED = 'underlined',
         SUBSCRIPT = 'subscript',
         SUPERSCRIPT = 'superscript',
+        HIGHLIGHTED = 'highlighted',
     }
 
     export function validateStylable<T extends Record<string, any>>(value: T): Stylable<T, Style>;
