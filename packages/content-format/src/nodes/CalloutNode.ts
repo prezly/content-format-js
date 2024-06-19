@@ -1,7 +1,9 @@
 import { ComposedElement } from '../ComposedElement';
 import type { Node } from '../Node';
 
-export interface CalloutNode<Inline extends Node> extends ComposedElement<typeof CalloutNode.TYPE, Inline> {}
+export interface CalloutNode<Inline extends Node> extends ComposedElement<typeof CalloutNode.TYPE, Inline> {
+    icon?: string;
+}
 
 export namespace CalloutNode {
     export const TYPE = 'callout';
