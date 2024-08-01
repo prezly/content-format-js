@@ -42,6 +42,7 @@ export type BlockNode =
     | ButtonBlockNode
     | CalloutNode
     | ContactNode
+    | CoverageNode
     | DividerNode
     | EmbedNode
     | GalleryNode
@@ -67,6 +68,7 @@ export namespace BlockNode {
             ButtonBlockNode.isButtonBlockNode(value) ||
             CalloutNode.isCalloutNode(value) ||
             ContactNode.isContactNode(value) ||
+            CoverageNode.isCoverageNode(value) ||
             DividerNode.isDividerNode(value) ||
             EmbedNode.isEmbedNode(value) ||
             GalleryNode.isGalleryNode(value) ||
@@ -91,6 +93,7 @@ export namespace BlockNode {
             ButtonBlockNode.validateButtonBlockNode(value) ??
             CalloutNode.validateCalloutNode(value) ??
             ContactNode.validateContactNode(value) ??
+            CoverageNode.validateCoverageNode(value) ??
             DividerNode.validateDividerNode(value) ??
             EmbedNode.validateEmbedNode(value) ??
             GalleryNode.validateGalleryNode(value) ??
@@ -251,6 +254,7 @@ export namespace CalloutNode {
 }
 
 export import ContactNode = Core.ContactNode;
+export import CoverageNode = Core.CoverageNode;
 export import DividerNode = Core.DividerNode;
 export import EmbedNode = Core.EmbedNode;
 export import GalleryNode = Core.GalleryNode;
