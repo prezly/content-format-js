@@ -4,6 +4,7 @@ import { isNonEmptyString } from '../validation';
 export interface VariableNode<Key extends string>
     extends Element<typeof VariableNode.TYPE | typeof VariableNode.BACKWARD_COMPATIBLE_TYPE> {
     key: `${Key}`;
+    fallback?: string;
 }
 
 export namespace VariableNode {
