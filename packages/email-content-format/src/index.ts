@@ -45,6 +45,7 @@ export type BlockNode =
     | CoverageNode
     | DividerNode
     | EmbedNode
+    | GalleryNode
     | HeadingNode
     | ImageNode
     | ListNode
@@ -68,6 +69,7 @@ export namespace BlockNode {
             CoverageNode.isCoverageNode(value) ||
             DividerNode.isDividerNode(value) ||
             EmbedNode.isEmbedNode(value) ||
+            GalleryNode.isGalleryNode(value) ||
             HeadingNode.isHeadingNode(value) ||
             ImageNode.isImageNode(value) ||
             ListNode.isListNode(value) ||
@@ -92,6 +94,7 @@ export namespace BlockNode {
             CoverageNode.validateCoverageNode(value) ??
             DividerNode.validateDividerNode(value) ??
             EmbedNode.validateEmbedNode(value) ??
+            GalleryNode.validateGalleryNode(value) ??
             HeadingNode.validateHeadingNode(value) ??
             ImageNode.validateImageNode(value) ??
             ListNode.validateListNode(value) ??
@@ -254,6 +257,27 @@ export import ContactNode = Core.ContactNode;
 export import CoverageNode = Core.CoverageNode;
 export import DividerNode = Core.DividerNode;
 export import EmbedNode = Core.EmbedNode;
+
+export type GalleryNode = Core.Alignable<Core.GalleryNode>;
+export namespace GalleryNode {
+    export import TYPE = Core.GalleryNode.TYPE;
+    export import Alignment = Core.Alignable.Alignment;
+    export import Layout = Core.GalleryNode.Layout;
+    export import Padding = Core.GalleryNode.Padding;
+    export import ImageSize = Core.GalleryNode.ImageSize;
+
+    export function isGalleryNode(value: any): value is GalleryNode {
+        return Core.GalleryNode.isGalleryNode(value);
+    }
+
+    export function validateGalleryNode(value: any): GalleryNode | null {
+        return Core.Alignable.validateAlignable(
+            Core.GalleryNode.validateGalleryNode(value) as GalleryNode | null,
+            false,
+        );
+    }
+}
+
 export import StoryBookmarkNode = Core.StoryBookmarkNode;
 export import StoryEmbedNode = Core.StoryEmbedNode;
 export import VideoNode = Core.VideoNode;
