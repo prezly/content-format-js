@@ -167,7 +167,8 @@ export namespace ComposedElement {
 
 // NODES
 
-export import Alignment = Core.Alignable.Alignment;
+export import BlockAlignment = Core.AlignableBlock.Alignment;
+export import TextAlignment = Core.AlignableText.Alignment;
 export import OEmbedInfo = Core.OEmbedInfo;
 
 // Inline Nodes
@@ -236,17 +237,17 @@ export namespace AttachmentNode {
 export import BookmarkNode = Core.BookmarkNode;
 export import ButtonBlockNode = Core.ButtonBlockNode;
 
-export type CalloutNode = Core.Alignable<Core.CalloutNode<InlineNode>, false>;
+export type CalloutNode = Core.AlignableText<Core.CalloutNode<InlineNode>, false>;
 export namespace CalloutNode {
     export import TYPE = Core.CalloutNode.TYPE;
-    export import Alignment = Core.Alignable.Alignment;
+    export import Alignment = Core.AlignableText.Alignment;
 
     export function isCalloutNode(value: any): value is CalloutNode {
         return Core.CalloutNode.isCalloutNode(value);
     }
 
     export function validateCalloutNode(value: any): CalloutNode | null {
-        return Core.Alignable.validateAlignable<CalloutNode, false>(
+        return Core.AlignableText.validateAlignable<CalloutNode, false>(
             Core.CalloutNode.validateCalloutNode(value, InlineNode.validateInlineNode),
             false,
         );
@@ -259,10 +260,10 @@ export import DividerNode = Core.DividerNode;
 export import EmbedNode = Core.EmbedNode;
 export import GalleryNode = Core.GalleryNode;
 
-export type HeadingNode = Core.Alignable<Core.HeadingNode<InlineNode>, false>;
+export type HeadingNode = Core.AlignableText<Core.HeadingNode<InlineNode>, false>;
 export namespace HeadingNode {
     export import Type = Core.HeadingNode.Type;
-    export import Alignment = Core.Alignable.Alignment;
+    export import Alignment = Core.AlignableText.Alignment;
     export import Role = Core.HeadingNode.Role;
 
     export function isHeadingNode(value: any, type?: HeadingNode.Type): value is HeadingNode {
@@ -278,7 +279,7 @@ export namespace HeadingNode {
     }
 
     export function validateHeadingNode(value: any): HeadingNode | null {
-        return Core.Alignable.validateAlignable(
+        return Core.AlignableText.validateAlignable(
             Core.HeadingNode.validateHeadingNode(value, InlineNode.validateInlineNode),
             false,
         );
@@ -287,20 +288,20 @@ export namespace HeadingNode {
 
 export import HtmlNode = Core.HtmlNode;
 
-export type ImageNode = Core.Alignable<Core.ImageNode> & Core.ComposedElement<typeof ImageNode.TYPE, InlineNode>;
+export type ImageNode = Core.AlignableBlock<Core.ImageNode> & Core.ComposedElement<typeof ImageNode.TYPE, InlineNode>;
 export namespace ImageNode {
     export import TYPE = Core.ImageNode.TYPE;
     export import File = Core.ImageNode.File;
     export import Width = Core.ImageNode.Width;
     export import Layout = Core.ImageNode.Layout;
-    export import Alignment = Core.Alignable.Alignment;
+    export import Alignment = Core.AlignableBlock.Alignment;
 
     export function isImageNode(value: any): value is ImageNode {
         return Core.ImageNode.isImageNode(value);
     }
 
     export function validateImageNode(value: any): ImageNode | null {
-        return Core.Alignable.validateAlignable(
+        return Core.AlignableBlock.validateAlignable(
             Core.ComposedElement.validateComposedElement(
                 Core.ImageNode.validateImageNode(value),
                 TYPE,
@@ -310,17 +311,17 @@ export namespace ImageNode {
     }
 }
 
-export type ParagraphNode = Core.Alignable<Core.ParagraphNode<InlineNode>, false>;
+export type ParagraphNode = Core.AlignableText<Core.ParagraphNode<InlineNode>, false>;
 export namespace ParagraphNode {
     export import TYPE = Core.ParagraphNode.TYPE;
-    export import Alignment = Core.Alignable.Alignment;
+    export import Alignment = Core.AlignableText.Alignment;
 
     export function isParagraphNode(value: any): value is ParagraphNode {
         return Core.ParagraphNode.isParagraphNode(value);
     }
 
     export function validateParagraphNode(value: any): ParagraphNode | null {
-        return Core.Alignable.validateAlignable(
+        return Core.AlignableText.validateAlignable(
             Core.ParagraphNode.validateParagraphNode(value, InlineNode.validateInlineNode),
             false,
         );
@@ -329,17 +330,17 @@ export namespace ParagraphNode {
 
 export import PlaceholderNode = Core.PlaceholderNode;
 
-export type QuoteNode = Core.Alignable<Core.QuoteNode<InlineNode>, false>;
+export type QuoteNode = Core.AlignableText<Core.QuoteNode<InlineNode>, false>;
 export namespace QuoteNode {
     export import TYPE = Core.QuoteNode.TYPE;
-    export import Alignment = Core.Alignable.Alignment;
+    export import Alignment = Core.AlignableText.Alignment;
 
     export function isQuoteNode(value: any): value is QuoteNode {
         return Core.QuoteNode.isQuoteNode(value);
     }
 
     export function validateQuoteNode(value: any): QuoteNode | null {
-        return Core.Alignable.validateAlignable(
+        return Core.AlignableText.validateAlignable(
             Core.QuoteNode.validateQuoteNode(value, InlineNode.validateInlineNode),
             false,
         );
@@ -349,17 +350,17 @@ export namespace QuoteNode {
 export import StoryBookmarkNode = Core.StoryBookmarkNode;
 export import VideoNode = Core.VideoNode;
 
-export type ListNode = Core.Alignable<RecursiveListNode, false>;
+export type ListNode = Core.AlignableText<RecursiveListNode, false>;
 export namespace ListNode {
     export import Type = Core.ListNode.Type;
-    export import Alignment = Core.Alignable.Alignment;
+    export import Alignment = Core.AlignableText.Alignment;
 
     export function isListNode(value: any): value is ListNode {
         return Core.ListNode.isListNode(value);
     }
 
     export function validateListNode(value: any, type?: Type): ListNode | null {
-        return Core.Alignable.validateAlignable(
+        return Core.AlignableText.validateAlignable(
             type ? validateRecursiveListNode(value, type) : validateRecursiveListNode(value),
             false,
         );
