@@ -10,7 +10,7 @@ export namespace AlignableBlock {
         RIGHT = 'right',
     }
 
-    export function validateAlignable<T extends Record<string, any>, Required extends boolean = true>(
+    export function validateAlignableBlock<T extends Record<string, any>, Required extends boolean = true>(
         value: T | null,
         required: Required = true as Required,
     ): AlignableBlock<T, Required> | null {

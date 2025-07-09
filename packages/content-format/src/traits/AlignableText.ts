@@ -11,7 +11,7 @@ export namespace AlignableText {
         JUSTIFY = 'justify',
     }
 
-    export function validateAlignable<T extends Record<string, any>, Required extends boolean = true>(
+    export function validateAlignableText<T extends Record<string, any>, Required extends boolean = true>(
         value: T | null,
         required: Required = true as Required,
     ): AlignableText<T, Required> | null {

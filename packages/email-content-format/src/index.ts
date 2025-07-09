@@ -247,7 +247,7 @@ export namespace CalloutNode {
     }
 
     export function validateCalloutNode(value: any): CalloutNode | null {
-        return Core.AlignableText.validateAlignable<CalloutNode, false>(
+        return Core.AlignableText.validateAlignableText<CalloutNode, false>(
             Core.CalloutNode.validateCalloutNode(value, InlineNode.validateInlineNode),
             false,
         );
@@ -272,7 +272,7 @@ export namespace GalleryNode {
     }
 
     export function validateGalleryNode(value: any): GalleryNode | null {
-        return Core.AlignableBlock.validateAlignable(
+        return Core.AlignableBlock.validateAlignableBlock(
             Core.GalleryNode.validateGalleryNode(value) as GalleryNode | null,
             false,
         );
@@ -293,7 +293,7 @@ export namespace HeadingNode {
     }
 
     export function validateHeadingNode(value: any): HeadingNode | null {
-        return Core.AlignableText.validateAlignable(
+        return Core.AlignableText.validateAlignableText(
             Core.HeadingNode.validateHeadingNode(value, InlineNode.validateInlineNode),
             false,
         );
@@ -343,7 +343,7 @@ export namespace QuoteNode {
     }
 
     export function validateQuoteNode(value: any): QuoteNode | null {
-        return Core.AlignableText.validateAlignable<QuoteNode, false>(
+        return Core.AlignableText.validateAlignableText<QuoteNode, false>(
             Core.QuoteNode.validateQuoteNode(value, InlineNode.validateInlineNode),
             false,
         );
@@ -360,7 +360,7 @@ export namespace ListNode {
     }
 
     export function validateListNode(value: any, type?: Type): ListNode | null {
-        return Core.AlignableText.validateAlignable(
+        return Core.AlignableText.validateAlignableText(
             type ? validateRecursiveListNode(value, type) : validateRecursiveListNode(value),
             false,
         );

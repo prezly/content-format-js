@@ -247,7 +247,7 @@ export namespace CalloutNode {
     }
 
     export function validateCalloutNode(value: any): CalloutNode | null {
-        return Core.AlignableText.validateAlignable<CalloutNode, false>(
+        return Core.AlignableText.validateAlignableText<CalloutNode, false>(
             Core.CalloutNode.validateCalloutNode(value, InlineNode.validateInlineNode),
             false,
         );
@@ -279,7 +279,7 @@ export namespace HeadingNode {
     }
 
     export function validateHeadingNode(value: any): HeadingNode | null {
-        return Core.AlignableText.validateAlignable(
+        return Core.AlignableText.validateAlignableText(
             Core.HeadingNode.validateHeadingNode(value, InlineNode.validateInlineNode),
             false,
         );
@@ -301,7 +301,7 @@ export namespace ImageNode {
     }
 
     export function validateImageNode(value: any): ImageNode | null {
-        return Core.AlignableBlock.validateAlignable(
+        return Core.AlignableBlock.validateAlignableBlock(
             Core.ComposedElement.validateComposedElement(
                 Core.ImageNode.validateImageNode(value),
                 TYPE,
@@ -321,7 +321,7 @@ export namespace ParagraphNode {
     }
 
     export function validateParagraphNode(value: any): ParagraphNode | null {
-        return Core.AlignableText.validateAlignable(
+        return Core.AlignableText.validateAlignableText(
             Core.ParagraphNode.validateParagraphNode(value, InlineNode.validateInlineNode),
             false,
         );
@@ -340,7 +340,7 @@ export namespace QuoteNode {
     }
 
     export function validateQuoteNode(value: any): QuoteNode | null {
-        return Core.AlignableText.validateAlignable(
+        return Core.AlignableText.validateAlignableText(
             Core.QuoteNode.validateQuoteNode(value, InlineNode.validateInlineNode),
             false,
         );
@@ -360,7 +360,7 @@ export namespace ListNode {
     }
 
     export function validateListNode(value: any, type?: Type): ListNode | null {
-        return Core.AlignableText.validateAlignable(
+        return Core.AlignableText.validateAlignableText(
             type ? validateRecursiveListNode(value, type) : validateRecursiveListNode(value),
             false,
         );
