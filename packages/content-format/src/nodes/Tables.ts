@@ -3,6 +3,7 @@ import { Node } from '../Node';
 
 export interface TableNode<Child extends Node> extends ComposedElement<typeof TableNode.TYPE, Child> {
     border?: boolean;
+    colSizes?: number[];
     header?: TableNode.TableHeader[];
 }
 
@@ -46,7 +47,11 @@ export namespace TableRowNode {
 }
 
 export interface TableCellNode<Child extends Node> extends ComposedElement<typeof TableCellNode.TYPE, Child> {
+    colSpan?: number;
+    rowSpan?: number;
+    /** @deprecated */
     rowspan?: number;
+    /** @deprecated */
     colspan?: number;
 }
 
