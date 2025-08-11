@@ -2,7 +2,6 @@ import { ComposedElement } from '../ComposedElement';
 import { Node } from '../Node';
 
 export interface TableNode<Child extends Node> extends ComposedElement<typeof TableNode.TYPE, Child> {
-    border?: boolean;
     colSizes?: number[];
     header?: TableNode.TableHeader[];
 }
