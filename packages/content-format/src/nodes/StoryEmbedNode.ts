@@ -7,6 +7,7 @@ export interface StoryEmbedNode extends Element<typeof StoryEmbedNode.TYPE> {
     };
     appearance: `${StoryEmbedNode.Appearance}`;
     position: `${StoryEmbedNode.Position}`;
+    header_footer: `${StoryEmbedNode.HeaderFooter}`;
 }
 
 export namespace StoryEmbedNode {
@@ -23,6 +24,12 @@ export namespace StoryEmbedNode {
         RIGHT = 'right',
     }
 
+    export enum HeaderFooter {
+        NONE = 'none',
+        STANDARD = 'standard',
+        FULL = 'full',
+    }
+
     export function isStoryEmbedNode(value: any): value is StoryEmbedNode {
         return Element.isElement(value, TYPE);
     }
@@ -33,7 +40,8 @@ export namespace StoryEmbedNode {
             isObject(node.story) &&
             isUuid(node.story.uuid) &&
             isEnum(node.appearance, Appearance) &&
-            isEnum(node.position, Position);
+            isEnum(node.position, Position) &&
+            isEnum(node.header_footer, HeaderFooter);
 
         return isValid ? node : null;
     }
