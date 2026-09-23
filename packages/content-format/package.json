@@ -1,6 +1,6 @@
 {
   "name": "@prezly/content-format",
-  "version": "0.71.0",
+  "version": "0.72.0",
   "description": "Prezly Content Format types and utilities",
   "license": "MIT",
   "main": "dist/commonjs/index.cjs",
@@ -43,8 +43,14 @@
     "prettier:fix": "npm run prettier -- --write"
   },
   "devEngines": {
-    "runtime": { "name": "node", "version": ">=22" },
-    "packageManager": { "name": "npm", "version": ">=10" }
+    "runtime": {
+      "name": "node",
+      "version": ">=22"
+    },
+    "packageManager": {
+      "name": "npm",
+      "version": ">=10"
+    }
   },
   "dependencies": {
     "@prezly/uploads": "^0.2.0",
