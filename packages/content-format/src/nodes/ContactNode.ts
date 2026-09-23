@@ -28,6 +28,8 @@ export namespace ContactNode {
         twitter: string;
         facebook: string;
         address: string;
+        linkedin?: string | null;
+        instagram?: string | null;
     }
 
     export enum Layout {
