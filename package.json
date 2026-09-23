@@ -30,8 +30,8 @@
         "release:publish": "lerna publish"
     },
     "devEngines": {
-        "node": ">=14.0",
-        "npm": ">=7.0"
+        "runtime": { "name": "node", "version": ">=22" },
+        "packageManager": { "name": "npm", "version": ">=10" }
     },
     "devDependencies": {
         "@babel/cli": "^7.17.10",

@@ -43,8 +43,8 @@
     "prettier:fix": "npm run prettier -- --write"
   },
   "devEngines": {
-    "node": ">=14.0",
-    "npm": ">=7.0"
+    "runtime": { "name": "node", "version": ">=22" },
+    "packageManager": { "name": "npm", "version": ">=10" }
   },
   "dependencies": {
     "@prezly/content-format": "^0.71.0",
