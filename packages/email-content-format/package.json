@@ -6,6 +6,11 @@
   "main": "dist/commonjs/index.cjs",
   "module": "dist/esm/index.mjs",
   "types": "dist/types/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "tsconfig.json"
+  ],
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
