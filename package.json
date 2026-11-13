@@ -39,7 +39,6 @@
         "@babel/preset-env": "^7.17.10",
         "babel-plugin-add-import-extension": "^1.6.0",
         "lerna": "^4.0.0",
-        "np": "^7.5.0",
         "prettier": "^2.6.2",
         "renamer": "^4.0.0",
         "rimraf": "^3.0.2",
