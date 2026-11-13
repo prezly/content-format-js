@@ -3,8 +3,10 @@ import type { Node } from '../Node';
 
 type ValidateFn = (value: any) => Node | null;
 
-export interface ListNode<Block extends Node, Type extends string = `${ListNode.Type}`>
-    extends ComposedElement<Type, ListItemNode<Block>> {}
+export interface ListNode<Block extends Node, Type extends string = `${ListNode.Type}`> extends ComposedElement<
+    Type,
+    ListItemNode<Block>
+> {}
 
 export interface ListItemNode<Child extends Node> extends ComposedElement<typeof ListItemNode.TYPE, Child> {}
 
