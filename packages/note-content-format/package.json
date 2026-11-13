@@ -34,7 +34,7 @@
     "test:build": "npm run test:cjs && npm run test:esm && npm run test:types",
     "test:esm": "node dist/esm/index.mjs",
     "test:cjs": "node dist/commonjs/index.cjs",
-    "test:types": "tsc --noEmit --esModuleInterop --skipLibCheck dist/types/index.d.ts",
+    "test:types": "tsc --noEmit --ignoreConfig --esModuleInterop --skipLibCheck dist/types/index.d.ts",
     "check": "npm run prettier",
     "clean": "npm run clean:build && npm run clean:node_modules",
     "clean:build": "rimraf build/ dist/ .turbo/ tsconfig.tsbuildinfo",
