@@ -1,52 +1,83 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
-  "baseBranch": "origin/main",
-  "pipeline": {
+  "$schema": "https://turborepo.com/schema.json",
+  "tasks": {
     "build:all": {
-      "dependsOn": ["build:ts", "build:esm", "build:commonjs"]
+      "dependsOn": [
+        "build:ts",
+        "build:esm",
+        "build:commonjs"
+      ]
     },
     "build:ts": {
-      "dependsOn": ["^build:ts"],
-      "outputs": ["build/**", "dist/types/**"]
+      "dependsOn": [
+        "^build:ts"
+      ],
+      "outputs": [
+        "build/**",
+        "dist/types/**",
+        "tsconfig.tsbuildinfo"
+      ]
     },
     "build:esm": {
-      "dependsOn": ["build:ts"],
-      "outputs": ["dist/esm/**"]
+      "dependsOn": [
+        "build:ts"
+      ],
+      "outputs": [
+        "dist/esm/**"
+      ]
     },
     "build:commonjs": {
-      "dependsOn": ["build:ts"],
-      "outputs": ["dist/commonjs/**"]
-    },
-    "watch:all": {
-      "dependsOn": ["watch:ts", "watch:esm", "watch:commonjs"]
+      "dependsOn": [
+        "build:ts"
+      ],
+      "outputs": [
+        "dist/commonjs/**"
+      ]
     },
     "watch:ts": {
-      "dependsOn": ["^build:ts"]
+      "dependsOn": [
+        "^build:ts"
+      ],
+      "cache": false,
+      "persistent": true
     },
     "watch:esm": {
-      "dependsOn": ["build:ts"]
+      "dependsOn": [
+        "build:ts"
+      ],
+      "cache": false,
+      "persistent": true
     },
     "watch:commonjs": {
-      "dependsOn": ["build:ts"]
+      "dependsOn": [
+        "build:ts"
+      ],
+      "cache": false,
+      "persistent": true
     },
     "test": {
-      "dependsOn": ["build:ts", "build:esm", "build:commonjs"],
+      "dependsOn": [
+        "build:ts",
+        "build:esm",
+        "build:commonjs"
+      ],
       "outputs": []
     },
     "prettier": {
       "outputs": []
     },
     "prettier:fix": {
-      "outputs": []
+      "outputs": [],
+      "cache": false
     },
     "clean": {
-      "outputs": []
+      "cache": false
     },
     "clean:build": {
-      "outputs": []
+      "cache": false
     },
     "clean:node_modules": {
-      "outputs": []
+      "cache": false
     }
   }
 }

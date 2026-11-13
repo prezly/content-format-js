@@ -17,7 +17,7 @@
     "homepage": "https://github.com/prezly/content-format-js#readme",
     "scripts": {
         "build": "turbo run build:all",
-        "watch": "turbo run watch:all",
+        "watch": "turbo run watch:ts watch:esm watch:commonjs --concurrency=13",
         "test": "turbo run test",
         "clean": "turbo run clean",
         "clean:build": "turbo run clean:build && rm -rf node_modules/.cache",
@@ -29,6 +29,7 @@
         "release:prepare": "npm run clean && npm install && npm run check && npm run build",
         "release:publish": "lerna publish"
     },
+    "packageManager": "npm@10.9.7",
     "devEngines": {
         "runtime": { "name": "node", "version": ">=22" },
         "packageManager": { "name": "npm", "version": ">=10" }
@@ -41,7 +42,7 @@
         "lerna": "^4.0.0",
         "prettier": "^3.10.1",
         "rimraf": "^6.1.4",
-        "turbo": "^1.2.6",
+        "turbo": "^2.11.11",
         "typescript": "~4.6.0"
     }
 }
